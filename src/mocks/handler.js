@@ -1,27 +1,11 @@
 import { rest } from 'msw';
+import { initMockDB } from './data';
+
+const DB = initMockDB();
 
 export const handlers = [
-  // Handles a POST /login request
   rest.post('/api/users/login', (req, res, ctx) => {
-    let retval = {
-      username: 'dummy_username',
-      password: '',
-      role: 'student',
-
-      firstName: '',
-      lastName: '',
-      email: '',
-      mobileNumber: '',
-      portfolio: '',
-
-      about: '',
-      address: '',
-
-      education: [''],
-      skills: [''],
-      projects: [''],
-      experience: [''],
-    };
+    let retval = DB.users.dummyStudent;
     let status = 200;
 
     return res(

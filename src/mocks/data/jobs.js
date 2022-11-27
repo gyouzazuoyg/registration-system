@@ -1,0 +1,18 @@
+export const job1 = {
+  title: 'Job 1',
+  department: 'Department 1',
+  salaryFrom: 100000,
+  salaryTo: 200000,
+  experience: '999 experience',
+  smallDescription: 'small description',
+  fullDescription: 'full description',
+  minimumQualification: 'minimum qualification',
+  skillsRequired: 'skills required',
+  company: 'company',
+  email: "dummy@neu.com",
+  phoneNumber: "666-666-6666",
+  companyDescription: "company description",
+  appliedCandidates: [],
+  postedBy: "posted by",
+  comments: [],
+};
