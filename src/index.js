@@ -7,6 +7,10 @@ import store from './redux/store';
 
 import { Provider } from 'react-redux';
 
+// Start msw for dummy api endpoints
+const { worker } = require('./mocks/worker');
+worker.start();
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
