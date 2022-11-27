@@ -1,41 +1,44 @@
-import React, { useState } from "react";
-import DefaultLayout from "../components/DefaultLayout";
-import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { editJob } from "../redux/actions/jobActions";
+import React, { useState } from 'react';
+import DefaultLayout from '../components/DefaultLayout';
+import { Row, Col, Form, Tabs, Input, Button, Select } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { editJob } from '../redux/actions/jobActions';
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 const { Option } = Select;
 
-function EditJob({match}) {
+function EditJob({ match }) {
   const [jobInfo, setJobInfo] = useState({});
-  const [activeTab, setActiveTab] = useState("0");
-  const dispatch = useDispatch()
+  const [activeTab, setActiveTab] = useState('0');
+  const dispatch = useDispatch();
   function onFirstFormFinish(values) {
     setJobInfo(values);
-    setActiveTab("1");
+    setActiveTab('1');
   }
   function onFinalFormFinish(values) {
-      const finalObj = {...jobInfo , ...values};
+    const finalObj = { ...jobInfo, ...values };
 
-      finalObj._id = match.params.id
-      console.log(finalObj)
-      dispatch(editJob(finalObj))
+    finalObj._id = match.params.id;
+    console.log(finalObj);
+    dispatch(editJob(finalObj));
   }
 
+  const { jobs } = useSelector((state) => state.jobsReducer);
 
-  const {jobs} = useSelector(state=>state.jobsReducer)
+  const job = jobs.find((job) => job._id === match.params.id);
 
-  const job = jobs.find(job=>job._id===match.params.id)
-
-  console.log(job)
+  console.log(job);
 
   return (
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="0" activeKey={activeTab}>
           <TabPane tab="Job Info" key="0">
-            <Form layout="vertical" onFinish={onFirstFormFinish} initialValues={job}>
+            <Form
+              layout="vertical"
+              onFinish={onFirstFormFinish}
+              initialValues={job}
+            >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -43,7 +46,7 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Title"
                   >
-                    <Input placeholder="Enter your job title here"/>
+                    <Input placeholder="Enter your job title here" />
                   </Form.Item>
                 </Col>
 
@@ -53,7 +56,7 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Department"
                   >
-                    <Input placeholder="Enter the department or team here"/>
+                    <Input placeholder="Enter the department or team here" />
                   </Form.Item>
                 </Col>
 
@@ -63,7 +66,7 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Experience"
                   >
-                    <Input placeholder="Enter required years of experience here"/>
+                    <Input placeholder="Enter required years of experience here" />
                   </Form.Item>
                 </Col>
 
@@ -73,7 +76,7 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Salary From"
                   >
-                    <Input type="number" placeholder="10000"/>
+                    <Input type="number" placeholder="10000" />
                   </Form.Item>
                 </Col>
 
@@ -83,7 +86,7 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Salary To"
                   >
-                    <Input type="number" placeholder="20000"/>
+                    <Input type="number" placeholder="20000" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -95,7 +98,7 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Skills"
                   >
-                    <Input placeholder="Enter required skills here"/>
+                    <Input placeholder="Enter required skills here" />
                   </Form.Item>
                 </Col>
 
@@ -120,7 +123,10 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Small description"
                   >
-                    <TextArea rows={3} placeholder="Tell candidates more about this job"/>
+                    <TextArea
+                      rows={3}
+                      placeholder="Tell candidates more about this job"
+                    />
                   </Form.Item>
                 </Col>
 
@@ -130,7 +136,10 @@ function EditJob({match}) {
                     rules={[{ required: true }]}
                     label="Full description"
                   >
-                    <TextArea rows={6} placeholder="Include any details to inform or attract candidates"/>
+                    <TextArea
+                      rows={6}
+                      placeholder="Include any details to inform or attract candidates"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -139,7 +148,11 @@ function EditJob({match}) {
             </Form>
           </TabPane>
           <TabPane tab="Company Info" key="1">
-            <Form layout='vertical' onFinish={onFinalFormFinish} initialValues={job}>
+            <Form
+              layout="vertical"
+              onFinish={onFinalFormFinish}
+              initialValues={job}
+            >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -147,40 +160,48 @@ function EditJob({match}) {
                     label="Company Name"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter company name here"/>
+                    <Input placeholder="Enter company name here" />
                   </Form.Item>
-                  </Col>
-                  <Col lg={8} sm={24}>
+                </Col>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="email"
                     label="Company Email"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter your company email as contact info"/>
+                    <Input placeholder="Enter your company email as contact info" />
                   </Form.Item>
-                  </Col>
+                </Col>
 
-                  <Col lg={8} sm={24}>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="phoneNumber"
                     label="Phone number"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter company phone number as contact info"/>
+                    <Input placeholder="Enter company phone number as contact info" />
                   </Form.Item>
-                  </Col>
-                  <Col lg={24} sm={24}>
+                </Col>
+                <Col lg={24} sm={24}>
                   <Form.Item
                     name="companyDescription"
                     label="Company Description"
                     rules={[{ required: true }]}
                   >
-                    <TextArea rows={3} placeholder="Introduce your company to others!"/>
+                    <TextArea
+                      rows={3}
+                      placeholder="Introduce your company to others!"
+                    />
                   </Form.Item>
-                  </Col>
-
+                </Col>
               </Row>
-              <Button onClick={()=>{setActiveTab("0")}}>Previous</Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('0');
+                }}
+              >
+                Previous
+              </Button>
               <Button htmlType="submit">Edit Job</Button>
             </Form>
           </TabPane>

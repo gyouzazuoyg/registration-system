@@ -1,16 +1,14 @@
-import { Input, Modal , Form , Select , Button} from "antd";
-import React, { useState } from "react";
-import {
-  FilterOutlined,
-} from "@ant-design/icons";
-import { useDispatch } from "react-redux";
-import { searchJobs, sortJobs } from "../redux/actions/jobActions";
+import { Input, Modal, Form, Select, Button } from 'antd';
+import React, { useState } from 'react';
+import { FilterOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
+import { searchJobs, sortJobs } from '../redux/actions/jobActions';
 
 const { Search } = Input;
-const {Option} = Select;
+const { Option } = Select;
 function Filter() {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -24,49 +22,53 @@ function Filter() {
     setIsModalVisible(false);
   };
 
-  function sort(values){
+  function sort(values) {
+    dispatch(sortJobs(values));
 
-     dispatch(sortJobs(values))
-
-     handleCancel()
-
+    handleCancel();
   }
   return (
     <div className="flex">
-      <Search onSearch={(value)=>{dispatch(searchJobs(value))}} placeholder="Search here"/>
-      <FilterOutlined onClick={showModal}/>
+      <Search
+        onSearch={(value) => {
+          dispatch(searchJobs(value));
+        }}
+        placeholder="Search here"
+      />
+      <FilterOutlined onClick={showModal} />
 
-      <Modal title="Select filters" footer={false} visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} closable={true}>
-          <Form layout='vertical' onFinish={sort}>
-                <Form.Item name='experience' label='Experience'>
+      <Modal
+        title="Select filters"
+        footer={false}
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        closable={true}
+      >
+        <Form layout="vertical" onFinish={sort}>
+          <Form.Item name="experience" label="Experience">
+            <Select>
+              <Option value={0}>Fresher</Option>
+              <Option value={1}>1 Year</Option>
+              <Option value={2}>2 Years</Option>
+              <Option value={3}>3 Years</Option>
+              <Option value={4}>4 Years</Option>
+              <Option value={5}>5 Years</Option>
+            </Select>
+          </Form.Item>
 
-                    <Select>
-                        <Option value={0}>Fresher</Option>
-                        <Option value={1}>1 Year</Option>
-                        <Option value={2}>2 Years</Option>
-                        <Option value={3}>3 Years</Option>
-                        <Option value={4}>4 Years</Option>
-                        <Option value={5}>5 Years</Option>
-
-                    </Select>
-
-                </Form.Item>
-
-                <Form.Item name='salary' label='Salary'>
-
-                    <Select>
-                        <Option value={10000}>10000+</Option>
-                        <Option value={15000}>15000+</Option>
-                        <Option value={25000}>25000+</Option>
-                        <Option value={35000}>35000+</Option>
-                        <Option value={50000}>50000+</Option>
-                        <Option value={70000}>70000+</Option>
-
-                    </Select>
-
-                </Form.Item>
-                <Button htmlType="submit">Filter</Button>
-          </Form>
+          <Form.Item name="salary" label="Salary">
+            <Select>
+              <Option value={10000}>10000+</Option>
+              <Option value={15000}>15000+</Option>
+              <Option value={25000}>25000+</Option>
+              <Option value={35000}>35000+</Option>
+              <Option value={50000}>50000+</Option>
+              <Option value={70000}>70000+</Option>
+            </Select>
+          </Form.Item>
+          <Button htmlType="submit">Filter</Button>
+        </Form>
       </Modal>
     </div>
   );

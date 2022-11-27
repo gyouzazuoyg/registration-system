@@ -1,23 +1,23 @@
-import React, { useState } from "react";
-import DefaultLayout from "../components/DefaultLayout";
-import { Row, Col, Form, Tabs, Input, Button, Select } from "antd";
-import { useDispatch } from "react-redux";
-import { postJob } from "../redux/actions/jobActions";
+import React, { useState } from 'react';
+import DefaultLayout from '../components/DefaultLayout';
+import { Row, Col, Form, Tabs, Input, Button, Select } from 'antd';
+import { useDispatch } from 'react-redux';
+import { postJob } from '../redux/actions/jobActions';
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 const { Option } = Select;
 function PostJob() {
   const [jobInfo, setJobInfo] = useState({});
-  const [activeTab, setActiveTab] = useState("0");
-  const dispatch = useDispatch()
+  const [activeTab, setActiveTab] = useState('0');
+  const dispatch = useDispatch();
   function onFirstFormFinish(values) {
     setJobInfo(values);
-    setActiveTab("1");
+    setActiveTab('1');
   }
   function onFinalFormFinish(values) {
-      const finalObj = {...jobInfo , ...values};
-      console.log(finalObj)
-      dispatch(postJob(finalObj))
+    const finalObj = { ...jobInfo, ...values };
+    console.log(finalObj);
+    dispatch(postJob(finalObj));
   }
   return (
     <div>
@@ -32,7 +32,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Title"
                   >
-                    <Input placeholder="Enter your job title here"/>
+                    <Input placeholder="Enter your job title here" />
                   </Form.Item>
                 </Col>
 
@@ -42,7 +42,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Department"
                   >
-                    <Input placeholder="Enter the department or team here"/>
+                    <Input placeholder="Enter the department or team here" />
                   </Form.Item>
                 </Col>
 
@@ -52,7 +52,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Experience"
                   >
-                    <Input placeholder="Enter required years of experience here"/>
+                    <Input placeholder="Enter required years of experience here" />
                   </Form.Item>
                 </Col>
 
@@ -62,7 +62,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Salary From"
                   >
-                    <Input type="number" placeholder="10000"/>
+                    <Input type="number" placeholder="10000" />
                   </Form.Item>
                 </Col>
 
@@ -72,7 +72,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Salary To"
                   >
-                    <Input type="number" placeholder="20000"/>
+                    <Input type="number" placeholder="20000" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -84,7 +84,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Skills"
                   >
-                    <Input placeholder="Enter required skills here"/>
+                    <Input placeholder="Enter required skills here" />
                   </Form.Item>
                 </Col>
 
@@ -109,7 +109,10 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Small description"
                   >
-                    <TextArea rows={3} placeholder="Tell candidates more about this job"/>
+                    <TextArea
+                      rows={3}
+                      placeholder="Tell candidates more about this job"
+                    />
                   </Form.Item>
                 </Col>
 
@@ -119,7 +122,10 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Full description"
                   >
-                    <TextArea rows={6} placeholder="Include any details to inform or attract candidates"/>
+                    <TextArea
+                      rows={6}
+                      placeholder="Include any details to inform or attract candidates"
+                    />
                   </Form.Item>
                 </Col>
               </Row>
@@ -128,7 +134,7 @@ function PostJob() {
             </Form>
           </TabPane>
           <TabPane tab="Company Info" key="1">
-            <Form layout='vertical' onFinish={onFinalFormFinish}>
+            <Form layout="vertical" onFinish={onFinalFormFinish}>
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -136,40 +142,48 @@ function PostJob() {
                     label="Company Name"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter company name here"/>
+                    <Input placeholder="Enter company name here" />
                   </Form.Item>
-                  </Col>
-                  <Col lg={8} sm={24}>
+                </Col>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="email"
                     label="Company Email"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter your company email as contact info"/>
+                    <Input placeholder="Enter your company email as contact info" />
                   </Form.Item>
-                  </Col>
+                </Col>
 
-                  <Col lg={8} sm={24}>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="phoneNumber"
                     label="Phone number"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter company phone number as contact info"/>
+                    <Input placeholder="Enter company phone number as contact info" />
                   </Form.Item>
-                  </Col>
-                  <Col lg={24} sm={24}>
+                </Col>
+                <Col lg={24} sm={24}>
                   <Form.Item
                     name="companyDescription"
                     label="Company Description"
                     rules={[{ required: true }]}
                   >
-                    <TextArea rows={3} placeholder="Introduce your company to others!"/>
+                    <TextArea
+                      rows={3}
+                      placeholder="Introduce your company to others!"
+                    />
                   </Form.Item>
-                  </Col>
-
+                </Col>
               </Row>
-              <Button onClick={()=>{setActiveTab("0")}}>Previous</Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('0');
+                }}
+              >
+                Previous
+              </Button>
               <Button htmlType="submit">Post Job</Button>
             </Form>
           </TabPane>
