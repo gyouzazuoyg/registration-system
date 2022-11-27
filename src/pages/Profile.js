@@ -51,11 +51,12 @@ function Profile() {
     dispatch(searchSkills(query));
   }
 
-  const queryResults = JSON.parse(localStorage.getItem('skills'));
+  // Comment out Skill tab page
+  // const queryResults = JSON.parse(localStorage.getItem('skills'));
   const children = [];
-  for (const result of queryResults) {
-    children.push(<Option key={result.name}>{result.name}</Option>);
-  }
+  // for (const result of queryResults) {
+  //   children.push(<Option key={result.name}>{result.name}</Option>);
+  // }
 
   return (
     <div>
