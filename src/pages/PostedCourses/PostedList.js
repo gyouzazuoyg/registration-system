@@ -29,8 +29,8 @@ function PostedList() {
       dataIndex: 'courseId',
     },
     {
-      title: 'Applied Candidates',
-      dataIndex: 'appliedCandidates',
+      title: 'Registered Candidates',
+      dataIndex: 'registeredCandidates',
     },
     {
       title: 'Actions',
@@ -67,7 +67,7 @@ function PostedList() {
         </Link>
       ),
       postedOn: moment(course.createdAt).format('MMM DD yyyy'),
-      appliedCandidates: course.appliedCandidates.length,
+      registeredCandidates: course.registeredCandidates.length,
       completeCourseData: course,
     };
     dataSource.push(obj);
@@ -101,18 +101,18 @@ function PostedList() {
         title: 'Full Name',
         dataIndex: 'fullName',
       },
-      { title: 'Applied Date', dataIndex: 'appliedDate' },
+      { title: 'Registered Date', dataIndex: 'registeredDate' },
     ];
 
     let candidatesDatasource = [];
 
-    for (let candidate of selectedCourse.appliedCandidates) {
+    for (let candidate of selectedCourse.registeredCandidates) {
       let user = allusers.find((user) => user._id === candidate.userid);
 
       let obj = {
         candidateId: user._id,
         fullName: user.firstName + ' ' + user.lastName,
-        appliedDate: candidate.appliedDate,
+        registeredDate: candidate.registeredDate,
       };
 
       candidatesDatasource.push(obj);
@@ -131,7 +131,7 @@ function PostedList() {
       <Table columns={columns} dataSource={dataSource} />
 
       <Modal
-        title="Applied Candidates List"
+        title="Registered Candidates List"
         visible={isModalVisible}
         closable={false}
         onOk={handleOk}

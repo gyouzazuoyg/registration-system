@@ -3,17 +3,17 @@ import { useSelector } from 'react-redux';
 import { Button, Table } from 'antd';
 import { Link } from 'react-router-dom';
 
-function AppliedList() {
+function RegisteredList() {
   const { courses } = useSelector((state) => state.coursesReducer);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const userAppliedCourses = [];
+  const userRegisteredCourses = [];
 
   for (const course of courses) {
-    const appliedCandidates = course.appliedCandidates;
+    const registeredCandidates = course.registeredCandidates;
 
-    const temp = appliedCandidates.find(
+    const temp = registeredCandidates.find(
       (candidate) => candidate.userid === user._id,
     );
 
@@ -21,7 +21,7 @@ function AppliedList() {
       const obj = {
         title: course.title,
         department: course.department,
-        appliedDate: temp.appliedDate,
+        registeredDate: temp.registeredDate,
         courseId: (
           <Link to={`/courses/${course._id}`}>
             <Button>Redirect</Button>
@@ -29,7 +29,7 @@ function AppliedList() {
         ),
       };
 
-      userAppliedCourses.push(obj);
+      userRegisteredCourses.push(obj);
     }
   }
 
@@ -43,8 +43,8 @@ function AppliedList() {
       dataIndex: 'department',
     },
     {
-      title: 'Applied Date',
-      dataIndex: 'appliedDate',
+      title: 'Registered Date',
+      dataIndex: 'registeredDate',
     },
     {
       title: 'Link to Course',
@@ -54,10 +54,10 @@ function AppliedList() {
 
   return (
     <div>
-      <h1>AppliedCourses</h1>
-      <Table columns={columns} dataSource={userAppliedCourses} />
+      <h1>Registered Courses</h1>
+      <Table columns={columns} dataSource={userRegisteredCourses} />
     </div>
   );
 }
 
-export default AppliedList;
+export default RegisteredList;

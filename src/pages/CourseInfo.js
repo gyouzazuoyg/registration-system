@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import DefaultLayout from '../components/DefaultLayout';
 import Comments from '../components/Comments';
 import {
-  applyCourse,
+  registerCourse,
   commentCourses,
   deleteComment,
   deleteCourse,
@@ -37,16 +37,16 @@ function CourseInfo({ match }) {
 
   const userid = user._id;
 
-  const appliedCandidates = course.appliedCandidates;
+  const registeredCandidates = course.registeredCandidates;
 
-  const alreadyApplied = appliedCandidates.find(
+  const alreadyRegistered = registeredCandidates.find(
     (candidate) => candidate.userid === userid,
   );
 
   const comments = course.comments;
 
-  function applyNow() {
-    dispatch(applyCourse(course));
+  function registerNow() {
+    dispatch(registerCourse(course));
   }
 
   function deletePost() {
@@ -180,7 +180,7 @@ function CourseInfo({ match }) {
               <b>Department Profile</b> : {course.departmentDescription}
             </p>
             <p>
-              <b>Total Candidates applied</b> : {course.appliedCandidates.length}
+              <b>Total Candidates registered</b> : {course.registeredCandidates.length}
             </p>
 
             <hr />
@@ -191,13 +191,13 @@ function CourseInfo({ match }) {
                   <Link to={`/editcourse/${course._id}`}>Edit Now</Link>
                 </Button>
               ) : user.role === 'student' ? (
-                alreadyApplied ? (
-                  <Tag color="green">Already Applied</Tag>
+                alreadyRegistered ? (
+                  <Tag color="green">Already Registered</Tag>
                 ) : (
-                  <Button onClick={applyNow}>Apply Now</Button>
+                  <Button onClick={registerNow}>Register Now</Button>
                 )
               ) : user.role === 'guest' ? (
-                <Button onClick={promptToLogin}>Apply Now</Button>
+                <Button onClick={promptToLogin}>Register Now</Button>
               ) : user.role === 'admin' ? (
                 <Popconfirm
                   title="Are you sure to delete this post?"

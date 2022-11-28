@@ -70,8 +70,8 @@ class DefaultLayout extends React.Component {
               </Menu.Item>
             )}
             {user.role === 'student' ? (
-              <Menu.Item key="/appliedcourses" icon={<PlusSquareOutlined />}>
-                <Link to="/appliedcourses">Applied Courses</Link>
+              <Menu.Item key="/registeredcourses" icon={<PlusSquareOutlined />}>
+                <Link to="/registeredcourses">Registered Courses</Link>
               </Menu.Item>
             ) : user.role === 'employer' ? (
               <>

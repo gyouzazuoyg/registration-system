@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import Home from './pages/Home';
 import CourseInfo from './pages/CourseInfo';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
-import AppliedCourses from './pages/AppliedCourses/AppliedCourses';
+import RegisteredCourses from './pages/RegisteredCourses/RegisteredCourses';
 import PostCourse from './pages/PostCourse';
 import Profile from './pages/Profile';
 import FadeLoader from 'react-spinners/FadeLoader';
@@ -39,7 +39,7 @@ function App() {
         <Route path="/privacypolicy" exact component={PrivacyPolicy} />
 
         <ProtectedRoute path="/" exact component={Home} />
-        <ProtectedRoute path="/appliedcourses" exact component={AppliedCourses} />
+        <ProtectedRoute path="/registeredcourses" exact component={RegisteredCourses} />
         <ProtectedRoute path="/postcourse" exact component={PostCourse} />
 
         <ProtectedRoute path="/profile" exact component={Profile} />

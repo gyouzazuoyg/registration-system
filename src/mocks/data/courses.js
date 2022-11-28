@@ -12,7 +12,7 @@ export const course1 = {
   email: "dummy@neu.com",
   phoneNumber: "666-666-6666",
   departmentDescription: "department description",
-  appliedCandidates: [],
+  registeredCandidates: [],
   postedBy: "posted by",
   comments: [],
 };

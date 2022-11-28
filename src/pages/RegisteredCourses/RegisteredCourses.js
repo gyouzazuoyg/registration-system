@@ -2,16 +2,16 @@ import React from 'react';
 import DefaultLayout from '../../components/DefaultLayout';
 import { useSelector } from 'react-redux';
 import { Table } from 'antd';
-import AppliedList from './AppliedList';
+import RegisteredList from './RegisteredList';
 
-function AppliedCourses() {
+function RegisteredCourses() {
   return (
     <div>
       <DefaultLayout>
-        <AppliedList />
+        <RegisteredList />
       </DefaultLayout>
     </div>
   );
 }
 
-export default AppliedCourses;
+export default RegisteredCourses;

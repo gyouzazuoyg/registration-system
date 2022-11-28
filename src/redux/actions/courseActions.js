@@ -66,15 +66,15 @@ export const deleteCourse = (values) => async (dispatch) => {
   }
 };
 
-export const applyCourse = (course) => async (dispatch) => {
+export const registerCourse = (course) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/courses/applycourse', { course, user });
+    await axios.post('/api/courses/registercourse', { course, user });
 
     dispatch({ type: 'LOADING', payload: false });
-    message.success('Course applied Successfully');
+    message.success('Course registered Successfully');
 
     setTimeout(() => {
       window.location.href = '/';

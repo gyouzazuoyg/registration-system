@@ -3,7 +3,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import { Row, Col, Form, Tabs, Input, Button, Alert, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSkills, updateUser } from '../redux/actions/userActions';
-import AppliedList from './AppliedCourses/AppliedList';
+import RegisteredList from './RegisteredCourses/RegisteredList';
 import PostedList from './PostedCourses/PostedList';
 import CommentsList from './CommentsList';
 
@@ -330,8 +330,8 @@ function Profile() {
             ''
           )}
           {user.role === 'student' ? (
-            <TabPane tab="Applied Courses" key="3">
-              <AppliedList />
+            <TabPane tab="Registered Courses" key="3">
+              <RegisteredList />
               <Button
                 onClick={() => {
                   setActiveTab('4');
