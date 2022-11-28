@@ -47,6 +47,10 @@ function Profile() {
     dispatch(searchSkills(query));
   }
 
+  function callbackTabClicked(key, event) {
+    setActiveTab(key);
+  };
+
   // Comment out Skill tab page
   // const queryResults = JSON.parse(localStorage.getItem('skills'));
   const children = [];
@@ -57,7 +61,7 @@ function Profile() {
   return (
     <div>
       <DefaultLayout>
-        <Tabs defaultActiveKey="1" activeKey={activeTab}>
+        <Tabs defaultActiveKey="1" activeKey={activeTab} onTabClick={callbackTabClicked}>
           <TabPane tab="Personal Info" key="1">
             <Form
               layout="vertical"
