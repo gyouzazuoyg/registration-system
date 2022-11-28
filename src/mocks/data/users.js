@@ -1,4 +1,5 @@
 export const dummyStudent = {
+  _id: "1",
   username: 'dummy_student',
   password: '',
   role: 'student',
@@ -19,6 +20,7 @@ export const dummyStudent = {
 };
 
 export const dummyEmployer = {
+  _id: "2",
   username: 'dummy_employer',
   password: '',
   role: 'employer',
@@ -39,6 +41,7 @@ export const dummyEmployer = {
 };
 
 export const dummyAdmin = {
+  _id: "3",
   username: 'dummy_admin',
   password: '',
   role: 'admin',
@@ -59,6 +62,7 @@ export const dummyAdmin = {
 };
 
 export const dummyGuest = {
+  _id: "4",
   username: 'dummy_guest',
   password: '',
   role: 'guest',
