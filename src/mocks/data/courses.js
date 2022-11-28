@@ -17,3 +17,23 @@ export const course1 = {
   postedBy: '3',
   comments: [],
 };
+
+export const course2 = {
+  _id: '2',
+  title: 'Course 2',
+  department: 'Department 2',
+  salaryFrom: 200000,
+  salaryTo: 300000,
+  experience: '8exp',
+  smallDescription: 'small description',
+  fullDescription: 'full description',
+  minimumQualification: 'minimum qualification',
+  skillsRequired: 'skills required',
+  campus: 'dummy campus',
+  email: 'dummy@neu.com',
+  phoneNumber: '666-666-6666',
+  departmentDescription: 'department description',
+  registeredCandidates: [],
+  postedBy: '3',
+  comments: [],
+};
