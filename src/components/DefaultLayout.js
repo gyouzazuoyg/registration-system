@@ -154,7 +154,7 @@ class DefaultLayout extends React.Component {
             {this.props.children}
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            NEUCourses ©2021 Created by Bowei Zhang & Yongxian Hao & Zixuan Xu{' '}
+            NEUCourses ©2022 Created by CS5200 Group3{' '}
             <Link to="/privacypolicy">Privacy Policy</Link>
           </Footer>
         </Layout>
