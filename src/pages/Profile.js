@@ -311,17 +311,17 @@ function Profile() {
                 </Row>
                 <Button
                   onClick={() => {
-                    setActiveTab('3');
-                  }}
-                >
-                  Next
-                </Button>
-                <Button
-                  onClick={() => {
                     setActiveTab('1');
                   }}
                 >
                   Previous
+                </Button>
+                <Button
+                  onClick={() => {
+                    setActiveTab('3');
+                  }}
+                >
+                  Next
                 </Button>
                 <Button htmlType="submit">Update</Button>
               </Form>
@@ -334,17 +334,17 @@ function Profile() {
               <RegisteredList />
               <Button
                 onClick={() => {
-                  setActiveTab('4');
-                }}
-              >
-                Next
-              </Button>
-              <Button
-                onClick={() => {
                   setActiveTab('2');
                 }}
               >
                 Previous
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('4');
+                }}
+              >
+                Next
               </Button>
             </TabPane>
           ) : (
@@ -352,17 +352,17 @@ function Profile() {
               <PostedList />
               <Button
                 onClick={() => {
-                  setActiveTab('3');
-                }}
-              >
-                Next
-              </Button>
-              <Button
-                onClick={() => {
                   setActiveTab('1');
                 }}
               >
                 Previous
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('3');
+                }}
+              >
+                Next
               </Button>
             </TabPane>
           )}
