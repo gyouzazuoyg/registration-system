@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import { initMockDB } from './data';
+const moment = require('moment');
 
 const DB = initMockDB();
 
