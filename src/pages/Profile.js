@@ -106,7 +106,7 @@ function Profile() {
                     rules={[{ required: true }]}
                     name="email"
                   >
-                    <Input placeholder="ex: byzcourses@gmail.com" />
+                    <Input placeholder="ex: neucourses@gmail.com" />
                   </Form.Item>
                 </Col>
                 <Col lg={8} sm={24}>

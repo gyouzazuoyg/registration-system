@@ -60,7 +60,7 @@ function PrivacyPolicy() {
       <br />
       <br />
       <h2>Use of Data</h2>
-      <p>BYZCourses uses the collected data for various purposes:</p>
+      <p>NEUCourses uses the collected data for various purposes:</p>
       <ul>
         <li>Session Cookies. We use Session Cookies to operate our Service.</li>
         <li>

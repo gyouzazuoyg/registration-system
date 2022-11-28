@@ -28,7 +28,7 @@ function Login() {
       <Row justify="center" className="flex align-items-center">
         <Col lg={5}>
           <h1 className="heading1" data-aos="slide-left">
-            BYZ
+            NEU
           </h1>
         </Col>
         <Col lg={10} sm={24} className="p-5 login-form">

@@ -52,7 +52,7 @@ class DefaultLayout extends React.Component {
           }}
         >
           <div className="logo">
-            {this.state.collapsed ? <h1>BYZ</h1> : <h1>BYZCourses</h1>}
+            {this.state.collapsed ? <h1>NEU</h1> : <h1>NEUCourses</h1>}
           </div>
           <Menu
             theme="dark"
@@ -151,7 +151,7 @@ class DefaultLayout extends React.Component {
             {this.props.children}
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            BYZCourses ©2021 Created by Bowei Zhang & Yongxian Hao & Zixuan Xu{' '}
+            NEUCourses ©2021 Created by Bowei Zhang & Yongxian Hao & Zixuan Xu{' '}
             <Link to="/privacypolicy">Privacy Policy</Link>
           </Footer>
         </Layout>

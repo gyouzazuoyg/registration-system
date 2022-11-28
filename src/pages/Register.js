@@ -40,7 +40,7 @@ function Register() {
       <Row justify="center" className="flex align-items-center">
         <Col lg={5}>
           <h1 className="heading1" data-aos="slide-right">
-            BYZ
+            NEU
           </h1>
         </Col>
         <Col lg={10} sm={24} className="bs p-5 register-form">
