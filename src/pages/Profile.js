@@ -71,7 +71,7 @@ function Profile() {
                   <Form.Item
                     label="First name"
                     required
-                    rules={[{ required: true }]}
+                    rules={[{ required: false }]}
                     name="firstName"
                   >
                     <Input placeholder="Enter your legal first name" />
@@ -81,7 +81,7 @@ function Profile() {
                   <Form.Item
                     label="Last name"
                     required
-                    rules={[{ required: true }]}
+                    rules={[{ required: false }]}
                     name="lastName"
                   >
                     <Input placeholder="Enter your legal last name" />
@@ -91,7 +91,7 @@ function Profile() {
                   <Form.Item
                     label="Email"
                     required
-                    rules={[{ required: true }]}
+                    rules={[{ required: false }]}
                     name="email"
                   >
                     <Input placeholder="ex: neucourses@gmail.com" />
@@ -164,7 +164,7 @@ function Profile() {
                                 {...field}
                                 label="Education"
                                 style={{ width: '80%' }}
-                                rules={[{ required: true }]}
+                                rules={[{ required: false }]}
                               >
                                 <TextArea
                                   rows={4}
@@ -205,7 +205,7 @@ function Profile() {
                     </Form.Item>
                     <Form.Item
                       style={{ width: '80%' }}
-                      rules={[{ required: true }]}
+                      rules={[{ required: false }]}
                       name="skills"
                     >
                       <Select
@@ -228,7 +228,7 @@ function Profile() {
                                 {...field}
                                 label="Project"
                                 style={{ width: '80%' }}
-                                rules={[{ required: true }]}
+                                rules={[{ required: false }]}
                               >
                                 <TextArea
                                   rows={4}
@@ -267,7 +267,7 @@ function Profile() {
                                 {...field}
                                 label="Experience"
                                 style={{ width: '80%' }}
-                                rules={[{ required: true }]}
+                                rules={[{ required: false }]}
                               >
                                 <TextArea
                                   rows={4}
