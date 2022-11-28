@@ -3,12 +3,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux';
 
 import thunk from 'redux-thunk';
-import { jobsReducer } from './reducers/jobsReducer';
+import { coursesReducer } from './reducers/coursesReducer';
 import { loaderReducer } from './reducers/loaderReducer';
 import { usersReducer } from './reducers/usersReducer';
 
 const rootReducer = combineReducers({
-  jobsReducer: jobsReducer,
+  coursesReducer: coursesReducer,
   loaderReducer: loaderReducer,
   usersReducer: usersReducer,
 });

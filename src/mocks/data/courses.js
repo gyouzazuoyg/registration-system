@@ -1,5 +1,5 @@
-export const job1 = {
-  title: 'Job 1',
+export const course1 = {
+  title: 'Course 1',
   department: 'Department 1',
   salaryFrom: 100000,
   salaryTo: 200000,

@@ -60,7 +60,7 @@ function PrivacyPolicy() {
       <br />
       <br />
       <h2>Use of Data</h2>
-      <p>BYZJobs uses the collected data for various purposes:</p>
+      <p>BYZCourses uses the collected data for various purposes:</p>
       <ul>
         <li>Session Cookies. We use Session Cookies to operate our Service.</li>
         <li>

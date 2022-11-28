@@ -31,10 +31,10 @@ export const handlers = [
     );
   }),
 
-  rest.get('/api/jobs/getalljobs', (req, res, ctx) => {
+  rest.get('/api/courses/getallcourses', (req, res, ctx) => {
     let retval = [];
-    for (const key in DB.jobs) {
-      retval.push(DB.jobs[key]);
+    for (const key in DB.courses) {
+      retval.push(DB.courses[key]);
     }
     let status = 200;
 

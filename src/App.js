@@ -1,19 +1,19 @@
 import './App.css';
 import 'antd/dist/antd.css';
 import Home from './pages/Home';
-import JobInfo from './pages/JobInfo';
+import CourseInfo from './pages/CourseInfo';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
-import AppliedJobs from './pages/AppliedJobs/AppliedJobs';
-import PostJob from './pages/PostJob';
+import AppliedCourses from './pages/AppliedCourses/AppliedCourses';
+import PostCourse from './pages/PostCourse';
 import Profile from './pages/Profile';
 import FadeLoader from 'react-spinners/FadeLoader';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllJobs } from './redux/actions/jobActions';
+import { getAllCourses } from './redux/actions/courseActions';
 import { useEffect } from 'react';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import PostedJobs from './pages/PostedJobs/PostedJobs';
-import EditJob from './pages/EditJob';
+import PostedCourses from './pages/PostedCourses/PostedCourses';
+import EditCourse from './pages/EditCourse';
 import { getAllUsers } from './redux/actions/userActions';
 import UserInfo from './pages/UserInfo';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -22,7 +22,7 @@ function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllJobs());
+    dispatch(getAllCourses());
     dispatch(getAllUsers());
   }, []);
   return (
@@ -39,15 +39,15 @@ function App() {
         <Route path="/privacypolicy" exact component={PrivacyPolicy} />
 
         <ProtectedRoute path="/" exact component={Home} />
-        <ProtectedRoute path="/appliedjobs" exact component={AppliedJobs} />
-        <ProtectedRoute path="/postjob" exact component={PostJob} />
+        <ProtectedRoute path="/appliedcourses" exact component={AppliedCourses} />
+        <ProtectedRoute path="/postcourse" exact component={PostCourse} />
 
         <ProtectedRoute path="/profile" exact component={Profile} />
-        <ProtectedRoute path="/jobs/:id" exact component={JobInfo} />
+        <ProtectedRoute path="/courses/:id" exact component={CourseInfo} />
 
-        <ProtectedRoute path="/posted" exact component={PostedJobs} />
+        <ProtectedRoute path="/posted" exact component={PostedCourses} />
 
-        <ProtectedRoute path="/editjob/:id" exact component={EditJob} />
+        <ProtectedRoute path="/editcourse/:id" exact component={EditCourse} />
         <ProtectedRoute path="/users/:id" exact component={UserInfo} />
       </BrowserRouter>
     </div>

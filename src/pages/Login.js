@@ -78,7 +78,7 @@ function Login() {
         </Col>
         <Col lg={5}>
           <h1 className="heading2" data-aos="slide-right">
-            Jobs
+            Courses
           </h1>
         </Col>
       </Row>

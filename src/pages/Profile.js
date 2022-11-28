@@ -3,8 +3,8 @@ import DefaultLayout from '../components/DefaultLayout';
 import { Row, Col, Form, Tabs, Input, Button, Alert, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchSkills, updateUser } from '../redux/actions/userActions';
-import AppliedList from './AppliedJobs/AppliedList';
-import PostedList from './PostedJobs/PostedList';
+import AppliedList from './AppliedCourses/AppliedList';
+import PostedList from './PostedCourses/PostedList';
 import CommentsList from './CommentsList';
 
 const { TextArea, Search } = Input;
@@ -106,7 +106,7 @@ function Profile() {
                     rules={[{ required: true }]}
                     name="email"
                   >
-                    <Input placeholder="ex: byzjobs@gmail.com" />
+                    <Input placeholder="ex: byzcourses@gmail.com" />
                   </Form.Item>
                 </Col>
                 <Col lg={8} sm={24}>
@@ -330,7 +330,7 @@ function Profile() {
             ''
           )}
           {user.role === 'student' ? (
-            <TabPane tab="Applied Jobs" key="3">
+            <TabPane tab="Applied Courses" key="3">
               <AppliedList />
               <Button
                 onClick={() => {
@@ -348,7 +348,7 @@ function Profile() {
               </Button>
             </TabPane>
           ) : (
-            <TabPane tab="Posted Jobs" key="2">
+            <TabPane tab="Posted Courses" key="2">
               <PostedList />
               <Button
                 onClick={() => {

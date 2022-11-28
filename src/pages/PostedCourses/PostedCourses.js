@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DefaultLayout from '../../components/DefaultLayout';
 import PostedList from './PostedList';
 
-function PostedJobs() {
+function PostedCourses() {
   return (
     <div>
       <DefaultLayout>
@@ -12,4 +12,4 @@ function PostedJobs() {
   );
 }
 
-export default PostedJobs;
+export default PostedCourses;

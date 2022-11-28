@@ -1,27 +1,27 @@
 import { message } from 'antd';
 import axios from 'axios';
-export const getAllJobs = () => async (dispatch) => {
+export const getAllCourses = () => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
-    const response = await axios.get('/api/jobs/getalljobs');
+    const response = await axios.get('/api/courses/getallcourses');
     dispatch({ type: 'GET_ALL_JOBS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });
-    localStorage.setItem('jobs', JSON.stringify(response.data));
+    localStorage.setItem('courses', JSON.stringify(response.data));
   } catch (error) {
     console.log(error);
     dispatch({ type: 'LOADING', payload: false });
   }
 };
 
-export const postJob = (values) => async (dispatch) => {
+export const postCourse = (values) => async (dispatch) => {
   values.postedBy = JSON.parse(localStorage.getItem('user'))._id;
 
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/jobs/postjob', values);
+    await axios.post('/api/courses/postcourse', values);
 
     dispatch({ type: 'LOADING', payload: false });
-    message.success('Job Posted Successfully');
+    message.success('Course Posted Successfully');
 
     setTimeout(() => {
       window.location.href = '/';
@@ -32,13 +32,13 @@ export const postJob = (values) => async (dispatch) => {
   }
 };
 
-export const editJob = (values) => async (dispatch) => {
+export const editCourse = (values) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/jobs/editjob', values);
+    await axios.post('/api/courses/editcourse', values);
 
     dispatch({ type: 'LOADING', payload: false });
-    message.success('Job Updated Successfully');
+    message.success('Course Updated Successfully');
 
     setTimeout(() => {
       window.location.href = '/';
@@ -49,13 +49,13 @@ export const editJob = (values) => async (dispatch) => {
   }
 };
 
-export const deleteJob = (values) => async (dispatch) => {
+export const deleteCourse = (values) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/jobs/deletejob', values);
+    await axios.post('/api/courses/deletecourse', values);
 
     dispatch({ type: 'LOADING', payload: false });
-    message.success('Job Deleted Successfully');
+    message.success('Course Deleted Successfully');
 
     setTimeout(() => {
       window.location.href = '/';
@@ -66,15 +66,15 @@ export const deleteJob = (values) => async (dispatch) => {
   }
 };
 
-export const applyJob = (job) => async (dispatch) => {
+export const applyCourse = (course) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/jobs/applyjob', { job, user });
+    await axios.post('/api/courses/applycourse', { course, user });
 
     dispatch({ type: 'LOADING', payload: false });
-    message.success('Job applied Successfully');
+    message.success('Course applied Successfully');
 
     setTimeout(() => {
       window.location.href = '/';
@@ -85,18 +85,18 @@ export const applyJob = (job) => async (dispatch) => {
   }
 };
 
-export const searchJobs = (searchKey) => async (dispatch) => {
+export const searchCourses = (searchKey) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
-    const response = await axios.get('/api/jobs/getalljobs');
+    const response = await axios.get('/api/courses/getallcourses');
 
-    const jobs = response.data;
+    const courses = response.data;
 
-    const filteredJobs = jobs.filter((job) =>
-      job.title.toLowerCase().includes(searchKey.toLowerCase()),
+    const filteredCourses = courses.filter((course) =>
+      course.title.toLowerCase().includes(searchKey.toLowerCase()),
     );
 
-    dispatch({ type: 'GET_ALL_JOBS', payload: filteredJobs });
+    dispatch({ type: 'GET_ALL_JOBS', payload: filteredCourses });
     dispatch({ type: 'LOADING', payload: false });
   } catch (error) {
     console.log(error);
@@ -104,23 +104,23 @@ export const searchJobs = (searchKey) => async (dispatch) => {
   }
 };
 
-export const sortJobs = (values) => async (dispatch) => {
+export const sortCourses = (values) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
-    const response = await axios.get('/api/jobs/getalljobs');
+    const response = await axios.get('/api/courses/getallcourses');
 
-    const jobs = response.data;
+    const courses = response.data;
 
-    let filteredJobs = jobs;
+    let filteredCourses = courses;
 
     if (values.experience !== undefined) {
-      filteredJobs = jobs.filter((job) => job.experience <= values.experience);
+      filteredCourses = courses.filter((course) => course.experience <= values.experience);
     }
     if (values.salary !== undefined) {
-      filteredJobs = jobs.filter((job) => job.salaryTo >= values.salary);
+      filteredCourses = courses.filter((course) => course.salaryTo >= values.salary);
     }
 
-    dispatch({ type: 'GET_ALL_JOBS', payload: filteredJobs });
+    dispatch({ type: 'GET_ALL_JOBS', payload: filteredCourses });
     dispatch({ type: 'LOADING', payload: false });
   } catch (error) {
     console.log(error);
@@ -128,37 +128,37 @@ export const sortJobs = (values) => async (dispatch) => {
   }
 };
 
-export const commentJobs = (job, content) => async (dispatch) => {
+export const commentCourses = (course, content) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/jobs/commentjob', { user, job, content });
+    await axios.post('/api/courses/commentcourse', { user, course, content });
 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Comment Posted Successfully');
 
-    const response = await axios.get('/api/jobs/getalljobs');
-    const jobs = response.data;
-    dispatch({ type: 'GET_ALL_JOBS', payload: jobs });
+    const response = await axios.get('/api/courses/getallcourses');
+    const courses = response.data;
+    dispatch({ type: 'GET_ALL_JOBS', payload: courses });
   } catch (error) {
     console.log(error);
     dispatch({ type: 'LOADING', payload: false });
   }
 };
 
-export const deleteComment = (job, id) => async (dispatch) => {
+export const deleteComment = (course, id) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
   console.log(id);
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/jobs/deletecomment', { job, user, id });
+    await axios.post('/api/courses/deletecomment', { course, user, id });
 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Comment Deleted Successfully');
 
-    const response = await axios.get('/api/jobs/getalljobs');
-    const jobs = response.data;
-    dispatch({ type: 'GET_ALL_JOBS', payload: jobs });
+    const response = await axios.get('/api/courses/getallcourses');
+    const courses = response.data;
+    dispatch({ type: 'GET_ALL_JOBS', payload: courses });
   } catch (error) {
     console.log(error);
     dispatch({ type: 'LOADING', payload: false });

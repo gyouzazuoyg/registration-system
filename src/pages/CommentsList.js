@@ -19,8 +19,8 @@ function CommentsList() {
       const obj = {
         content: temp.content,
         postDate: temp.datetime,
-        jobId: (
-          <Link to={`/jobs/${temp.jobid}`}>
+        courseId: (
+          <Link to={`/courses/${temp.courseid}`}>
             <Button>Redirect</Button>
           </Link>
         ),
@@ -41,7 +41,7 @@ function CommentsList() {
     },
     {
       title: 'Link to Post',
-      dataIndex: 'jobId',
+      dataIndex: 'courseId',
     },
   ];
 

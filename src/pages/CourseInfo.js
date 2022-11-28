@@ -15,42 +15,42 @@ import { Link } from 'react-router-dom';
 import DefaultLayout from '../components/DefaultLayout';
 import Comments from '../components/Comments';
 import {
-  applyJob,
-  commentJobs,
+  applyCourse,
+  commentCourses,
   deleteComment,
-  deleteJob,
-  getAllJobs,
-} from '../redux/actions/jobActions';
+  deleteCourse,
+  getAllCourses,
+} from '../redux/actions/courseActions';
 import { DeleteOutlined } from '@ant-design/icons';
 import { getAllUsers } from '../redux/actions/userActions';
 
-function JobInfo({ match }) {
+function CourseInfo({ match }) {
   const dispatch = useDispatch();
 
-  const job = JSON.parse(localStorage.getItem('jobs')).find(
-    (job) => job._id === match.params.id,
+  const course = JSON.parse(localStorage.getItem('courses')).find(
+    (course) => course._id === match.params.id,
   );
   const postAuthor = JSON.parse(localStorage.getItem('users')).find(
-    (user) => user._id === job.postedBy,
+    (user) => user._id === course.postedBy,
   );
   const user = JSON.parse(localStorage.getItem('user'));
 
   const userid = user._id;
 
-  const appliedCandidates = job.appliedCandidates;
+  const appliedCandidates = course.appliedCandidates;
 
   const alreadyApplied = appliedCandidates.find(
     (candidate) => candidate.userid === userid,
   );
 
-  const comments = job.comments;
+  const comments = course.comments;
 
   function applyNow() {
-    dispatch(applyJob(job));
+    dispatch(applyCourse(course));
   }
 
   function deletePost() {
-    dispatch(deleteJob(job));
+    dispatch(deleteCourse(course));
   }
 
   function promptToLogin() {
@@ -71,7 +71,7 @@ function JobInfo({ match }) {
   }
 
   function confirmDeleteComment(id) {
-    dispatch(deleteComment(job, id));
+    dispatch(deleteComment(course, id));
   }
 
   const CommentList = ({ comments }) => (
@@ -128,67 +128,67 @@ function JobInfo({ match }) {
   );
 
   const content = (data) => {
-    dispatch(commentJobs(job, data.props.children));
+    dispatch(commentCourses(course, data.props.children));
   };
 
   return (
     <div>
       <DefaultLayout>
-        {job && (
+        {course && (
           <div className="p-4">
             <PageHeader
               ghost={false}
               onBack={() => window.history.back()}
-              title={job.title}
-              subTitle={job.company}
+              title={course.title}
+              subTitle={course.company}
             />
             <p>
-              <b>Title</b> : {job.title}
+              <b>Title</b> : {course.title}
             </p>
             <p>
-              <b>Company</b> : {job.company}
+              <b>Company</b> : {course.company}
             </p>
 
             <p>
-              <b>Small Description</b> : {job.smallDescription}
+              <b>Small Description</b> : {course.smallDescription}
             </p>
             <p>
-              <b>Full Description</b> : {job.fullDescription}
+              <b>Full Description</b> : {course.fullDescription}
             </p>
             <p>
-              <b>Title</b> : {job.title}
+              <b>Title</b> : {course.title}
             </p>
             <p>
-              <b>Skills Required</b> : {job.skillsRequired}
+              <b>Skills Required</b> : {course.skillsRequired}
             </p>
             <p>
-              <b>Experience</b> : {job.experience}
+              <b>Experience</b> : {course.experience}
             </p>
             <p>
-              <b>Minimum Qualification</b> : {job.minimumQualification}
+              <b>Minimum Qualification</b> : {course.minimumQualification}
             </p>
 
             <hr />
 
             <p>
-              <b>Salary Range</b> : {job.salaryFrom} - {job.salaryTo}
+              <b>Salary Range</b> : {course.salaryFrom} - {course.salaryTo}
             </p>
             <p>
-              <b>Department</b> : {job.department}
+              <b>Department</b> : {course.department}
             </p>
             <p>
-              <b>Company Profile</b> : {job.companyDescription}
+              <b>Company Profile</b> : {course.companyDescription}
             </p>
             <p>
-              <b>Total Candidates applied</b> : {job.appliedCandidates.length}
+              <b>Total Candidates applied</b> : {course.appliedCandidates.length}
             </p>
 
             <hr />
 
             <div className="flex justify-content-between">
-              {job.postedBy === userid ? (
+              {course.postedBy === userid ? (
                 <Button>
-                  <Link to={`/editjob/${job._id}`}>Edit Now</Link>
+                  <Link to={`/editcourse/${course._id}`}>Edit Now</Link>
                 </Button>
               ) : user.role === 'student' ? (
                 alreadyApplied ? (
@@ -217,7 +217,7 @@ function JobInfo({ match }) {
                   {' '}
                   {postAuthor.username}
                 </Link>
-                <b> on </b> {moment(job.createdAt).format('MMM DD yyyy')}
+                <b> on </b> {moment(course.createdAt).format('MMM DD yyyy')}
               </p>
             </div>
           </div>
@@ -234,4 +234,4 @@ function JobInfo({ match }) {
   );
 }
 
-export default JobInfo;
+export default CourseInfo;

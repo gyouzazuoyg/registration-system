@@ -6,14 +6,14 @@ import moment from 'moment';
 import { Link, useHistory } from 'react-router-dom';
 
 function PostedList() {
-  let job;
-  const alljobs = useSelector((state) => state.jobsReducer).jobs;
+  let course;
+  const allcourses = useSelector((state) => state.coursesReducer).courses;
   const allusers = useSelector((state) => state.usersReducer).users;
   const userid = JSON.parse(localStorage.getItem('user'))._id;
-  const userPostedJobs = alljobs.filter((job) => job.postedBy === userid);
+  const userPostedCourses = allcourses.filter((course) => course.postedBy === userid);
   const history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedJob, setSelectedJob] = useState();
+  const [selectedCourse, setSelectedCourse] = useState();
 
   const columns = [
     {
@@ -26,7 +26,7 @@ function PostedList() {
     },
     {
       title: 'Link to Post',
-      dataIndex: 'jobId',
+      dataIndex: 'courseId',
     },
     {
       title: 'Applied Candidates',
@@ -41,13 +41,13 @@ function PostedList() {
               className="mr-2"
               style={{ fontSize: 20 }}
               onClick={() => {
-                history.push(`/editjob/${data.completeJobData._id}`);
+                history.push(`/editcourse/${data.completeCourseData._id}`);
               }}
             />
             <OrderedListOutlined
               style={{ fontSize: 20 }}
               onClick={() => {
-                showModal(job);
+                showModal(course);
               }}
             />
           </div>
@@ -58,24 +58,24 @@ function PostedList() {
 
   const dataSource = [];
 
-  for (job of userPostedJobs) {
+  for (course of userPostedCourses) {
     const obj = {
-      title: job.title,
-      jobId: (
-        <Link to={`/jobs/${job._id}`}>
+      title: course.title,
+      courseId: (
+        <Link to={`/courses/${course._id}`}>
           <Button>Redirect</Button>
         </Link>
       ),
-      postedOn: moment(job.createdAt).format('MMM DD yyyy'),
-      appliedCandidates: job.appliedCandidates.length,
-      completeJobData: job,
+      postedOn: moment(course.createdAt).format('MMM DD yyyy'),
+      appliedCandidates: course.appliedCandidates.length,
+      completeCourseData: course,
     };
     dataSource.push(obj);
   }
 
-  const showModal = (job) => {
+  const showModal = (course) => {
     setIsModalVisible(true);
-    setSelectedJob(job);
+    setSelectedCourse(course);
   };
 
   const handleOk = () => {
@@ -106,7 +106,7 @@ function PostedList() {
 
     let candidatesDatasource = [];
 
-    for (let candidate of selectedJob.appliedCandidates) {
+    for (let candidate of selectedCourse.appliedCandidates) {
       let user = allusers.find((user) => user._id === candidate.userid);
 
       let obj = {
@@ -123,10 +123,10 @@ function PostedList() {
     );
   }
 
-  console.log(userPostedJobs);
+  console.log(userPostedCourses);
   return (
     <div>
-      <h1>Posted Jobs</h1>
+      <h1>Posted Courses</h1>
 
       <Table columns={columns} dataSource={dataSource} />
 

@@ -4,14 +4,14 @@ import { Button, Table } from 'antd';
 import { Link } from 'react-router-dom';
 
 function AppliedList() {
-  const { jobs } = useSelector((state) => state.jobsReducer);
+  const { courses } = useSelector((state) => state.coursesReducer);
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const userAppliedJobs = [];
+  const userAppliedCourses = [];
 
-  for (const job of jobs) {
-    const appliedCandidates = job.appliedCandidates;
+  for (const course of courses) {
+    const appliedCandidates = course.appliedCandidates;
 
     const temp = appliedCandidates.find(
       (candidate) => candidate.userid === user._id,
@@ -19,23 +19,23 @@ function AppliedList() {
 
     if (temp) {
       const obj = {
-        title: job.title,
-        company: job.company,
+        title: course.title,
+        company: course.company,
         appliedDate: temp.appliedDate,
-        jobId: (
-          <Link to={`/jobs/${job._id}`}>
+        courseId: (
+          <Link to={`/courses/${course._id}`}>
             <Button>Redirect</Button>
           </Link>
         ),
       };
 
-      userAppliedJobs.push(obj);
+      userAppliedCourses.push(obj);
     }
   }
 
   const columns = [
     {
-      title: 'Job Title',
+      title: 'Course Title',
       dataIndex: 'title',
     },
     {
@@ -47,15 +47,15 @@ function AppliedList() {
       dataIndex: 'appliedDate',
     },
     {
-      title: 'Link to Job',
-      dataIndex: 'jobId',
+      title: 'Link to Course',
+      dataIndex: 'courseId',
     },
   ];
 
   return (
     <div>
-      <h1>AppliedJobs</h1>
-      <Table columns={columns} dataSource={userAppliedJobs} />
+      <h1>AppliedCourses</h1>
+      <Table columns={columns} dataSource={userAppliedCourses} />
     </div>
   );
 }

@@ -2,28 +2,28 @@ import React, { useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { Row, Col, Form, Tabs, Input, Button, Select } from 'antd';
 import { useDispatch } from 'react-redux';
-import { postJob } from '../redux/actions/jobActions';
+import { postCourse } from '../redux/actions/courseActions';
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 const { Option } = Select;
-function PostJob() {
-  const [jobInfo, setJobInfo] = useState({});
+function PostCourse() {
+  const [courseInfo, setCourseInfo] = useState({});
   const [activeTab, setActiveTab] = useState('0');
   const dispatch = useDispatch();
   function onFirstFormFinish(values) {
-    setJobInfo(values);
+    setCourseInfo(values);
     setActiveTab('1');
   }
   function onFinalFormFinish(values) {
-    const finalObj = { ...jobInfo, ...values };
+    const finalObj = { ...courseInfo, ...values };
     console.log(finalObj);
-    dispatch(postJob(finalObj));
+    dispatch(postCourse(finalObj));
   }
   return (
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="0" activeKey={activeTab}>
-          <TabPane tab="Job Info" key="0">
+          <TabPane tab="Course Info" key="0">
             <Form layout="vertical" onFinish={onFirstFormFinish}>
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
@@ -32,7 +32,7 @@ function PostJob() {
                     rules={[{ required: true }]}
                     label="Title"
                   >
-                    <Input placeholder="Enter your job title here" />
+                    <Input placeholder="Enter your course title here" />
                   </Form.Item>
                 </Col>
 
@@ -111,7 +111,7 @@ function PostJob() {
                   >
                     <TextArea
                       rows={3}
-                      placeholder="Tell candidates more about this job"
+                      placeholder="Tell candidates more about this course"
                     />
                   </Form.Item>
                 </Col>
@@ -184,7 +184,7 @@ function PostJob() {
               >
                 Previous
               </Button>
-              <Button htmlType="submit">Post Job</Button>
+              <Button htmlType="submit">Post Course</Button>
             </Form>
           </TabPane>
         </Tabs>
@@ -193,4 +193,4 @@ function PostJob() {
   );
 }
 
-export default PostJob;
+export default PostCourse;

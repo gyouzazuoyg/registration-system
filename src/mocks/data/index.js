@@ -1,4 +1,4 @@
-import { job1 } from './jobs';
+import { course1 } from './courses';
 
 import { dummyStudent, dummyEmployer, dummyAdmin, dummyGuest } from './users';
 
@@ -10,8 +10,8 @@ const initMockDB = () => {
       dummyAdmin: dummyAdmin,
       dummyGuest: dummyGuest,
     },
-    jobs: {
-      job1: job1,
+    courses: {
+      course1: course1,
     },
   };
 };

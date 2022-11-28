@@ -2,42 +2,42 @@ import React, { useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { Row, Col, Form, Tabs, Input, Button, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { editJob } from '../redux/actions/jobActions';
+import { editCourse } from '../redux/actions/courseActions';
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 const { Option } = Select;
 
-function EditJob({ match }) {
-  const [jobInfo, setJobInfo] = useState({});
+function EditCourse({ match }) {
+  const [courseInfo, setCourseInfo] = useState({});
   const [activeTab, setActiveTab] = useState('0');
   const dispatch = useDispatch();
   function onFirstFormFinish(values) {
-    setJobInfo(values);
+    setCourseInfo(values);
     setActiveTab('1');
   }
   function onFinalFormFinish(values) {
-    const finalObj = { ...jobInfo, ...values };
+    const finalObj = { ...courseInfo, ...values };
 
     finalObj._id = match.params.id;
     console.log(finalObj);
-    dispatch(editJob(finalObj));
+    dispatch(editCourse(finalObj));
   }
 
-  const { jobs } = useSelector((state) => state.jobsReducer);
+  const { courses } = useSelector((state) => state.coursesReducer);
 
-  const job = jobs.find((job) => job._id === match.params.id);
+  const course = courses.find((course) => course._id === match.params.id);
 
-  console.log(job);
+  console.log(course);
 
   return (
     <div>
       <DefaultLayout>
         <Tabs defaultActiveKey="0" activeKey={activeTab}>
-          <TabPane tab="Job Info" key="0">
+          <TabPane tab="Course Info" key="0">
             <Form
               layout="vertical"
               onFinish={onFirstFormFinish}
-              initialValues={job}
+              initialValues={course}
             >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
@@ -46,7 +46,7 @@ function EditJob({ match }) {
                     rules={[{ required: true }]}
                     label="Title"
                   >
-                    <Input placeholder="Enter your job title here" />
+                    <Input placeholder="Enter your course title here" />
                   </Form.Item>
                 </Col>
 
@@ -125,7 +125,7 @@ function EditJob({ match }) {
                   >
                     <TextArea
                       rows={3}
-                      placeholder="Tell candidates more about this job"
+                      placeholder="Tell candidates more about this course"
                     />
                   </Form.Item>
                 </Col>
@@ -151,7 +151,7 @@ function EditJob({ match }) {
             <Form
               layout="vertical"
               onFinish={onFinalFormFinish}
-              initialValues={job}
+              initialValues={course}
             >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
@@ -202,7 +202,7 @@ function EditJob({ match }) {
               >
                 Previous
               </Button>
-              <Button htmlType="submit">Edit Job</Button>
+              <Button htmlType="submit">Edit Course</Button>
             </Form>
           </TabPane>
         </Tabs>
@@ -211,4 +211,4 @@ function EditJob({ match }) {
   );
 }
 
-export default EditJob;
+export default EditCourse;

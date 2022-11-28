@@ -52,7 +52,7 @@ class DefaultLayout extends React.Component {
           }}
         >
           <div className="logo">
-            {this.state.collapsed ? <h1>BYZ</h1> : <h1>BYZJobs</h1>}
+            {this.state.collapsed ? <h1>BYZ</h1> : <h1>BYZCourses</h1>}
           </div>
           <Menu
             theme="dark"
@@ -70,13 +70,13 @@ class DefaultLayout extends React.Component {
               </Menu.Item>
             )}
             {user.role === 'student' ? (
-              <Menu.Item key="/appliedjobs" icon={<PlusSquareOutlined />}>
-                <Link to="/appliedjobs">Applied Jobs</Link>
+              <Menu.Item key="/appliedcourses" icon={<PlusSquareOutlined />}>
+                <Link to="/appliedcourses">Applied Courses</Link>
               </Menu.Item>
             ) : user.role === 'employer' ? (
               <>
-                <Menu.Item key="/postjob" icon={<PlusOutlined />}>
-                  <Link to="/postjob">Post Job</Link>
+                <Menu.Item key="/postcourse" icon={<PlusOutlined />}>
+                  <Link to="/postcourse">Post Course</Link>
                 </Menu.Item>
                 <Menu.Item key="/posted" icon={<CheckOutlined />}>
                   <Link to="/posted">Posted</Link>
@@ -151,7 +151,7 @@ class DefaultLayout extends React.Component {
             {this.props.children}
           </Content>
           <Footer style={{ textAlign: 'center' }}>
-            BYZJobs ©2021 Created by Bowei Zhang & Yongxian Hao & Zixuan Xu{' '}
+            BYZCourses ©2021 Created by Bowei Zhang & Yongxian Hao & Zixuan Xu{' '}
             <Link to="/privacypolicy">Privacy Policy</Link>
           </Footer>
         </Layout>

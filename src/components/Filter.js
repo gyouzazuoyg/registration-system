@@ -2,7 +2,7 @@ import { Input, Modal, Form, Select, Button } from 'antd';
 import React, { useState } from 'react';
 import { FilterOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
-import { searchJobs, sortJobs } from '../redux/actions/jobActions';
+import { searchCourses, sortCourses } from '../redux/actions/courseActions';
 
 const { Search } = Input;
 const { Option } = Select;
@@ -23,7 +23,7 @@ function Filter() {
   };
 
   function sort(values) {
-    dispatch(sortJobs(values));
+    dispatch(sortCourses(values));
 
     handleCancel();
   }
@@ -31,7 +31,7 @@ function Filter() {
     <div className="flex">
       <Search
         onSearch={(value) => {
-          dispatch(searchJobs(value));
+          dispatch(searchCourses(value));
         }}
         placeholder="Search here"
       />

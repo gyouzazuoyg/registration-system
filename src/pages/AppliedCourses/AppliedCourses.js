@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Table } from 'antd';
 import AppliedList from './AppliedList';
 
-function AppliedJobs() {
+function AppliedCourses() {
   return (
     <div>
       <DefaultLayout>
@@ -14,4 +14,4 @@ function AppliedJobs() {
   );
 }
 
-export default AppliedJobs;
+export default AppliedCourses;

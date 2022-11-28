@@ -1,48 +1,48 @@
 import React, { useEffect } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllJobs } from '../redux/actions/jobActions';
+import { getAllCourses } from '../redux/actions/courseActions';
 import { Row, Col, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 function Home() {
-  const { jobs } = useSelector((state) => state.jobsReducer);
+  const { courses } = useSelector((state) => state.coursesReducer);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllJobs());
+    dispatch(getAllCourses());
   }, []);
   return (
     <div>
       <DefaultLayout>
         <Row gutter={16}>
-          {jobs.map((job) => {
+          {courses.map((course) => {
             return (
               <Col lg={12} sm={24}>
-                <div className="job-div bs m-2 p-4">
-                  <h4>{job.title}</h4>
-                  <p>{job.company}</p>
+                <div className="course-div bs m-2 p-4">
+                  <h4>{course.title}</h4>
+                  <p>{course.company}</p>
                   <hr />
-                  <p>{job.smallDescription}</p>
+                  <p>{course.smallDescription}</p>
                   <div className="flex">
                     <p>
                       Salary :{' '}
                       <b>
-                        {job.salaryFrom} - {job.salaryTo}
+                        {course.salaryFrom} - {course.salaryTo}
                       </b>{' '}
                       ,{' '}
                     </p>
                     <p style={{ marginLeft: 20 }}>
-                      Experience : <b>{job.experience} Years</b>{' '}
+                      Experience : <b>{course.experience} Years</b>{' '}
                     </p>
                   </div>
                   <hr />
 
                   <div className="flex justify-content-between">
-                    <Link to={`/jobs/${job._id}`}>
+                    <Link to={`/courses/${course._id}`}>
                       <Button>View</Button>
                     </Link>
                     <p>
-                      Posted on : {moment(job.createdAt).format('MMM DD yyyy')}
+                      Posted on : {moment(course.createdAt).format('MMM DD yyyy')}
                     </p>
                   </div>
                 </div>
