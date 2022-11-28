@@ -1,5 +1,5 @@
 export const course1 = {
-  _id: "1",
+  _id: '1',
   title: 'Course 1',
   department: 'Department 1',
   salaryFrom: 100000,
@@ -10,10 +10,10 @@ export const course1 = {
   minimumQualification: 'minimum qualification',
   skillsRequired: 'skills required',
   campus: 'dummy campus',
-  email: "dummy@neu.com",
-  phoneNumber: "666-666-6666",
-  departmentDescription: "department description",
-  registeredCandidates: [],
-  postedBy: "3",
+  email: 'dummy@neu.com',
+  phoneNumber: '666-666-6666',
+  departmentDescription: 'department description',
+  registeredCandidates: [{ userid: '1', registeredDate: 'Nov 27 2022' }],
+  postedBy: '3',
   comments: [],
 };
