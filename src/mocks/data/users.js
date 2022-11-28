@@ -17,6 +17,9 @@ export const dummyStudent = {
   skills: [''],
   projects: [''],
   experience: [''],
+
+  appliedJobs: [],
+  comments: [],
 };
 
 export const dummyAdvisor = {
@@ -38,6 +41,9 @@ export const dummyAdvisor = {
   skills: [''],
   projects: [''],
   experience: [''],
+
+  appliedJobs: [],
+  comments: [],
 };
 
 export const dummyAdmin = {
@@ -59,6 +65,9 @@ export const dummyAdmin = {
   skills: [''],
   projects: [''],
   experience: [''],
+
+  appliedJobs: [],
+  comments: [],
 };
 
 export const dummyGuest = {
@@ -80,4 +89,7 @@ export const dummyGuest = {
   skills: [''],
   projects: [''],
   experience: [''],
+
+  appliedJobs: [],
+  comments: [],
 };
