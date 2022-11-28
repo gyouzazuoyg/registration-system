@@ -19,11 +19,11 @@ export const dummyStudent = {
   experience: [''],
 };
 
-export const dummyEmployer = {
+export const dummyAdvisor = {
   _id: "2",
-  username: 'dummy_employer',
+  username: 'dummy_advisor',
   password: '',
-  role: 'employer',
+  role: 'advisor',
 
   firstName: '',
   lastName: '',

@@ -92,7 +92,7 @@ function Register() {
               >
                 <Radio.Group>
                   <Radio.Button value="student">Student</Radio.Button>
-                  <Radio.Button value="employer">Employer</Radio.Button>
+                  <Radio.Button value="advisor">Advisor</Radio.Button>
                 </Radio.Group>
               </Form.Item>
             </Row>

@@ -14,8 +14,8 @@ export const handlers = [
       case 'admin':
         retval = DB.users.dummyAdmin;
         break;
-      case 'employer':
-        retval = DB.users.dummyEmployer;
+      case 'advisor':
+        retval = DB.users.dummyAdvisor;
         break;
       case 'guest':
         retval = DB.users.dummyGuest;

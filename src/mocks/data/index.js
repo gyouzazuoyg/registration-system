@@ -1,12 +1,12 @@
 import { course1 } from './courses';
 
-import { dummyStudent, dummyEmployer, dummyAdmin, dummyGuest } from './users';
+import { dummyStudent, dummyAdvisor, dummyAdmin, dummyGuest } from './users';
 
 const initMockDB = () => {
   return {
     users: {
       dummyStudent: dummyStudent,
-      dummyEmployer: dummyEmployer,
+      dummyAdvisor: dummyAdvisor,
       dummyAdmin: dummyAdmin,
       dummyGuest: dummyGuest,
     },
