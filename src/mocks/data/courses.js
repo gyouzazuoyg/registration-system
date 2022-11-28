@@ -14,7 +14,7 @@ export const course1 = {
   phoneNumber: '666-666-6666',
   departmentDescription: 'department description',
   registeredCandidates: [{ userid: '1', registeredDate: 'Nov 27 2022' }],
-  postedBy: '3',
+  postedBy: '2',
   comments: [],
 };
 
@@ -34,6 +34,6 @@ export const course2 = {
   phoneNumber: '666-666-6666',
   departmentDescription: 'department description',
   registeredCandidates: [],
-  postedBy: '3',
+  postedBy: '2',
   comments: [],
 };
