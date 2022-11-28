@@ -40,10 +40,6 @@ function Profile() {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
-  const onClose = (e) => {
-    console.log('Message closed');
-  };
-
   function onSearch(value) {
     const query = {
       keyword: value,
@@ -61,14 +57,6 @@ function Profile() {
   return (
     <div>
       <DefaultLayout>
-        <Alert
-          message="Note:"
-          description="Navigate between tabs by clicking Next and Previous buttons at the bottom of each tab.
-               Remember to fill all required fields before proceed."
-          type="info"
-          closable
-          onClose={onClose}
-        />
         <Tabs defaultActiveKey="1" activeKey={activeTab}>
           <TabPane tab="Personal Info" key="1">
             <Form
