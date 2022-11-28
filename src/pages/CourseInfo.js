@@ -140,13 +140,13 @@ function CourseInfo({ match }) {
               ghost={false}
               onBack={() => window.history.back()}
               title={course.title}
-              subTitle={course.company}
+              subTitle={course.department}
             />
             <p>
               <b>Title</b> : {course.title}
             </p>
             <p>
-              <b>Company</b> : {course.company}
+              <b>Department</b> : {course.department}
             </p>
 
             <p>
@@ -177,7 +177,7 @@ function CourseInfo({ match }) {
               <b>Department</b> : {course.department}
             </p>
             <p>
-              <b>Company Profile</b> : {course.companyDescription}
+              <b>Department Profile</b> : {course.departmentDescription}
             </p>
             <p>
               <b>Total Candidates applied</b> : {course.appliedCandidates.length}

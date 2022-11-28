@@ -147,7 +147,7 @@ function EditCourse({ match }) {
               <Button htmlType="submit">Next</Button>
             </Form>
           </TabPane>
-          <TabPane tab="Company Info" key="1">
+          <TabPane tab="Department Info" key="1">
             <Form
               layout="vertical"
               onFinish={onFinalFormFinish}
@@ -156,20 +156,20 @@ function EditCourse({ match }) {
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
-                    name="company"
-                    label="Company Name"
+                    name="department"
+                    label="Department Name"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter company name here" />
+                    <Input placeholder="Enter department name here" />
                   </Form.Item>
                 </Col>
                 <Col lg={8} sm={24}>
                   <Form.Item
                     name="email"
-                    label="Company Email"
+                    label="Department Email"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter your company email as contact info" />
+                    <Input placeholder="Enter your department email as contact info" />
                   </Form.Item>
                 </Col>
 
@@ -179,18 +179,18 @@ function EditCourse({ match }) {
                     label="Phone number"
                     rules={[{ required: true }]}
                   >
-                    <Input placeholder="Enter company phone number as contact info" />
+                    <Input placeholder="Enter department phone number as contact info" />
                   </Form.Item>
                 </Col>
                 <Col lg={24} sm={24}>
                   <Form.Item
-                    name="companyDescription"
-                    label="Company Description"
+                    name="departmentDescription"
+                    label="Department Description"
                     rules={[{ required: true }]}
                   >
                     <TextArea
                       rows={3}
-                      placeholder="Introduce your company to others!"
+                      placeholder="Introduce your department to others!"
                     />
                   </Form.Item>
                 </Col>

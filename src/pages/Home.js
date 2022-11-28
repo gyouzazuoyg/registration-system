@@ -20,7 +20,7 @@ function Home() {
               <Col lg={12} sm={24}>
                 <div className="course-div bs m-2 p-4">
                   <h4>{course.title}</h4>
-                  <p>{course.company}</p>
+                  <p>{course.department}</p>
                   <hr />
                   <p>{course.smallDescription}</p>
                   <div className="flex">

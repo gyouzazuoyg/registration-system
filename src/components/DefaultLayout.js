@@ -52,7 +52,7 @@ class DefaultLayout extends React.Component {
           }}
         >
           <div className="logo">
-            {this.state.collapsed ? <h1>NEU</h1> : <h1>NEUCourses</h1>}
+            {this.state.collapsed ? <h1>NEU</h1> : <h1>NEU Courses</h1>}
           </div>
           <Menu
             theme="dark"

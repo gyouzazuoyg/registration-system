@@ -20,7 +20,7 @@ function AppliedList() {
     if (temp) {
       const obj = {
         title: course.title,
-        company: course.company,
+        department: course.department,
         appliedDate: temp.appliedDate,
         courseId: (
           <Link to={`/courses/${course._id}`}>
@@ -39,8 +39,8 @@ function AppliedList() {
       dataIndex: 'title',
     },
     {
-      title: 'Company',
-      dataIndex: 'company',
+      title: 'Department',
+      dataIndex: 'department',
     },
     {
       title: 'Applied Date',
