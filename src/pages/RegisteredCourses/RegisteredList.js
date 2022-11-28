@@ -22,11 +22,14 @@ function RegisteredList() {
         title: course.title,
         department: course.department,
         registeredDate: temp.registeredDate,
-        courseId: (
-          <Link to={`/courses/${course._id}`}>
-            <Button>Redirect</Button>
-          </Link>
-        ),
+        courseId: [
+          <>
+            <Link to={`/courses/${course._id}`}>
+              <Button>Details</Button>
+            </Link>
+            <Button>Drop</Button>
+          </>,
+        ],
       };
 
       userRegisteredCourses.push(obj);
@@ -47,7 +50,7 @@ function RegisteredList() {
       dataIndex: 'registeredDate',
     },
     {
-      title: 'Link to Course',
+      title: 'Action',
       dataIndex: 'courseId',
     },
   ];
