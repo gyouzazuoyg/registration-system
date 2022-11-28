@@ -44,4 +44,18 @@ export const handlers = [
       ctx.json(retval),
     );
   }),
+
+  rest.get('/api/users/getallusers', (req, res, ctx) => {
+    let retval = [];
+    for (const key in DB.users) {
+      retval.push(DB.users[key]);
+    }
+    let status = 200;
+
+    return res(
+      // Respond with a 200 status code
+      ctx.status(status),
+      ctx.json(retval),
+    );
+  }),
 ];
