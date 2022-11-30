@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import CourseInfo from './pages/CourseInfo';
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 import RegisteredCourses from './pages/RegisteredCourses/RegisteredCourses';
+import WaitlistedCourses from './pages/RegisteredCourses/WaitlistedCourses';
 import PostCourse from './pages/PostCourse';
 import Profile from './pages/Profile';
 import FadeLoader from 'react-spinners/FadeLoader';
@@ -40,6 +41,7 @@ function App() {
 
         <ProtectedRoute path="/" exact component={Home} />
         <ProtectedRoute path="/registeredcourses" exact component={RegisteredCourses} />
+        <ProtectedRoute path="/waitlistedcourses" exact component={WaitlistedCourses} />
         <ProtectedRoute path="/postcourse" exact component={PostCourse} />
 
         <ProtectedRoute path="/profile" exact component={Profile} />

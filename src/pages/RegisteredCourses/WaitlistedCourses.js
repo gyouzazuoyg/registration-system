@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 import { Table } from 'antd';
 import RegisteredList from './RegisteredList';
 
-function RegisteredCourses() {
+function WaitlistedCourses() {
   return (
     <div>
       <DefaultLayout>
-        <RegisteredList isWaitlist={false} />
+        <RegisteredList isWaitlist={true} />
       </DefaultLayout>
     </div>
   );
 }
 
-export default RegisteredCourses;
+export default WaitlistedCourses;

@@ -202,7 +202,7 @@ function Profile() {
           )}
           {user.role === 'student' ? (
             <TabPane tab="Registered Courses" key="3">
-              <RegisteredList />
+              <RegisteredList isWaitlist={false} />
               <Button
                 onClick={() => {
                   setActiveTab('2');
@@ -238,11 +238,32 @@ function Profile() {
             </TabPane>
           )}
           {user.role === 'student' ? (
-            <TabPane tab="My Comments" key="4">
-              <CommentsList />
+            <TabPane tab="Waitlisted Courses" key="4">
+              <RegisteredList isWaitlist={true} />
               <Button
                 onClick={() => {
                   setActiveTab('3');
+                }}
+              >
+                Previous
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('5');
+                }}
+              >
+                Next
+              </Button>
+            </TabPane>
+          ) : (
+            ''
+          )}
+          {user.role === 'student' ? (
+            <TabPane tab="My Comments" key="5">
+              <CommentsList />
+              <Button
+                onClick={() => {
+                  setActiveTab('4');
                 }}
               >
                 Previous

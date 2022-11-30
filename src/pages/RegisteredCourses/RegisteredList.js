@@ -1,17 +1,30 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Table } from 'antd';
+import { Button, Table, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 
-function RegisteredList() {
+function RegisteredList(props) {
   const { courses } = useSelector((state) => state.coursesReducer);
 
   const user = JSON.parse(localStorage.getItem('user'));
+  const isWaitlist = props.isWaitlist ? true : false;
 
   const userRegisteredCourses = [];
 
+  function dropCourse() {
+    //dispatch(deleteCourse(course));
+  }
+
+  function confirmDropCourse(e) {
+    dropCourse();
+  }
+
+  function cancel(e) {}
+
   for (const course of courses) {
-    const registeredStudents = course.registeredStudents;
+    const registeredStudents = isWaitlist
+      ? course.waitlistedStudents
+      : course.registeredStudents;
 
     const temp = registeredStudents.find(
       (candidate) => candidate.userid === user._id,
@@ -19,15 +32,23 @@ function RegisteredList() {
 
     if (temp) {
       const obj = {
-        title: course.title,
+        title: course.courseId,
         department: course.department,
-        registeredDate: temp.registeredDate,
+        registeredDate: isWaitlist ? temp.waitlistedDate : temp.registeredDate,
         courseId: [
           <>
             <Link to={`/courses/${course._id}`}>
               <Button>Details</Button>
             </Link>
-            <Button>Drop</Button>
+            <Popconfirm
+              title="Are you sure to drop this course?"
+              onConfirm={confirmDropCourse}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button>Drop</Button>
+            </Popconfirm>
           </>,
         ],
       };
@@ -38,7 +59,7 @@ function RegisteredList() {
 
   const columns = [
     {
-      title: 'Course Title',
+      title: 'Course Number',
       dataIndex: 'title',
     },
     {
@@ -57,7 +78,7 @@ function RegisteredList() {
 
   return (
     <div>
-      <h1>Registered Courses</h1>
+      <h1>{isWaitlist ? 'Waitlisted Courses' : 'Registered Courses'}</h1>
       <Table columns={columns} dataSource={userRegisteredCourses} />
     </div>
   );
