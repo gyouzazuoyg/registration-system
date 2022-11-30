@@ -139,17 +139,10 @@ function CourseInfo({ match }) {
             <PageHeader
               ghost={false}
               onBack={() => window.history.back()}
-              title={course.courseName}
-              subTitle={course.courseId}
+              title={course.courseId + ' - ' + course.courseName}
             />
             <p>
-              <b>Course Name</b> : {course.courseName}
-            </p>
-            <p>
-              <b>Course ID</b> : {course.courseId}
-            </p>
-            <p>
-              <b> CRN </b> : {course.crn}
+              <b>CRN </b> : {course.crn}
             </p>
             <p>
               <b>Department</b> : {course.department}
