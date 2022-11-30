@@ -37,9 +37,9 @@ function CourseInfo({ match }) {
 
   const userid = user._id;
 
-  const registeredCandidates = course.registeredCandidates;
+  const registeredStudents = course.registeredStudents;
 
-  const alreadyRegistered = registeredCandidates.find(
+  const alreadyRegistered = registeredStudents.find(
     (candidate) => candidate.userid === userid,
   );
 
@@ -170,7 +170,7 @@ function CourseInfo({ match }) {
             </p>
             <p>
               <b>Total Students Registered</b> :{' '}
-              {course.registeredCandidates.length}
+              {course.registeredStudents.length} / {course.capacity}
             </p>
 
             <hr />

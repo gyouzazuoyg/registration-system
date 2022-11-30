@@ -30,7 +30,7 @@ function PostedList() {
     },
     {
       title: 'Registered Candidates',
-      dataIndex: 'registeredCandidates',
+      dataIndex: 'registeredStudents',
     },
     {
       title: 'Actions',
@@ -67,7 +67,7 @@ function PostedList() {
         </Link>
       ),
       postedOn: moment(course.createdAt).format('MMM DD yyyy'),
-      registeredCandidates: course.registeredCandidates.length,
+      registeredStudents: course.registeredStudents.length,
       completeCourseData: course,
     };
     dataSource.push(obj);
@@ -106,7 +106,7 @@ function PostedList() {
 
     let candidatesDatasource = [];
 
-    for (let candidate of selectedCourse.registeredCandidates) {
+    for (let candidate of selectedCourse.registeredStudents) {
       let user = allusers.find((user) => user._id === candidate.userid);
 
       let obj = {

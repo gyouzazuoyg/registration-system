@@ -11,9 +11,9 @@ function RegisteredList() {
   const userRegisteredCourses = [];
 
   for (const course of courses) {
-    const registeredCandidates = course.registeredCandidates;
+    const registeredStudents = course.registeredStudents;
 
-    const temp = registeredCandidates.find(
+    const temp = registeredStudents.find(
       (candidate) => candidate.userid === user._id,
     );
 

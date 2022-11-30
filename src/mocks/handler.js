@@ -81,7 +81,7 @@ export const handlers = [
       userid: user._id,
       registeredDate: moment().format('MMM DD yyyy'),
     };
-    courseDetails.registeredCandidates.push(registeredCandidate);
+    courseDetails.registeredStudents.push(registeredCandidate);
 
     const registeredCourse = {
       courseid: course._id,

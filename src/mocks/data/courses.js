@@ -15,7 +15,7 @@ export const course1 = {
   term: 'Spring 2023',
   experience: '9exp',
   departmentDescription: 'department description',
-  registeredCandidates: [{ userid: '1', registeredDate: 'Nov 27 2022' }],
+  registeredStudents: [{ userid: '1', registeredDate: 'Nov 27 2022' }],
   postedBy: '2',
   comments: [],
 };
@@ -37,7 +37,7 @@ export const course2 = {
   term: 'Fall 2023',
   experience: '8exp',
   departmentDescription: 'department description',
-  registeredCandidates: [],
+  registeredStudents: [],
   postedBy: '2',
   comments: [],
 };
