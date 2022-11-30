@@ -135,25 +135,6 @@ function PostCourse() {
                     <Input placeholder="Enter department name here" />
                   </Form.Item>
                 </Col>
-                <Col lg={8} sm={24}>
-                  <Form.Item
-                    name="email"
-                    label="Department Email"
-                    rules={[{ required: true }]}
-                  >
-                    <Input placeholder="Enter your department email as contact info" />
-                  </Form.Item>
-                </Col>
-
-                <Col lg={8} sm={24}>
-                  <Form.Item
-                    name="phoneNumber"
-                    label="Phone number"
-                    rules={[{ required: true }]}
-                  >
-                    <Input placeholder="Enter department phone number as contact info" />
-                  </Form.Item>
-                </Col>
                 <Col lg={24} sm={24}>
                   <Form.Item
                     name="departmentDescription"
