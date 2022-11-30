@@ -19,6 +19,17 @@ export const dummyStudent = {
   experience: [''],
 
   registeredCourses: [{ courseid: '1', registeredDate: 'Nov 27 2022' }],
+  waitlistedCourses: [{ courseid: '2', waitlistedDate: 'Nov 27 2022' }],
+
+  requiredCredits: 32,
+  acquiredCredits: 16,
+  timeTicketFrom: '20221102',
+  timeTicketTo: '20221107',
+  advisor: '2',
+  campus: 'Silicon Valley',
+  college: 'Khoury College',
+  department: 'Computer Science',
+
   comments: [],
 };
 
@@ -42,7 +53,10 @@ export const dummyAdvisor = {
   projects: [''],
   experience: [''],
 
-  registeredCourses: [],
+  officeHour: 'Sat 11am to 12pm',
+  supervisedStudents: [],
+  department: 'Computer Science',
+
   comments: [],
 };
 
@@ -66,7 +80,6 @@ export const dummyAdmin = {
   projects: [''],
   experience: [''],
 
-  registeredCourses: [],
   comments: [],
 };
 
@@ -90,6 +103,5 @@ export const dummyGuest = {
   projects: [''],
   experience: [''],
 
-  registeredCourses: [],
   comments: [],
 };
