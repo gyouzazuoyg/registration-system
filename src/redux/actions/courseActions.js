@@ -92,8 +92,10 @@ export const searchCourses = (searchKey) => async (dispatch) => {
 
     const courses = response.data;
 
-    const filteredCourses = courses.filter((course) =>
-      course.title.toLowerCase().includes(searchKey.toLowerCase()),
+    let filteredCourses = courses
+
+    filteredCourses = courses.filter((course) =>
+      (course.courseId + course.courseName).toLowerCase().includes(searchKey.toLowerCase()),
     );
 
     dispatch({ type: 'GET_ALL_JOBS', payload: filteredCourses });
@@ -110,17 +112,15 @@ export const sortCourses = (values) => async (dispatch) => {
     const response = await axios.get('/api/courses/getallcourses');
 
     const courses = response.data;
+    console.log(values)
 
     let filteredCourses = courses;
 
-    if (values.experience !== undefined) {
+    if (values.campus !== undefined) {
       filteredCourses = courses.filter(
-        (course) => course.experience <= values.experience,
+        (course) => course.campus === values.campus,
       );
     }
-    // if (values.salary !== undefined) {
-    //   filteredCourses = courses.filter((course) => course.salaryTo >= values.salary);
-    // }
 
     dispatch({ type: 'GET_ALL_JOBS', payload: filteredCourses });
     dispatch({ type: 'LOADING', payload: false });

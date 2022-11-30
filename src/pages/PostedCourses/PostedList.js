@@ -17,7 +17,7 @@ function PostedList() {
 
   const columns = [
     {
-      title: 'Title',
+      title: 'Course Number',
       dataIndex: 'title',
     },
     {
@@ -60,7 +60,7 @@ function PostedList() {
 
   for (course of userPostedCourses) {
     const obj = {
-      title: course.title,
+      title: course.courseId,
       courseId: (
         <Link to={`/courses/${course._id}`}>
           <Button>Details</Button>

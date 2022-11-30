@@ -24,9 +24,15 @@ function Filter() {
 
   function sort(values) {
     dispatch(sortCourses(values));
-
     handleCancel();
   }
+
+  function clearSort(values) {
+    values.campus = undefined
+    dispatch(sortCourses(values));
+    handleCancel();
+  }
+
   return (
     <div className="flex">
       <Search
@@ -46,28 +52,17 @@ function Filter() {
         closable={true}
       >
         <Form layout="vertical" onFinish={sort}>
-          <Form.Item name="experience" label="Experience">
+          <Form.Item name="campus" label="Campus">
             <Select>
-              <Option value={0}>Fresher</Option>
-              <Option value={1}>1 Year</Option>
-              <Option value={2}>2 Years</Option>
-              <Option value={3}>3 Years</Option>
-              <Option value={4}>4 Years</Option>
-              <Option value={5}>5 Years</Option>
-            </Select>
-          </Form.Item>
-
-          <Form.Item name="salary" label="Credits">
-            <Select>
-              <Option value={10000}>10000+</Option>
-              <Option value={15000}>15000+</Option>
-              <Option value={25000}>25000+</Option>
-              <Option value={35000}>35000+</Option>
-              <Option value={50000}>50000+</Option>
-              <Option value={70000}>70000+</Option>
+              <Option value={'Boston'}>Boston</Option>
+              <Option value={'Seattle'}>Seattle</Option>
+              <Option value={'Silicon Valley'}>Silicon Valley</Option>
+              <Option value={'San Francisco'}>San Francisco</Option>
+              <Option value={'Portland'}>Portland</Option>
             </Select>
           </Form.Item>
           <Button htmlType="submit">Filter</Button>
+          <Button onClick={clearSort}>Clear</Button>
         </Form>
       </Modal>
     </div>
