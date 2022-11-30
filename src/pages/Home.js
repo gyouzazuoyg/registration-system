@@ -23,13 +23,13 @@ function Home() {
                     {course.courseId} - {course.courseName}
                   </h4>
                   <hr />
-                  <p>{course.smallDescription}</p>
+                  <p>{course.courseDescription}</p>
                   <div className="flex">
                     <p>
                       Credits : <b>{course.credits}</b> ,{' '}
                     </p>
                     <p style={{ marginLeft: 20 }}>
-                      Experience : <b>{course.experience} Years</b>{' '}
+                      Professor : <b>{course.professor}</b>{' '}
                     </p>
                   </div>
                   <hr />

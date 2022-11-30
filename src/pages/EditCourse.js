@@ -92,43 +92,15 @@ function EditCourse({ match }) {
                   </Form.Item>
                 </Col>
 
-                <Col lg={8} sm={24}>
-                  <Form.Item
-                    name="minimumQualification"
-                    rules={[{ required: true }]}
-                    label="Minimum Qualification"
-                  >
-                    <Select placeholder="Select minimum qualification for education degrees">
-                      <Option value="Associate's">Associate's</Option>
-                      <Option value="Bachelor's">Bachelor's</Option>
-                      <Option value="Master's">Master's</Option>
-                      <Option value="Doctorate">Doctorate</Option>
-                    </Select>
-                  </Form.Item>
-                </Col>
-
                 <Col lg={24} sm={24}>
                   <Form.Item
-                    name="smallDescription"
+                    name="courseDescription"
                     rules={[{ required: true }]}
                     label="Small description"
                   >
                     <TextArea
                       rows={3}
                       placeholder="Tell candidates more about this course"
-                    />
-                  </Form.Item>
-                </Col>
-
-                <Col lg={24} sm={24}>
-                  <Form.Item
-                    name="fullDescription"
-                    rules={[{ required: true }]}
-                    label="Full description"
-                  >
-                    <TextArea
-                      rows={6}
-                      placeholder="Include any details to inform or attract candidates"
                     />
                   </Form.Item>
                 </Col>

@@ -154,19 +154,13 @@ function CourseInfo({ match }) {
               <b>Campus</b> : {course.campus}
             </p>
             <p>
-              <b>Small Description</b> : {course.smallDescription}
-            </p>
-            <p>
-              <b>Full Description</b> : {course.fullDescription}
+              <b>Course Description</b> : {course.courseDescription}
             </p>
             <p>
               <b>Prerequisites</b> : {course.prerequisites}
             </p>
             <p>
               <b>Experience</b> : {course.experience}
-            </p>
-            <p>
-              <b>Minimum Qualification</b> : {course.minimumQualification}
             </p>
 
             <hr />
