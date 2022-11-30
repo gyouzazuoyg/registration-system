@@ -142,12 +142,17 @@ function CourseInfo({ match }) {
               title={course.courseId + ' - ' + course.courseName}
             />
             <p>
-              <b>CRN </b> : {course.crn}
+              <b>CRN</b> : {course.crn}
+            </p>
+            <p>
+              <b>Term</b> : {course.term}
             </p>
             <p>
               <b>Department</b> : {course.department}
             </p>
-
+            <p>
+              <b>Campus</b> : {course.campus}
+            </p>
             <p>
               <b>Small Description</b> : {course.smallDescription}
             </p>
@@ -155,10 +160,7 @@ function CourseInfo({ match }) {
               <b>Full Description</b> : {course.fullDescription}
             </p>
             <p>
-              <b>Title</b> : {course.title}
-            </p>
-            <p>
-              <b>Skills Required</b> : {course.skillsRequired}
+              <b>Prerequisites</b> : {course.prerequisites}
             </p>
             <p>
               <b>Experience</b> : {course.experience}
@@ -170,16 +172,10 @@ function CourseInfo({ match }) {
             <hr />
 
             <p>
-              <b>Salary Range</b> : {course.salaryFrom} - {course.salaryTo}
+              <b>Credits</b> : {course.credits}
             </p>
             <p>
-              <b>Department</b> : {course.department}
-            </p>
-            <p>
-              <b>Department Profile</b> : {course.departmentDescription}
-            </p>
-            <p>
-              <b>Total Candidates registered</b> :{' '}
+              <b>Total Students Registered</b> :{' '}
               {course.registeredCandidates.length}
             </p>
 

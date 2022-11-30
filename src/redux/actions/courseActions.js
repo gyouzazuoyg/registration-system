@@ -114,11 +114,13 @@ export const sortCourses = (values) => async (dispatch) => {
     let filteredCourses = courses;
 
     if (values.experience !== undefined) {
-      filteredCourses = courses.filter((course) => course.experience <= values.experience);
+      filteredCourses = courses.filter(
+        (course) => course.experience <= values.experience,
+      );
     }
-    if (values.salary !== undefined) {
-      filteredCourses = courses.filter((course) => course.salaryTo >= values.salary);
-    }
+    // if (values.salary !== undefined) {
+    //   filteredCourses = courses.filter((course) => course.salaryTo >= values.salary);
+    // }
 
     dispatch({ type: 'GET_ALL_JOBS', payload: filteredCourses });
     dispatch({ type: 'LOADING', payload: false });

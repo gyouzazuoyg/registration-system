@@ -21,7 +21,7 @@ function CommentsList() {
         postDate: temp.datetime,
         courseId: (
           <Link to={`/courses/${temp.courseid}`}>
-            <Button>Redirect</Button>
+            <Button>Details</Button>
           </Link>
         ),
       };

@@ -57,7 +57,7 @@ function Filter() {
             </Select>
           </Form.Item>
 
-          <Form.Item name="salary" label="Salary">
+          <Form.Item name="salary" label="Credits">
             <Select>
               <Option value={10000}>10000+</Option>
               <Option value={15000}>15000+</Option>

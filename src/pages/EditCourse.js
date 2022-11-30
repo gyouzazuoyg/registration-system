@@ -72,21 +72,11 @@ function EditCourse({ match }) {
 
                 <Col lg={8} sm={24}>
                   <Form.Item
-                    name="salaryFrom"
+                    name="credits"
                     rules={[{ required: true }]}
-                    label="Salary From"
+                    label="Credits"
                   >
                     <Input type="number" placeholder="10000" />
-                  </Form.Item>
-                </Col>
-
-                <Col lg={8} sm={24}>
-                  <Form.Item
-                    name="salaryTo"
-                    rules={[{ required: true }]}
-                    label="Salary To"
-                  >
-                    <Input type="number" placeholder="20000" />
                   </Form.Item>
                 </Col>
               </Row>
@@ -94,7 +84,7 @@ function EditCourse({ match }) {
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
-                    name="skillsRequired"
+                    name="prerequisites"
                     rules={[{ required: true }]}
                     label="Skills"
                   >

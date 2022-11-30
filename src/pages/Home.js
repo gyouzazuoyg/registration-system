@@ -19,16 +19,14 @@ function Home() {
             return (
               <Col lg={12} sm={24}>
                 <div className="course-div bs m-2 p-4">
-                  <h4>{course.courseId} - {course.courseName}</h4>
+                  <h4>
+                    {course.courseId} - {course.courseName}
+                  </h4>
                   <hr />
                   <p>{course.smallDescription}</p>
                   <div className="flex">
                     <p>
-                      Salary :{' '}
-                      <b>
-                        {course.salaryFrom} - {course.salaryTo}
-                      </b>{' '}
-                      ,{' '}
+                      Credits : <b>{course.credits}</b> ,{' '}
                     </p>
                     <p style={{ marginLeft: 20 }}>
                       Experience : <b>{course.experience} Years</b>{' '}
@@ -41,7 +39,8 @@ function Home() {
                       <Button>View</Button>
                     </Link>
                     <p>
-                      Posted on : {moment(course.createdAt).format('MMM DD yyyy')}
+                      Posted on :{' '}
+                      {moment(course.createdAt).format('MMM DD yyyy')}
                     </p>
                   </div>
                 </div>

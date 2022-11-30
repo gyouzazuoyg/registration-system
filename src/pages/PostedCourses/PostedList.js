@@ -63,7 +63,7 @@ function PostedList() {
       title: course.title,
       courseId: (
         <Link to={`/courses/${course._id}`}>
-          <Button>Redirect</Button>
+          <Button>Details</Button>
         </Link>
       ),
       postedOn: moment(course.createdAt).format('MMM DD yyyy'),
