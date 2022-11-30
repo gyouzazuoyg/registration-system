@@ -154,179 +154,7 @@ function Profile() {
             </Form>
           </TabPane>
           {user.role === 'student' ? (
-            <TabPane tab="Skills and Education" key="2">
-              <Form
-                initialValues={user}
-                layout="vertical"
-                onFinish={onFinalFinish}
-              >
-                <Row>
-                  <Col lg={24} sm={24}>
-                    <Form.List name="education">
-                      {(education, { add, remove }) => (
-                        <div>
-                          {education.map((field, index) => (
-                            <div className="flex">
-                              <Form.Item
-                                required
-                                {...field}
-                                label="Education"
-                                style={{ width: '80%' }}
-                                rules={[{ required: false }]}
-                              >
-                                <TextArea
-                                  rows={4}
-                                  placeholder="Enter your degree, school name, and major etc."
-                                />
-                              </Form.Item>
-                              <Button
-                                onClick={() => {
-                                  add();
-                                }}
-                              >
-                                Add more
-                              </Button>
-                              {index !== 0 && (
-                                <Button
-                                  onClick={() => {
-                                    remove(index);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </Form.List>
-                  </Col>
-
-                  <Col lg={24} sm={24}>
-                    <Form.Item label="Skills" required className="mb-1">
-                      <Search
-                        placeholder="Search skills here first"
-                        style={{ width: '80%' }}
-                        onSearch={onSearch}
-                        enterButton
-                      />
-                    </Form.Item>
-                    <Form.Item
-                      style={{ width: '80%' }}
-                      rules={[{ required: false }]}
-                      name="skills"
-                    >
-                      <Select
-                        mode="tags"
-                        placeholder="Then select your skills here"
-                        style={{ width: '100%' }}
-                      >
-                        {children}
-                      </Select>
-                    </Form.Item>
-                  </Col>
-
-                  <Col lg={24} sm={24}>
-                    <Form.List name="projects">
-                      {(projects, { add, remove }) => (
-                        <div>
-                          {projects.map((field, index) => (
-                            <div className="flex">
-                              <Form.Item
-                                {...field}
-                                label="Project"
-                                style={{ width: '80%' }}
-                                rules={[{ required: false }]}
-                              >
-                                <TextArea
-                                  rows={4}
-                                  placeholder="Include any academic projects here to show your ability"
-                                />
-                              </Form.Item>
-                              <Button
-                                onClick={() => {
-                                  add();
-                                }}
-                              >
-                                Add more
-                              </Button>
-                              {index !== 0 && (
-                                <Button
-                                  onClick={() => {
-                                    remove(index);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </Form.List>
-                  </Col>
-                  <Col lg={24} sm={24}>
-                    <Form.List name="experience">
-                      {(experience, { add, remove }) => (
-                        <div>
-                          {experience.map((field, index) => (
-                            <div className="flex">
-                              <Form.Item
-                                {...field}
-                                label="Experience"
-                                style={{ width: '80%' }}
-                                rules={[{ required: false }]}
-                              >
-                                <TextArea
-                                  rows={4}
-                                  placeholder="Include all your professional experience here"
-                                />
-                              </Form.Item>
-                              <Button
-                                onClick={() => {
-                                  add();
-                                }}
-                              >
-                                Add more
-                              </Button>
-                              {index !== 0 && (
-                                <Button
-                                  onClick={() => {
-                                    remove(index);
-                                  }}
-                                >
-                                  Delete
-                                </Button>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </Form.List>
-                  </Col>
-                </Row>
-                <Button
-                  onClick={() => {
-                    setActiveTab('1');
-                  }}
-                >
-                  Previous
-                </Button>
-                <Button
-                  onClick={() => {
-                    setActiveTab('3');
-                  }}
-                >
-                  Next
-                </Button>
-                <Button htmlType="submit">Update</Button>
-              </Form>
-            </TabPane>
-          ) : (
-            ''
-          )}
-          {user.role === 'student' ? (
-            <TabPane tab="Academic Info" key="999">
+            <TabPane tab="Academic Info" key="2">
               <h1>Academic Information</h1>
               <p>
                 <b>Department</b> : {user.department}
@@ -352,6 +180,22 @@ function Profile() {
                 <b>Time Ticket</b> :{' '}
                 {user.timeTicketFrom + ' - ' + user.timeTicketTo}
               </p>
+              <hr />
+
+              <Button
+                onClick={() => {
+                  setActiveTab('1');
+                }}
+              >
+                Previous
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('3');
+                }}
+              >
+                Next
+              </Button>
             </TabPane>
           ) : (
             ''
