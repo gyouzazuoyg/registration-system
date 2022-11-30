@@ -19,6 +19,7 @@ export const course1 = {
   capacity: 50,
   waitlistCapacity: 20,
   postedBy: '2',
+  createdAt: '20221101',
   comments: [],
 };
 
@@ -43,5 +44,6 @@ export const course2 = {
   capacity: 60,
   waitlistCapacity: 20,
   postedBy: '2',
+  createdAt: '20221105',
   comments: [],
 };
