@@ -49,7 +49,7 @@ function Profile() {
 
   function callbackTabClicked(key, event) {
     setActiveTab(key);
-  };
+  }
 
   // Comment out Skill tab page
   // const queryResults = JSON.parse(localStorage.getItem('skills'));
@@ -61,7 +61,11 @@ function Profile() {
   return (
     <div>
       <DefaultLayout>
-        <Tabs defaultActiveKey="1" activeKey={activeTab} onTabClick={callbackTabClicked}>
+        <Tabs
+          defaultActiveKey="1"
+          activeKey={activeTab}
+          onTabClick={callbackTabClicked}
+        >
           <TabPane tab="Personal Info" key="1">
             <Form
               layout="vertical"
@@ -317,6 +321,37 @@ function Profile() {
                 </Button>
                 <Button htmlType="submit">Update</Button>
               </Form>
+            </TabPane>
+          ) : (
+            ''
+          )}
+          {user.role === 'student' ? (
+            <TabPane tab="Academic Info" key="999">
+              <h1>Academic Information</h1>
+              <p>
+                <b>Department</b> : {user.department}
+              </p>
+              <p>
+                <b>College</b> : {user.college}
+              </p>
+              <p>
+                <b>Campus</b> : {user.campus}
+              </p>
+              <p>
+                {/* TODO: Need to acquire actual advisor name */}
+                <b>Advisor</b> : {user.advisor}
+              </p>
+              <p>
+                <b>Required Credits</b> : {user.requiredCredits}
+              </p>
+              <p>
+                <b>Acquired Credits</b> : {user.acquiredCredits}
+              </p>
+
+              <p>
+                <b>Time Ticket</b> :{' '}
+                {user.timeTicketFrom + ' - ' + user.timeTicketTo}
+              </p>
             </TabPane>
           ) : (
             ''
