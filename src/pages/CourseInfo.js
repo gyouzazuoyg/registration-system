@@ -146,6 +146,9 @@ function CourseInfo({ match }) {
               <b>Title</b> : {course.title}
             </p>
             <p>
+              <b> CRN </b> : {course.crn}
+            </p>
+            <p>
               <b>Department</b> : {course.department}
             </p>
 
@@ -180,7 +183,8 @@ function CourseInfo({ match }) {
               <b>Department Profile</b> : {course.departmentDescription}
             </p>
             <p>
-              <b>Total Candidates registered</b> : {course.registeredCandidates.length}
+              <b>Total Candidates registered</b> :{' '}
+              {course.registeredCandidates.length}
             </p>
 
             <hr />
