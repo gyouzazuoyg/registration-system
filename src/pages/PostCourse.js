@@ -107,18 +107,6 @@ function PostCourse() {
                     <Input placeholder="Enter department name here" />
                   </Form.Item>
                 </Col>
-                <Col lg={24} sm={24}>
-                  <Form.Item
-                    name="departmentDescription"
-                    label="Department Description"
-                    rules={[{ required: true }]}
-                  >
-                    <TextArea
-                      rows={3}
-                      placeholder="Introduce your department to others!"
-                    />
-                  </Form.Item>
-                </Col>
               </Row>
               <Button
                 onClick={() => {

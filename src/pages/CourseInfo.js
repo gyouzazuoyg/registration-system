@@ -151,23 +151,36 @@ function CourseInfo({ match }) {
               <b>Credits</b> : {course.credits}
             </p>
             <p>
+              <b>Professor</b> : {course.professor}
+            </p>
+            <p>
               <b>Department</b> : {course.department}
             </p>
             <p>
-              <b>Campus</b> : {course.campus}
+              <b>College</b> : {course.college}
+            </p>
+            <p>
+              <b>Location</b> :{' '}
+              {'Room: ' +
+                course.classroom +
+                ', Building: ' +
+                course.building +
+                ', ' +
+                course.campus}
             </p>
             <p>
               <b>Prerequisites</b> : {course.prerequisites}
             </p>
-
-            <hr />
-
             <p>
               <b>Course Description</b> : {course.courseDescription}
             </p>
             <p>
               <b>Total Students Registered</b> :{' '}
               {course.registeredStudents.length} / {course.capacity}
+            </p>
+            <p>
+              <b>Total Students Waitlisted</b> :{' '}
+              {course.waitlistedStudents.length} / {course.waitlistCapacity}
             </p>
 
             <hr />
