@@ -47,7 +47,7 @@ function PostedList() {
             <OrderedListOutlined
               style={{ fontSize: 20 }}
               onClick={() => {
-                showModal(course);
+                showModal(data.completeCourseData);
               }}
             />
           </div>
@@ -123,7 +123,7 @@ function PostedList() {
     );
   }
 
-  console.log(userPostedCourses);
+
   return (
     <div>
       <h1>Posted Courses</h1>
