@@ -16,6 +16,7 @@ export const course1 = {
   experience: '9exp',
   departmentDescription: 'department description',
   registeredStudents: [{ userid: '1', registeredDate: 'Nov 27 2022' }],
+  capacity: 50,
   postedBy: '2',
   comments: [],
 };
@@ -38,6 +39,7 @@ export const course2 = {
   experience: '8exp',
   departmentDescription: 'department description',
   registeredStudents: [],
+  capacity: 60,
   postedBy: '2',
   comments: [],
 };
