@@ -1,8 +1,9 @@
 export const course1 = {
   _id: '1',
   crn: 111,
-  title: 'Course 1',
   department: 'Department 1',
+  courseId: 'CS 5520',
+  courseName: 'Data Mining',
   salaryFrom: 100000,
   salaryTo: 200000,
   experience: '9exp',
@@ -22,7 +23,8 @@ export const course1 = {
 export const course2 = {
   _id: '2',
   crn: 112,
-  title: 'Course 2',
+  courseId: 'CS 5200',
+  courseName: 'Database Management',
   department: 'Department 2',
   salaryFrom: 200000,
   salaryTo: 300000,
