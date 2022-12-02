@@ -72,3 +72,28 @@ export const course3 = {
   createdAt: '20221108',
   comments: [],
 };
+
+export const course4 = {
+  _id: '4',
+  courseName: 'Algorithms',
+  courseId: 'CS 5800',
+  crn: 113,
+  credits: 4,
+  professor: 'Professor Terror',
+  courseDescription: 'This is a very good course.',
+  prerequisites: '',
+  classroom: '101',
+  building: 'B',
+  campus: 'Silicon Valley',
+  department: 'Computer Science',
+  college: 'Khoury College',
+  term: 'Fall 2023',
+  experience: '8exp',
+  registeredStudents: [],
+  waitlistedStudents: [{ userid: '1', waitlistedDate: 'Nov 27 2022' }],
+  capacity: 0,
+  waitlistCapacity: 20,
+  postedBy: '2',
+  createdAt: '20221109',
+  comments: [],
+};
