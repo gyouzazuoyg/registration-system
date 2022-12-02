@@ -82,26 +82,3 @@ export const dummyAdmin = {
 
   comments: [],
 };
-
-export const dummyGuest = {
-  _id: '4',
-  username: 'dummy_guest',
-  password: '',
-  role: 'guest',
-
-  firstName: '',
-  lastName: '',
-  email: '',
-  mobileNumber: '',
-  portfolio: '',
-
-  about: '',
-  address: '',
-
-  education: [''],
-  skills: [''],
-  projects: [''],
-  experience: [''],
-
-  comments: [],
-};

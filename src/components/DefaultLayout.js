@@ -65,7 +65,7 @@ class DefaultLayout extends React.Component {
             <Menu.Item key="/" icon={<HomeOutlined />}>
               <Link to="/">Home</Link>
             </Menu.Item>
-            {user.role === 'guest' || user.role === 'admin' ? (
+            {user.role === 'admin' ? (
               <></>
             ) : (
               <Menu.Item key="/profile" icon={<UserOutlined />}>
@@ -100,15 +100,9 @@ class DefaultLayout extends React.Component {
               <></>
             )}
 
-            {user.role === 'guest' ? (
-              <Menu.Item key="/logout" icon={<LogoutOutlined />}>
-                <Link onClick={this.logout}>Login</Link>
-              </Menu.Item>
-            ) : (
-              <Menu.Item key="/logout" icon={<LogoutOutlined />}>
-                <Link onClick={this.logout}>Logout</Link>
-              </Menu.Item>
-            )}
+            <Menu.Item key="/logout" icon={<LogoutOutlined />}>
+              <Link onClick={this.logout}>Login</Link>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout className="site-layout">
@@ -140,7 +134,7 @@ class DefaultLayout extends React.Component {
               <div
                 style={{ display: this.state.collapsed ? 'none' : 'inline' }}
               >
-                {user.role === 'guest' || user.role === 'admin' ? (
+                {user.role === 'admin' ? (
                   <h5 className="mr-2">
                     <b>{user.username}</b>
                   </h5>

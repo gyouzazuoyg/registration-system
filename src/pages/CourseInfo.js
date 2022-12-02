@@ -196,8 +196,6 @@ function CourseInfo({ match }) {
                 ) : (
                   <Button onClick={registerNow}>Register Now</Button>
                 )
-              ) : user.role === 'guest' ? (
-                <Button onClick={promptToLogin}>Register Now</Button>
               ) : user.role === 'admin' ? (
                 <Popconfirm
                   title="Are you sure to delete this post?"
@@ -228,7 +226,7 @@ function CourseInfo({ match }) {
           ) : (
             <CommentList comments={comments} />
           ))}
-        {user.role === 'guest' ? <></> : <Comments content={content} />}
+        {<Comments content={content} />}
       </DefaultLayout>
     </div>
   );

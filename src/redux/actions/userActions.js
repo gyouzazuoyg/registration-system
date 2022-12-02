@@ -21,9 +21,7 @@ export const loginUser = (values) => async (dispatch) => {
 
   try {
     const user = await axios.post('/api/users/login', values);
-    if (values.username !== 'guest') {
-      message.success('Login success');
-    }
+    message.success('Login success');
     localStorage.setItem('user', JSON.stringify(user.data));
     setTimeout(() => {
       window.location.href = '/';

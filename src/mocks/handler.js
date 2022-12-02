@@ -18,9 +18,6 @@ export const handlers = [
       case 'advisor':
         retval = DB.users.dummyAdvisor;
         break;
-      case 'guest':
-        retval = DB.users.dummyGuest;
-        break;
       default:
         retval = DB.users.dummyStudent;
     }

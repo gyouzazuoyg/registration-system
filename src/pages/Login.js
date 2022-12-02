@@ -15,14 +15,6 @@ function Login() {
     dispatch(loginUser(values));
   }
 
-  function guestLogin() {
-    const guestCredential = {
-      username: 'guest',
-      password: 'guest',
-    };
-    dispatch(loginUser(guestCredential));
-  }
-
   return (
     <div className="login">
       <Row justify="center" className="flex align-items-center">
@@ -63,9 +55,6 @@ function Login() {
             <Row justify="center">
               <Button htmlType="submit" className="mb-3">
                 Login
-              </Button>
-              <Button onClick={guestLogin} className="mb-3">
-                Visit as guest
               </Button>
             </Row>
 
