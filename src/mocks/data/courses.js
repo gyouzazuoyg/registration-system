@@ -47,3 +47,28 @@ export const course2 = {
   createdAt: '20221105',
   comments: [],
 };
+
+export const course3 = {
+  _id: '3',
+  courseName: 'Web Development',
+  courseId: 'CS 5610',
+  crn: 113,
+  credits: 4,
+  professor: 'Professor Evil',
+  courseDescription: 'This is a very good course.',
+  prerequisites: 'CS 1000',
+  classroom: '103',
+  building: 'B',
+  campus: 'Silicon Valley',
+  department: 'Computer Science',
+  college: 'Khoury College',
+  term: 'Fall 2023',
+  experience: '8exp',
+  registeredStudents: [],
+  waitlistedStudents: [],
+  capacity: 0,
+  waitlistCapacity: 20,
+  postedBy: '2',
+  createdAt: '20221108',
+  comments: [],
+};
