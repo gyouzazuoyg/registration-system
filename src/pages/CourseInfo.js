@@ -43,10 +43,16 @@ function CourseInfo({ match }) {
     (candidate) => candidate.userid === userid,
   );
 
+  const ifCapacityRunsOut = course.registeredStudents.length >= course.capacity;
+
   const comments = course.comments;
 
   function registerNow() {
     dispatch(registerCourse(course));
+  }
+
+  function addWaitlist() {
+    // TODO: ADD WAITLIST WHEN CAPACITY RUNS OUT
   }
 
   function deletePost() {
@@ -193,6 +199,9 @@ function CourseInfo({ match }) {
               ) : user.role === 'student' ? (
                 alreadyRegistered ? (
                   <Tag color="green">Already Registered</Tag>
+                ) : /* If now registered, show add-waitlist button or register-now button based on capacity */
+                ifCapacityRunsOut ? (
+                  <Button onClick={addWaitlist}>Add Waitlist</Button>
                 ) : (
                   <Button onClick={registerNow}>Register Now</Button>
                 )
