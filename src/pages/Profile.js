@@ -6,6 +6,7 @@ import { searchSkills, updateUser } from '../redux/actions/userActions';
 import RegisteredList from './RegisteredCourses/RegisteredList';
 import PostedList from './PostedCourses/PostedList';
 import CommentsList from './CommentsList';
+import { getAccordionSummaryUtilityClass } from '@mui/material';
 
 const { TextArea, Search } = Input;
 const { TabPane } = Tabs;
@@ -38,7 +39,17 @@ function Profile() {
     setActiveTab('2');
   }
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const curUser = JSON.parse(localStorage.getItem('user'));
+
+  const allUsers = JSON.parse(localStorage.getItem('users'));
+  const getAdvisor = () => {
+    for (const user in allUsers) {
+      if (allUsers[user]._id === curUser.advisor) {
+        return allUsers[user];
+      }
+    }
+  };
+  const advisorName = getAdvisor()?.username;
 
   function onSearch(value) {
     const query = {
@@ -70,9 +81,9 @@ function Profile() {
             <Form
               layout="vertical"
               onFinish={
-                user.role === 'student' ? onPersonInfoSubmit : onEmployFinish
+                curUser.role === 'student' ? onPersonInfoSubmit : onEmployFinish
               }
-              initialValues={user}
+              initialValues={curUser}
             >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
@@ -146,39 +157,38 @@ function Profile() {
                 </Col>
               </Row>
               <Button htmlType="submit">Next</Button>
-              {user.role === 'student' ? (
+              {curUser.role === 'student' ? (
                 ''
               ) : (
                 <Button htmlType="submit">Update</Button>
               )}
             </Form>
           </TabPane>
-          {user.role === 'student' ? (
+          {curUser.role === 'student' ? (
             <TabPane tab="Academic Info" key="2">
               <h1>Academic Information</h1>
               <p>
-                <b>Department</b> : {user.department}
+                <b>Department</b> : {curUser.department}
               </p>
               <p>
-                <b>College</b> : {user.college}
+                <b>College</b> : {curUser.college}
               </p>
               <p>
-                <b>Campus</b> : {user.campus}
+                <b>Campus</b> : {curUser.campus}
               </p>
               <p>
-                {/* TODO: Need to acquire actual advisor name */}
-                <b>Advisor</b> : {user.advisor}
+                <b>Advisor</b> : {advisorName}
               </p>
               <p>
-                <b>Required Credits</b> : {user.requiredCredits}
+                <b>Required Credits</b> : {curUser.requiredCredits}
               </p>
               <p>
-                <b>Acquired Credits</b> : {user.acquiredCredits}
+                <b>Acquired Credits</b> : {curUser.acquiredCredits}
               </p>
 
               <p>
                 <b>Time Ticket</b> :{' '}
-                {user.timeTicketFrom + ' - ' + user.timeTicketTo}
+                {curUser.timeTicketFrom + ' - ' + curUser.timeTicketTo}
               </p>
               <hr />
 
@@ -200,7 +210,7 @@ function Profile() {
           ) : (
             ''
           )}
-          {user.role === 'student' ? (
+          {curUser.role === 'student' ? (
             <TabPane tab="Registered Courses" key="3">
               <RegisteredList isWaitlist={false} />
               <Button
@@ -237,7 +247,7 @@ function Profile() {
               </Button>
             </TabPane>
           )}
-          {user.role === 'student' ? (
+          {curUser.role === 'student' ? (
             <TabPane tab="Waitlisted Courses" key="4">
               <RegisteredList isWaitlist={true} />
               <Button
@@ -258,7 +268,7 @@ function Profile() {
           ) : (
             ''
           )}
-          {user.role === 'student' ? (
+          {curUser.role === 'student' ? (
             <TabPane tab="My Comments" key="5">
               <CommentsList />
               <Button

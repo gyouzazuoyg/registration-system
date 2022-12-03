@@ -23,17 +23,21 @@ function EditCourse({ match }) {
   }
   function callbackTabClicked(key, event) {
     setActiveTab(key);
-  };
+  }
 
   const { courses } = useSelector((state) => state.coursesReducer);
 
   const course = courses.find((course) => course._id === match.params.id);
-  console.log(course)
+  console.log(course);
 
   return (
     <div>
       <DefaultLayout>
-        <Tabs defaultActiveKey="0" activeKey={activeTab} onTabClick={callbackTabClicked}>
+        <Tabs
+          defaultActiveKey="0"
+          activeKey={activeTab}
+          onTabClick={callbackTabClicked}
+        >
           <TabPane tab="Course Info" key="0">
             <Form
               layout="vertical"
@@ -41,7 +45,7 @@ function EditCourse({ match }) {
               initialValues={course}
             >
               <Row gutter={16}>
-              <Col lg={8} sm={24}>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="crn"
                     rules={[{ required: true }]}
@@ -151,7 +155,11 @@ function EditCourse({ match }) {
             </Form>
           </TabPane>
           <TabPane tab="Location Info" key="1">
-            <Form layout='vertical' onFinish={onFinalFormFinish} initialValues={course}>
+            <Form
+              layout="vertical"
+              onFinish={onFinalFormFinish}
+              initialValues={course}
+            >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
                   <Form.Item
@@ -174,7 +182,7 @@ function EditCourse({ match }) {
                 </Col>
               </Row>
               <Row gutter={16}>
-              <Col lg={8} sm={24}>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="classroom"
                     label="Classroom"

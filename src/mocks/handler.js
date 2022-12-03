@@ -18,9 +18,6 @@ export const handlers = [
       case 'advisor':
         retval = DB.users.dummyAdvisor;
         break;
-      case 'guest':
-        retval = DB.users.dummyGuest;
-        break;
       default:
         retval = DB.users.dummyStudent;
     }
@@ -94,6 +91,15 @@ export const handlers = [
       // Respond with a 200 status code
       ctx.status(status),
       ctx.text('Course Registered Successfully'),
+    );
+  }),
+
+  rest.post('/api/courses/addwaitlist', (req, res, ctx) => {
+    let status = 200;
+    return res(
+      // Respond with a 200 status code
+      ctx.status(status),
+      ctx.text('Course Waitlisted Successfully'),
     );
   }),
 ];

@@ -16,6 +16,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import Comments from '../components/Comments';
 import {
   registerCourse,
+  waitlistCourse,
   commentCourses,
   deleteComment,
   deleteCourse,
@@ -38,15 +39,26 @@ function CourseInfo({ match }) {
   const userid = user._id;
 
   const registeredStudents = course.registeredStudents;
+  const waitlistedStudents = course.waitlistedStudents;
 
   const alreadyRegistered = registeredStudents.find(
     (candidate) => candidate.userid === userid,
   );
 
+  const alreadyWaitlisted = waitlistedStudents.find(
+    (candidate) => candidate.userid === userid,
+  );
+
+  const ifCapacityRunsOut = course.registeredStudents.length >= course.capacity;
+
   const comments = course.comments;
 
   function registerNow() {
     dispatch(registerCourse(course));
+  }
+
+  function addWaitlist() {
+    dispatch(waitlistCourse(course));
   }
 
   function deletePost() {
@@ -193,11 +205,17 @@ function CourseInfo({ match }) {
               ) : user.role === 'student' ? (
                 alreadyRegistered ? (
                   <Tag color="green">Already Registered</Tag>
+                ) : /* If not registered, show add-waitlist button or register-now button based on capacity */
+                ifCapacityRunsOut ? (
+                  /* If not waitlisted, show add-waitlist button, else an info tag*/
+                  alreadyWaitlisted ? (
+                    <Tag color="yellow">Already Waitlisted</Tag>
+                  ) : (
+                    <Button onClick={addWaitlist}>Add Waitlist</Button>
+                  )
                 ) : (
                   <Button onClick={registerNow}>Register Now</Button>
                 )
-              ) : user.role === 'guest' ? (
-                <Button onClick={promptToLogin}>Register Now</Button>
               ) : user.role === 'admin' ? (
                 <Popconfirm
                   title="Are you sure to delete this post?"
@@ -228,7 +246,7 @@ function CourseInfo({ match }) {
           ) : (
             <CommentList comments={comments} />
           ))}
-        {user.role === 'guest' ? <></> : <Comments content={content} />}
+        {<Comments content={content} />}
       </DefaultLayout>
     </div>
   );

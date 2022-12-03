@@ -85,6 +85,25 @@ export const registerCourse = (course) => async (dispatch) => {
   }
 };
 
+export const waitlistCourse = (course) => async (dispatch) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  dispatch({ type: 'LOADING', payload: true });
+  try {
+    await axios.post('/api/courses/addwaitlist', { course, user });
+
+    dispatch({ type: 'LOADING', payload: false });
+    message.success('Course Waitlisted Successfully');
+
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 1000);
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: 'LOADING', payload: false });
+  }
+};
+
 export const searchCourses = (searchKey) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
@@ -92,10 +111,12 @@ export const searchCourses = (searchKey) => async (dispatch) => {
 
     const courses = response.data;
 
-    let filteredCourses = courses
+    let filteredCourses = courses;
 
     filteredCourses = courses.filter((course) =>
-      (course.courseId + course.courseName).toLowerCase().includes(searchKey.toLowerCase()),
+      (course.courseId + course.courseName)
+        .toLowerCase()
+        .includes(searchKey.toLowerCase()),
     );
 
     dispatch({ type: 'GET_ALL_JOBS', payload: filteredCourses });
@@ -112,7 +133,7 @@ export const sortCourses = (values) => async (dispatch) => {
     const response = await axios.get('/api/courses/getallcourses');
 
     const courses = response.data;
-    console.log(values)
+    console.log(values);
 
     let filteredCourses = courses;
 

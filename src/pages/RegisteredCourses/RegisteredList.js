@@ -47,6 +47,7 @@ function RegisteredList(props) {
               okText="Yes"
               cancelText="No"
             >
+              {/* TODO: Implement Drop button */}
               <Button>Drop</Button>
             </Popconfirm>
           </>,
