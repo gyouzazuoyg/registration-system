@@ -16,6 +16,7 @@ import DefaultLayout from '../components/DefaultLayout';
 import Comments from '../components/Comments';
 import {
   registerCourse,
+  waitlistCourse,
   commentCourses,
   deleteComment,
   deleteCourse,
@@ -57,7 +58,7 @@ function CourseInfo({ match }) {
   }
 
   function addWaitlist() {
-    dispatch(addWaitlist(course));
+    dispatch(waitlistCourse(course));
   }
 
   function deletePost() {

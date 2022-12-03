@@ -85,7 +85,7 @@ export const registerCourse = (course) => async (dispatch) => {
   }
 };
 
-export const addWaitlist = (course) => async (dispatch) => {
+export const waitlistCourse = (course) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
 
   dispatch({ type: 'LOADING', payload: true });
