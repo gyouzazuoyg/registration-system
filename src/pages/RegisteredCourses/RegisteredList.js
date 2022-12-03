@@ -1,17 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../../redux/actions/userActions';
+import { useSelector } from 'react-redux';
 import { Button, Table, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 
 function RegisteredList(props) {
   const { courses } = useSelector((state) => state.coursesReducer);
+  const { users } = useSelector((state) => state.usersReducer);
 
-  const user = JSON.parse(localStorage.getItem('user'));
-  // const { users } = useSelector((state) => state.usersReducer);
-  // useDispatch(getAllUsers());
-  // const user = users.find((user) => user._id === props.id);
-
+  const getCurUser = () => {
+    if (props.userId) {
+      return users.find((user) => user._id === props.userId);
+    }
+    else
+      return JSON.parse(localStorage.getItem('user'));
+  };
+  const user = getCurUser();
   const isWaitlist = props.isWaitlist ? true : false;
 
   const userRegisteredCourses = [];
@@ -52,6 +55,7 @@ function RegisteredList(props) {
               okText="Yes"
               cancelText="No"
             >
+              {/* TODO: Implement Drop button */}
               <Button>Drop</Button>
             </Popconfirm>
           </>,

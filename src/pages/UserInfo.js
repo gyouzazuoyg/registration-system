@@ -11,7 +11,8 @@ function UserInfo({ match }) {
 
   const { users } = useSelector((state) => state.usersReducer);
   useDispatch(getAllUsers());
-  const user = users.find((user) => user._id === match.params.id);
+  const curUserId = match.params.id;
+  const user = users.find((user) => user._id === curUserId);
 
   function callbackTabClicked(key, event) {
     setActiveTab(key);
@@ -73,10 +74,10 @@ function UserInfo({ match }) {
                 </p>
               </TabPane>
               <TabPane tab="Registrated Courses" key="3">
-                <RegisteredList isWaitlist={false} />
+                <RegisteredList isWaitlist={false} userId={user._id} />
               </TabPane>
               <TabPane tab="Waitlisted Courses" key="4">
-                <RegisteredList isWaitlist={true} />
+                <RegisteredList isWaitlist={true} userId={user._id} />
               </TabPane>
             </Tabs>
           </div>
