@@ -38,8 +38,13 @@ function CourseInfo({ match }) {
   const userid = user._id;
 
   const registeredStudents = course.registeredStudents;
+  const waitlistedStudents = course.waitlistedStudents;
 
   const alreadyRegistered = registeredStudents.find(
+    (candidate) => candidate.userid === userid,
+  );
+
+  const alreadyWaitlisted = waitlistedStudents.find(
     (candidate) => candidate.userid === userid,
   );
 
@@ -52,7 +57,7 @@ function CourseInfo({ match }) {
   }
 
   function addWaitlist() {
-    // TODO: ADD WAITLIST WHEN CAPACITY RUNS OUT
+    dispatch(addWaitlist(course));
   }
 
   function deletePost() {
@@ -199,9 +204,14 @@ function CourseInfo({ match }) {
               ) : user.role === 'student' ? (
                 alreadyRegistered ? (
                   <Tag color="green">Already Registered</Tag>
-                ) : /* If now registered, show add-waitlist button or register-now button based on capacity */
+                ) : /* If not registered, show add-waitlist button or register-now button based on capacity */
                 ifCapacityRunsOut ? (
-                  <Button onClick={addWaitlist}>Add Waitlist</Button>
+                  /* If not waitlisted, show add-waitlist button, else an info tag*/
+                  alreadyWaitlisted ? (
+                    <Tag color="yellow">Already Waitlisted</Tag>
+                  ) : (
+                    <Button onClick={addWaitlist}>Add Waitlist</Button>
+                  )
                 ) : (
                   <Button onClick={registerNow}>Register Now</Button>
                 )
