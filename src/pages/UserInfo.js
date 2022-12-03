@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../redux/actions/userActions';
-import { PageHeader } from 'antd';
+import { PageHeader, Tabs } from 'antd';
+import RegisteredList from './RegisteredCourses/RegisteredList';
+
 function UserInfo({ match }) {
+  const [activeTab, setActiveTab] = useState('1');
+  const { TabPane } = Tabs;
+
   const { users } = useSelector((state) => state.usersReducer);
   useDispatch(getAllUsers());
   const user = users.find((user) => user._id === match.params.id);
+
+  function callbackTabClicked(key, event) {
+    setActiveTab(key);
+  }
   return (
     <div>
       <DefaultLayout>
@@ -18,87 +27,58 @@ function UserInfo({ match }) {
               title="Profile"
               subTitle={user.username}
             />
-            <h3>
-              <b>Personal information</b>
-            </h3>
-            <p>
-              <b>First name : </b>
-              {user.firstName}
-            </p>
-            <p>
-              <b>Last name : </b>
-              {user.lastName}
-            </p>
-            <p>
-              <b>Email : </b>
-              {user.email}
-            </p>
-            {user.about.length === 0 ? (
-              ''
-            ) : (
-              <>
+            <Tabs
+              defaultActiveKey="1"
+              activeKey={activeTab}
+              onTabClick={callbackTabClicked}
+            >
+              <TabPane tab="Personal Info" key="1">
                 <p>
-                  <b>About : </b>
-                  {user.about}
+                  <b>First name : </b>
+                  {user.firstName}
                 </p>
-              </>
-            )}
-
-            {user.skills[0].length === 0 ? (
-              ''
-            ) : (
-              <>
-                <hr />
-                <h3>
-                  <b>Skills</b>
-                </h3>
-                {user.skills.map((skill) => {
-                  return <li>{skill}</li>;
-                })}
-              </>
-            )}
-
-            {user.education[0].length === 0 ? (
-              ''
-            ) : (
-              <>
-                <hr />
-                <h3>
-                  <b>Education</b>
-                </h3>
-                {user.education.map((education) => {
-                  return <li>{education}</li>;
-                })}
-              </>
-            )}
-
-            {user.projects[0].length === 0 ? (
-              ''
-            ) : (
-              <>
-                <hr />
-                <h3>
-                  <b>Projects</b>
-                </h3>
-                {user.projects.map((project) => {
-                  return <li>{project}</li>;
-                })}
-              </>
-            )}
-
-            {user.experience[0].length === 0 ? (
-              ''
-            ) : (
-              <>
-                <hr />
-                <h3>
-                  <b>Experience</b>
-                </h3>
-                {user.experience.map((experience) => {
-                  return <li>{experience}</li>;
-                })}
-              </>
-            )}
+                <p>
+                  <b>Last name : </b>
+                  {user.lastName}
+                </p>
+                <p>
+                  <b>Email : </b>
+                  {user.email}
+                </p>
+              </TabPane>
+              <TabPane tab="Academic Info" key="2">
+                <p>
+                  <b>Department : </b>
+                  {user.department}
+                </p>
+                <p>
+                  <b>College : </b>
+                  {user.college}
+                </p>
+                <p>
+                  <b>Campus : </b>
+                  {user.campus}
+                </p>
+                <p>
+                  <b>Required credits : </b>
+                  {user.requiredCredits}
+                </p>
+                <p>
+                  <b>Acquired credits : </b>
+                  {user.accquiredCredits}
+                </p>
+                <p>
+                  <b>Time ticket : </b>
+                  {user.timeTicketFrom} - {user.timeTicketTo}
+                </p>
+              </TabPane>
+              <TabPane tab="Registrated Courses" key="3">
+                <RegisteredList isWaitlist={false} />
+              </TabPane>
+              <TabPane tab="Waitlisted Courses" key="4">
+                <RegisteredList isWaitlist={true} />
+              </TabPane>
+            </Tabs>
           </div>
         )}
       </DefaultLayout>

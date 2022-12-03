@@ -202,7 +202,7 @@ function Profile() {
           )}
           {user.role === 'student' ? (
             <TabPane tab="Registered Courses" key="3">
-              <RegisteredList isWaitlist={false} />
+              <RegisteredList isWaitlist={false}/>
               <Button
                 onClick={() => {
                   setActiveTab('2');
@@ -239,7 +239,7 @@ function Profile() {
           )}
           {user.role === 'student' ? (
             <TabPane tab="Waitlisted Courses" key="4">
-              <RegisteredList isWaitlist={true} />
+              <RegisteredList isWaitlist={true}/>
               <Button
                 onClick={() => {
                   setActiveTab('3');

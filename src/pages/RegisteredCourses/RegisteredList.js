@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllUsers } from '../../redux/actions/userActions';
 import { Button, Table, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
 
@@ -7,6 +8,10 @@ function RegisteredList(props) {
   const { courses } = useSelector((state) => state.coursesReducer);
 
   const user = JSON.parse(localStorage.getItem('user'));
+  // const { users } = useSelector((state) => state.usersReducer);
+  // useDispatch(getAllUsers());
+  // const user = users.find((user) => user._id === props.id);
+
   const isWaitlist = props.isWaitlist ? true : false;
 
   const userRegisteredCourses = [];
