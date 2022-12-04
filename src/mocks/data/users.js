@@ -19,7 +19,10 @@ export const dummyStudent = {
   experience: [''],
 
   registeredCourses: [{ courseid: '1', registeredDate: 'Nov 27 2022' }],
-  waitlistedCourses: [{ courseid: '2', waitlistedDate: 'Nov 27 2022' }],
+  waitlistedCourses: [
+    { courseid: '2', waitlistedDate: 'Nov 25 2022' },
+    { courseid: '4', waitlistedDate: 'Nov 27 2022' },
+  ],
 
   requiredCredits: 32,
   acquiredCredits: 16,
