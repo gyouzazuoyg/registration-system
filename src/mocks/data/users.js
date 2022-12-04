@@ -4,10 +4,10 @@ export const dummyStudent = {
   password: '',
   role: 'student',
 
-  firstName: '',
-  lastName: '',
-  email: '',
-  mobileNumber: '',
+  firstName: 'Monica',
+  lastName: 'Hao',
+  email: 'monicahao97@gmail.com',
+  mobileNumber: '8577530850',
   portfolio: '',
 
   about: '',

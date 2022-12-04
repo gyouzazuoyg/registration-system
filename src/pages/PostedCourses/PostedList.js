@@ -29,7 +29,7 @@ function PostedList() {
       dataIndex: 'courseId',
     },
     {
-      title: 'Registered Candidates',
+      title: 'Registered Students',
       dataIndex: 'registeredStudents',
     },
     {
@@ -89,7 +89,7 @@ function PostedList() {
   function CandidatesList() {
     const candidatesColumns = [
       {
-        title: 'Candidate Id',
+        title: 'Student Id',
         dataIndex: 'candidateId',
         render: (text, data) => {
           return (
@@ -131,7 +131,7 @@ function PostedList() {
       <Table columns={columns} dataSource={dataSource} />
 
       <Modal
-        title="Registered Candidates List"
+        title="Registered Students List"
         visible={isModalVisible}
         closable={false}
         onOk={handleOk}

@@ -5,8 +5,16 @@ import { Link } from 'react-router-dom';
 
 function RegisteredList(props) {
   const { courses } = useSelector((state) => state.coursesReducer);
+  const { users } = useSelector((state) => state.usersReducer);
 
-  const user = JSON.parse(localStorage.getItem('user'));
+  const getCurUser = () => {
+    if (props.userId) {
+      return users.find((user) => user._id === props.userId);
+    }
+    else
+      return JSON.parse(localStorage.getItem('user'));
+  };
+  const user = getCurUser();
   const isWaitlist = props.isWaitlist ? true : false;
 
   const userRegisteredCourses = [];
