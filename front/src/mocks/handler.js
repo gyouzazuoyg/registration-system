@@ -29,19 +29,19 @@ export const handlers = [
   //   );
   // }),
 
-  rest.get('/api/courses/getallcourses', (req, res, ctx) => {
-    let retval = [];
-    for (const key in DB.courses) {
-      retval.push(DB.courses[key]);
-    }
-    let status = 200;
+  // rest.get('/api/courses/getallcourses', (req, res, ctx) => {
+  //   let retval = [];
+  //   for (const key in DB.courses) {
+  //     retval.push(DB.courses[key]);
+  //   }
+  //   let status = 200;
 
-    return res(
-      // Respond with a 200 status code
-      ctx.status(status),
-      ctx.json(retval),
-    );
-  }),
+  //   return res(
+  //     // Respond with a 200 status code
+  //     ctx.status(status),
+  //     ctx.json(retval),
+  //   );
+  // }),
 
   rest.get('/api/users/getallusers', (req, res, ctx) => {
     let retval = [];
