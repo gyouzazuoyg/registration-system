@@ -101,7 +101,7 @@ class DefaultLayout extends React.Component {
             )}
 
             <Menu.Item key="/logout" icon={<LogoutOutlined />}>
-              <Link onClick={this.logout}>Login</Link>
+              <Link onClick={this.logout}>Logout</Link>
             </Menu.Item>
           </Menu>
         </Sider>

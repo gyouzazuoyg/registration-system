@@ -5,29 +5,29 @@ const moment = require('moment');
 const DB = initMockDB();
 
 export const handlers = [
-  rest.post('/api/users/login', (req, res, ctx) => {
-    let retval = {};
-    let status = 200;
-    switch (req.body.username) {
-      case 'student':
-        retval = DB.users.dummyStudent;
-        break;
-      case 'admin':
-        retval = DB.users.dummyAdmin;
-        break;
-      case 'advisor':
-        retval = DB.users.dummyAdvisor;
-        break;
-      default:
-        retval = DB.users.dummyStudent;
-    }
+  // rest.post('/api/users/login', (req, res, ctx) => {
+  //   let retval = {};
+  //   let status = 200;
+  //   switch (req.body.username) {
+  //     case 'student':
+  //       retval = DB.users.dummyStudent;
+  //       break;
+  //     case 'admin':
+  //       retval = DB.users.dummyAdmin;
+  //       break;
+  //     case 'advisor':
+  //       retval = DB.users.dummyAdvisor;
+  //       break;
+  //     default:
+  //       retval = DB.users.dummyStudent;
+  //   }
 
-    return res(
-      // Respond with a 200 status code
-      ctx.status(status),
-      ctx.json(retval),
-    );
-  }),
+  //   return res(
+  //     // Respond with a 200 status code
+  //     ctx.status(status),
+  //     ctx.json(retval),
+  //   );
+  // }),
 
   rest.get('/api/courses/getallcourses', (req, res, ctx) => {
     let retval = [];
