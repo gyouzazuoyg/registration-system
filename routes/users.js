@@ -26,7 +26,11 @@ router.post('/login', function (req, res, next) {
       else {
         // Determine whether the password is correct
         if (data?.password === reqPassword) res.json(data);
-        else res.json({});
+        else {
+          res.status(500).send({
+            message: 'Login Failed!',
+          });
+        }
       }
     });
   } else {
