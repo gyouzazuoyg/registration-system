@@ -45,11 +45,13 @@ router.post('/register', function (req, res, next) {
   const userName = req.body['username'];
   const reqPassword = req.body['password'];
   const roleType = req.body['role'];
-  if (userName && reqPassword) {
+  // check whether must-have info is given in request body
+  if (userName && reqPassword && roleType) {
+    // check whether the user exists
     userQueries.findUser(userName, (err, data) => {
       if (data)
         res.status(500).send({
-          message: err.message || 'User existent!',
+          message: 'User existent!',
         });
       else {
         // if username and password are given and no user conflicts, create user
@@ -66,7 +68,7 @@ router.post('/register', function (req, res, next) {
     });
   } else {
     res.status(500).send({
-      message: 'No username found in request body!',
+      message: 'Info missing in request body!',
     });
   }
 });
