@@ -1,5 +1,5 @@
 export const dummyStudent = {
-  _id: '1',
+  _id: 1,
   username: 'dummy_student',
   password: '',
   role: 'student',
@@ -37,7 +37,7 @@ export const dummyStudent = {
 };
 
 export const dummyAdvisor = {
-  _id: '2',
+  _id: 2,
   username: 'dummy_advisor',
   password: '',
   role: 'advisor',
@@ -64,7 +64,7 @@ export const dummyAdvisor = {
 };
 
 export const dummyAdmin = {
-  _id: '3',
+  _id: 3,
   username: 'dummy_admin',
   password: '',
   role: 'admin',

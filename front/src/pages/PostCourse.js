@@ -10,25 +10,29 @@ function PostCourse() {
   const [courseInfo, setCourseInfo] = useState({});
   const [activeTab, setActiveTab] = useState('0');
   const dispatch = useDispatch();
-  function onFirstFormFinish(values) {
-    setCourseInfo(values);
+  function onFirstFormFinish(courseInfo) {
+    setCourseInfo(courseInfo);
     setActiveTab('1');
   }
-  function onFinalFormFinish(values) {
-    const finalObj = { ...courseInfo, ...values };
-    dispatch(postCourse(finalObj));
+  function onFinalFormFinish(locationInfo) {
+    const finalObj = { ...courseInfo, ...locationInfo };
+     dispatch(postCourse(finalObj));
   }
   function callbackTabClicked(key, event) {
     setActiveTab(key);
-  };
+  }
   return (
     <div>
       <DefaultLayout>
-        <Tabs defaultActiveKey="0" activeKey={activeTab} onTabClick={callbackTabClicked}>
+        <Tabs
+          defaultActiveKey="0"
+          activeKey={activeTab}
+          onTabClick={callbackTabClicked}
+        >
           <TabPane tab="Course Info" key="0">
             <Form layout="vertical" onFinish={onFirstFormFinish}>
               <Row gutter={16}>
-              <Col lg={8} sm={24}>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="crn"
                     rules={[{ required: true }]}
@@ -161,7 +165,7 @@ function PostCourse() {
                 </Col>
               </Row>
               <Row gutter={16}>
-              <Col lg={8} sm={24}>
+                <Col lg={8} sm={24}>
                   <Form.Item
                     name="classroom"
                     label="Classroom"

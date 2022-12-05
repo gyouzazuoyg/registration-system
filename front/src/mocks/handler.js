@@ -5,29 +5,29 @@ const moment = require('moment');
 const DB = initMockDB();
 
 export const handlers = [
-  // rest.post('/api/users/login', (req, res, ctx) => {
-  //   let retval = {};
-  //   let status = 200;
-  //   switch (req.body.username) {
-  //     case 'student':
-  //       retval = DB.users.dummyStudent;
-  //       break;
-  //     case 'admin':
-  //       retval = DB.users.dummyAdmin;
-  //       break;
-  //     case 'advisor':
-  //       retval = DB.users.dummyAdvisor;
-  //       break;
-  //     default:
-  //       retval = DB.users.dummyStudent;
-  //   }
+  rest.post('/api/users/login', (req, res, ctx) => {
+    let retval = {};
+    let status = 200;
+    switch (req.body.username) {
+      case 'student':
+        retval = DB.users.dummyStudent;
+        break;
+      case 'admin':
+        retval = DB.users.dummyAdmin;
+        break;
+      case 'advisor':
+        retval = DB.users.dummyAdvisor;
+        break;
+      default:
+        retval = DB.users.dummyStudent;
+    }
 
-  //   return res(
-  //     // Respond with a 200 status code
-  //     ctx.status(status),
-  //     ctx.json(retval),
-  //   );
-  // }),
+    return res(
+      // Respond with a 200 status code
+      ctx.status(status),
+      ctx.json(retval),
+    );
+  }),
 
   // rest.get('/api/courses/getallcourses', (req, res, ctx) => {
   //   let retval = [];
@@ -60,7 +60,7 @@ export const handlers = [
   rest.post('/api/courses/registercourse', (req, res, ctx) => {
     const { user, course } = req.body;
     const userId = user._id;
-    const courseId = course._id;
+    const courseId = course.CRN;
     let courseDetails = {};
     for (const key in DB.courses) {
       if (DB.courses[key]._id === courseId) {
@@ -81,7 +81,7 @@ export const handlers = [
     courseDetails.registeredStudents.push(registeredCandidate);
 
     const registeredCourse = {
-      courseid: course._id,
+      courseid: course.CRN,
       registeredDate: moment().format('MMM DD yyyy'),
     };
     userDetails.registeredCourses.push(registeredCourse);

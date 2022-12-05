@@ -19,10 +19,10 @@ CREATE TABLE Users (
     mobile varchar(50),
     role_type varchar(10) NOT NULL,
     department varchar(50),
-    Foreign Key (department) References Departments(department_name),
+    -- Foreign Key (department) References Departments(department_name),
     advisor int(10),
     campus varchar(50),
-    Foreign Key (campus) References Campuses(campus_name),
+    -- Foreign Key (campus) References Campuses(campus_name),
     college varchar(50),
     required_credits int(3),
     accquired_credits int(3),
@@ -34,17 +34,17 @@ CREATE TABLE Users (
 CREATE TABLE Colleges (
     college_name varchar(50) NOT NULL Primary Key,
     campus varchar(20) NOT NULL,
-    dean int(10),
-    Foreign Key (dean) References Users(user_id),
-    Foreign Key (campus) References Campuses(campus_name)
+    dean int(10)
+    -- Foreign Key (dean) References Users(user_id),
+    -- Foreign Key (campus) References Campuses(campus_name)
 );
 
 CREATE TABLE Departments (
     department_name varchar(50) NOT NULL Primary Key,
     department_chair int(10) NOT NULL,
-    college varchar(50),
-    Foreign Key (department_chair) References Users(user_id),
-    Foreign Key (college) References Colleges(college_name)
+    college varchar(50)
+    -- Foreign Key (department_chair) References Users(user_id),
+    -- Foreign Key (college) References Colleges(college_name)
 );
 
 -- CREATE TABLE Advisors (
@@ -52,9 +52,9 @@ CREATE TABLE Departments (
 --     user_name varchar(20) NOT NULL,
 --     email varchar(200) NOT NULL,
 --     department varchar(50) NOT NULL,
---     office_hour varchar(50) NOT NULL,
--- 	Foreign Key (user_id) References Users(user_id),
---     Foreign Key (department) References Department(department_name)
+--     office_hour varchar(50) NOT NULL
+-- 	-- Foreign Key (user_id) References Users(user_id),
+--     -- Foreign Key (department) References Department(department_name)
 -- );
 -- CREATE TABLE Students (
 -- 	user_id int(10) NOT NULL Primary Key,
@@ -65,20 +65,20 @@ CREATE TABLE Departments (
 --     advisor int(10),
 --     required_credits int(3) NOT NULL,
 --     accquired_credits int(3) NOT NULL,
---     time_ticket datetime,
--- 	Foreign Key (user_id) References Users(user_id),
---     Foreign Key (campus) References Campus(campus_name),
---     Foreign Key (department) References Department(department_name),
---     Foreign Key (advisor) References Advisors(user_id)
+--     time_ticket datetime
+-- 	-- Foreign Key (user_id) References Users(user_id),
+--     -- Foreign Key (campus) References Campus(campus_name),
+--     -- Foreign Key (department) References Department(department_name),
+--     -- Foreign Key (advisor) References Advisors(user_id)
 -- );
 -- CREATE TABLE Admins (
 -- 	user_id int(10) NOT NULL Primary Key,
 --     user_name varchar(20) NOT NULL,
 --     email varchar(200) NOT NULL,
 --     department varchar(50) NOT NULL,
---     description varchar(200) NOT NULL,
--- 	Foreign Key (user_id) References Users(user_id),
--- 	Foreign Key (department) References Department(department_name)
+--     description varchar(200) NOT NULL
+-- 	-- Foreign Key (user_id) References Users(user_id),
+-- 	-- Foreign Key (department) References Department(department_name)
 -- );
 CREATE TABLE Courses (
     CRN int(10) NOT NULL Primary Key,
@@ -96,28 +96,23 @@ CREATE TABLE Courses (
     term varchar(20) NOT NULL,
     course_capacity int(3) NOT NULL,
     waitlist_capacity int(2) NOT NULL,
-    num_students_enrolled int(3) NOT NULL,
-    num_students_waitlisted int(2) NOT NULL,
-    posted_by varchar(50),
-    created_by datetime,
-    Foreign Key (college) References Colleges(college_name),
-    Foreign Key (department) References Departments(department_name)
+    posted_by int(10),
+    created_by datetime
+    -- Foreign Key (college) References Colleges(college_name),
+    -- Foreign Key (department) References Departments(department_name)
 );
 
 CREATE TABLE StudentRegisteredCourses (
-    student_id int(10) NOT NULL Primary Key,
-    CRN int(10) NOT NULL Primary Key
+    student_id int(10) NOT NULL,
+    CRN int(10) NOT NULL,
+    PRIMARY KEY (student_id, CRN)
 );
 
 CREATE TABLE StudentWaitlistedCourses (
-    student_id int(10) NOT NULL Primary Key,
-    CRN int(10) NOT NULL Primary Key
+    student_id int(10) NOT NULL,
+    CRN int(10) NOT NULL,
+    PRIMARY KEY (student_id, CRN)
 );
-
-ALTER TABLE
-    Users
-ADD
-    CONSTRAINT fk_user Foreign Key (department) References Departments(department_name);
 
 set
     @@foreign_key_checks = ON;

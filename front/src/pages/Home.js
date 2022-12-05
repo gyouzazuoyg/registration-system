@@ -35,7 +35,7 @@ function Home() {
                   <hr />
 
                   <div className="flex justify-content-between">
-                    <Link to={`/courses/${course._id}`}>
+                    <Link to={`/courses/${course.CRN}`}>
                       <Button>View</Button>
                     </Link>
                     <p>

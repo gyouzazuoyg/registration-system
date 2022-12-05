@@ -73,4 +73,59 @@ router.post('/register', function (req, res, next) {
   }
 });
 
+// Student registers courses
+router.post('/registerCourse', function (req, res, next) {
+  userQueries.registerCourse((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving users.',
+      });
+    else res.send('registered course successfully!');
+  });
+});
+
+// Student waitlist courses
+router.post('/waitlistCourse', function (req, res, next) {
+  userQueries.waitlistCourse((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving users.',
+      });
+    else res.send('waitlisted course successfully!');
+  });
+});
+
+// Student drop courses
+router.post('/dropCourse', function (req, res, next) {
+  userQueries.dropCourse((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving users.',
+      });
+    else res.send('dropped course successfully!');
+  });
+});
+
+// Student drop waitlist
+router.post('/dropWaitlist', function (req, res, next) {
+  userQueries.dropWaitlist((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving users.',
+      });
+    else res.send('drop waitlist successfully!');
+  });
+});
+
+// Admin deletes course
+router.post('/deleteCourse', function (req, res, next) {
+  userQueries.deleteCourse((err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while retrieving users.',
+      });
+    else res.send('delete course successfully!');
+  });
+});
+
 module.exports = router;

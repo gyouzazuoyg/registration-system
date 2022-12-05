@@ -45,7 +45,7 @@ function RegisteredList(props) {
         registeredDate: isWaitlist ? temp.waitlistedDate : temp.registeredDate,
         courseId: [
           <>
-            <Link to={`/courses/${course._id}`}>
+            <Link to={`/courses/${course.CRN}`}>
               <Button>Details</Button>
             </Link>
             <Popconfirm

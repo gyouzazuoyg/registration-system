@@ -29,13 +29,12 @@ function CourseInfo({ match }) {
   const dispatch = useDispatch();
 
   const course = JSON.parse(localStorage.getItem('courses')).find(
-    (course) => course._id === match.params.id,
+    (course) => course.crn === match.params.id,
   );
   const postAuthor = JSON.parse(localStorage.getItem('users')).find(
     (user) => user._id === course.postedBy,
   );
   const user = JSON.parse(localStorage.getItem('user'));
-
   const userid = user._id;
 
   const registeredStudents = course.registeredStudents;
@@ -200,7 +199,7 @@ function CourseInfo({ match }) {
             <div className="flex justify-content-between">
               {course.postedBy === userid ? (
                 <Button>
-                  <Link to={`/editcourse/${course._id}`}>Edit Now</Link>
+                  <Link to={`/editcourse/${course.CRN}`}>Edit Now</Link>
                 </Button>
               ) : user.role === 'student' ? (
                 alreadyRegistered ? (

@@ -1,5 +1,7 @@
 import { message } from 'antd';
 import axios from 'axios';
+import moment from 'moment';
+
 export const getAllCourses = () => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
@@ -15,6 +17,7 @@ export const getAllCourses = () => async (dispatch) => {
 
 export const postCourse = (values) => async (dispatch) => {
   values.postedBy = JSON.parse(localStorage.getItem('user'))._id;
+  values.createdAt = moment().format('YYYY-MM-DD hh:mm:ss');
 
   dispatch({ type: 'LOADING', payload: true });
   try {

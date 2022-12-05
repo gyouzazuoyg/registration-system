@@ -16,4 +16,46 @@ Courses.getAll = (resCallback) => {
   });
 };
 
+// Post course
+Courses.postCourse = (newCourse, resCallback) => {
+  const {
+    crn,
+    courseId,
+    courseName,
+    term,
+    credits,
+    professor,
+    prerequisites,
+    capacity,
+    waitlistCapacity,
+    courseDescription,
+    department,
+    college,
+    classroom,
+    building,
+    campus,
+    postedBy,
+    createdAt,
+  } = newCourse;
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `INSERT INTO Courses (CRN, course_id, course_name, credits, professor, course_description, prerequisites, classroom, 
+    building, campus, department, college, term, course_capacity, waitlist_capacity, posted_by, created_by) 
+    VALUES (${crn}, '${courseId}', '${courseName}', ${credits}, '${professor}', '${courseDescription}', '${prerequisites}', 
+    '${classroom}','${building}', '${campus}', '${department}', '${college}', '${term}', ${capacity}, ${waitlistCapacity}, ${postedBy}, '${createdAt}');`;
+  sql.query(sqlQuery, (err) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, null);
+  });
+};
+
+// Admin deletes course
+Courses.deleteCourse = (crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `DELETE FROM Courses WHERE crn = '${crn}';`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, sqlResData);
+  });
+};
+
 module.exports = Courses;

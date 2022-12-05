@@ -75,4 +75,46 @@ Users.createUser = (userName, password, roleType, resCallback) => {
   });
 };
 
+// Student registers course
+Users.registerCourse = (student_id, crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `INSERT INTO StudentRegisteredCourses(student_id, CRN) VALUES ('${student_id}', '${crn}')`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, sqlResData);
+  });
+};
+
+// Student waitlists course
+Users.waitlistCourse = (student_id, crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `INSERT INTO StudentWaitlistedCourses(student_id, CRN) VALUES ('${student_id}', '${crn}')`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, sqlResData);
+  });
+};
+
+// Student drops course
+Users.dropCourse = (student_id, crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `DELETE FROM StudentRegisteredCourses WHERE student_id = '${student_id}' AND crn = '${crn}';`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, sqlResData);
+  });
+};
+
+// Student drops waitlist
+Users.dropWaitlist = (student_id, crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `DELETE FROM StudentWaitlistedCourses WHERE student_id = '${student_id}' AND crn = '${crn}';`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, sqlResData);
+  });
+};
+
+// User updates profile
+
 module.exports = Users;

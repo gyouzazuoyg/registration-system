@@ -33,6 +33,10 @@ function PostedList() {
       dataIndex: 'registeredStudents',
     },
     {
+      title: 'Waitlisted Students',
+      dataIndex: 'waitlistedStudents'
+    },
+    {
       title: 'Actions',
       render: (text, data) => {
         return (
@@ -62,7 +66,7 @@ function PostedList() {
     const obj = {
       title: course.courseId,
       courseId: (
-        <Link to={`/courses/${course._id}`}>
+        <Link to={`/courses/${course.CRN}`}>
           <Button>Details</Button>
         </Link>
       ),
