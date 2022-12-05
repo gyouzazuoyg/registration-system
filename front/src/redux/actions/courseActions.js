@@ -71,10 +71,11 @@ export const deleteCourse = (values) => async (dispatch) => {
 
 export const registerCourse = (course) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
+  const dateTime = moment().format('YYYY-MM-DD hh:mm:ss');
 
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/courses/registercourse', { course, user });
+    await axios.post('/api/users/registercourse', { course, user, dateTime });
 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Course registered Successfully');
@@ -90,10 +91,11 @@ export const registerCourse = (course) => async (dispatch) => {
 
 export const waitlistCourse = (course) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
+  const dateTime = moment().format('YYYY-MM-DD hh:mm:ss');
 
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/courses/addwaitlist', { course, user });
+    await axios.post('/api/courses/addwaitlist', { course, user, dateTime });
 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Course Waitlisted Successfully');

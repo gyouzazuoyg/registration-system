@@ -58,6 +58,15 @@ export const getAllUsers = () => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
     const response = await axios.get('/api/users/getallusers');
+    for (const userInfo of response.data) {
+      const studentId = userInfo._id;
+      const responseCourses = await axios.post(
+        '/api/users/getregisteredcourses',
+        { userId: studentId },
+      );
+      const registeredCourses = responseCourses.data;
+      userInfo.registeredCourses = registeredCourses;
+    }
     dispatch({ type: 'GET_ALL_USERS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });
     localStorage.setItem('users', JSON.stringify(response.data));

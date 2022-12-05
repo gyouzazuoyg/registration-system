@@ -105,13 +105,22 @@ CREATE TABLE Courses (
 CREATE TABLE StudentRegisteredCourses (
     student_id int(10) NOT NULL,
     CRN int(10) NOT NULL,
+    date datetime NOT NULL,
     PRIMARY KEY (student_id, CRN)
 );
 
 CREATE TABLE StudentWaitlistedCourses (
     student_id int(10) NOT NULL,
     CRN int(10) NOT NULL,
+    date datetime NOT NULL,
     PRIMARY KEY (student_id, CRN)
+);
+
+CREATE TABLE UserComment (
+    comment_id int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    user_id int(10) NOT NULL,
+    content varchar(500) NOT NULL,
+    date datetime NOT NULL
 );
 
 set

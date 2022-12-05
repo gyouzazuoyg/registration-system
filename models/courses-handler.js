@@ -77,9 +77,8 @@ Courses.postCourse = (newCourse, resCallback) => {
 Courses.deleteCourse = (crn, resCallback) => {
   // resCallback is a function pointer passed from routes
   let sqlQuery = `DELETE FROM Courses WHERE crn = '${crn}';`;
-  sql.query(sqlQuery, (err, sqlResData) => {
-    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
-    resCallback(err, sqlResData);
+  sql.query(sqlQuery, (err) => {
+    resCallback(err, null);
   });
 };
 

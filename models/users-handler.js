@@ -46,6 +46,22 @@ const userInfoFormatter = (sqlUserRawData) => {
   };
 };
 
+const registeredCourseFormatter = (sqlCourseRawData) => {
+  return {
+    courseid: sqlCourseRawData['CRN'],
+    registeredDate: sqlCourseRawData['datetime'],
+  };
+};
+
+const commentFormatter = (commentRawData) => {
+  return {
+    _id: commentRawData['comment_id'],
+    userid: commentRawData['user_id'],
+    content: commentRawData['content'],
+    dateTime: commentRawData['date'],
+  };
+};
+
 // Get all users
 Users.getAll = (resCallback) => {
   // resCallback is a function pointer passed from routes
@@ -62,7 +78,10 @@ Users.findUser = (userName, resCallback) => {
   sql.query(sqlQuery, (err, sqlResData) => {
     // if no rows found, return null
     // if found, return the first element in the found array
-    resCallback(err, sqlResData.length !== 0 ? userInfoFormatter(sqlResData[0]) : null);
+    resCallback(
+      err,
+      sqlResData.length !== 0 ? userInfoFormatter(sqlResData[0]) : null,
+    );
   });
 };
 
@@ -76,42 +95,67 @@ Users.createUser = (userName, password, roleType, resCallback) => {
 };
 
 // Student registers course
-Users.registerCourse = (student_id, crn, resCallback) => {
+Users.registerCourse = (studentId, crn, dateTime, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `INSERT INTO StudentRegisteredCourses(student_id, CRN) VALUES ('${student_id}', '${crn}')`;
-  sql.query(sqlQuery, (err, sqlResData) => {
-    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
-    resCallback(err, sqlResData);
+  let sqlQuery = `INSERT INTO StudentRegisteredCourses(student_id, CRN, datetime) VALUES (${studentId}, ${crn}, '${dateTime}')`;
+  sql.query(sqlQuery, (err) => {
+    resCallback(err, null);
   });
 };
 
 // Student waitlists course
-Users.waitlistCourse = (student_id, crn, resCallback) => {
+Users.waitlistCourse = (studentId, crn, dateTime, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `INSERT INTO StudentWaitlistedCourses(student_id, CRN) VALUES ('${student_id}', '${crn}')`;
+  let sqlQuery = `INSERT INTO StudentWaitlistedCourses(student_id, CRN, datetime) VALUES (${studentId}, ${crn}, '${dateTime}')`;
+  sql.query(sqlQuery, (err) => {
+    resCallback(err, null);
+  });
+};
+
+// Get registered list by username
+Users.getRegisteredCourses = (studentId, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `SELECT * FROM StudentRegisteredCourses WHERE student_id = ${studentId};`;
   sql.query(sqlQuery, (err, sqlResData) => {
-    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
-    resCallback(err, sqlResData);
+    resCallback(
+      err,
+      sqlResData.length !== 0 ? registeredCourseFormatter(sqlResData[0]) : null,
+    );
   });
 };
 
 // Student drops course
 Users.dropCourse = (student_id, crn, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `DELETE FROM StudentRegisteredCourses WHERE student_id = '${student_id}' AND crn = '${crn}';`;
-  sql.query(sqlQuery, (err, sqlResData) => {
+  let sqlQuery = `DELETE FROM StudentRegisteredCourses WHERE student_id = ${student_id} AND crn = ${crn};`;
+  sql.query(sqlQuery, (err) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
-    resCallback(err, sqlResData);
+    resCallback(err, null);
   });
 };
 
 // Student drops waitlist
 Users.dropWaitlist = (student_id, crn, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `DELETE FROM StudentWaitlistedCourses WHERE student_id = '${student_id}' AND crn = '${crn}';`;
-  sql.query(sqlQuery, (err, sqlResData) => {
+  let sqlQuery = `DELETE FROM StudentWaitlistedCourses WHERE student_id = ${student_id} AND crn = ${crn};`;
+  sql.query(sqlQuery, (err) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
-    resCallback(err, sqlResData);
+    resCallback(err, null);
+  });
+};
+
+//User comment course
+Users.commentCourse = (
+  studentId,
+  commentId,
+  content,
+  dateTime,
+  resCallback,
+) => {
+  let sqlQuery = `INSERT INTO UserComment(user_id, comment_id, content, date) VALUES (${studentId}, ${commentId}, '${content}', '${dateTime}')`;
+  sql.query(sqlQuery, (err) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, null);
   });
 };
 

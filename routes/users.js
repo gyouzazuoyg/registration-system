@@ -75,21 +75,39 @@ router.post('/register', function (req, res, next) {
 
 // Student registers courses
 router.post('/registercourse', function (req, res, next) {
-  userQueries.registerCourse((err, data) => {
+  const studentId = req.body.user._id;
+  const crn = req.body.course._id;
+  const dateTime = req.body.dateTime;
+  userQueries.registerCourse(studentId, crn, dateTime, (err) => {
     if (err)
       res.status(500).send({
-        message: err.message || 'Some error occurred while registering course.',
+        message: 'Some error occurred while registering course.',
       });
     else res.send('registered course successfully!');
   });
 });
 
-// Student waitlist courses
-router.post('/waitlistcourse', function (req, res, next) {
-  userQueries.waitlistCourse((err, data) => {
+// Student get registered courses
+router.post('/getregisteredcourses', function (req, res, next) {
+  const studentId = req.body.userId;
+  userQueries.getRegisteredCourses(studentId, (err, data) => {
     if (err)
       res.status(500).send({
-        message: err.message || 'Some error occurred while joining course waitlist.',
+        message: 'Some error occurred while registering course.',
+      });
+    else res.json(data);
+  });
+});
+
+// Student waitlist courses
+router.post('/waitlistcourse', function (req, res, next) {
+  const studentId = req.body.user._id;
+  const crn = req.body.course._id;
+  const dateTime = req.body.dateTime;
+  userQueries.waitlistCourse(studentId, crn, dateTime, (err) => {
+    if (err)
+      res.status(500).send({
+        message: 'Some error occurred while joining course waitlist.',
       });
     else res.send('waitlisted course successfully!');
   });
@@ -114,6 +132,17 @@ router.post('/dropwaitlist', function (req, res, next) {
         message: err.message || 'Some error occurred while dropping waitlist.',
       });
     else res.send('drop waitlist successfully!');
+  });
+});
+
+// User posts comment
+router.post('/postcomment', function (req, res, next) {
+  userQueries.commentCourse(req.body, (err) => {
+    if (err)
+      res.status(500).send({
+        message: 'Some error occurred while posting comment.',
+      });
+    else res.send('comment posted successfully!');
   });
 });
 
