@@ -6,6 +6,15 @@ export const getAllCourses = () => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
     const response = await axios.get('/api/courses/getallcourses');
+    for (const courseInfo of response.data) {
+      const crn = courseInfo._id;
+      const responseCourses = await axios.post(
+        '/api/courses/getregisteredstudents',
+        { crn: crn },
+      );
+      const registeredStudents = responseCourses.data;
+      courseInfo.registeredStudents = registeredStudents;
+    }
     dispatch({ type: 'GET_ALL_JOBS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });
     localStorage.setItem('courses', JSON.stringify(response.data));

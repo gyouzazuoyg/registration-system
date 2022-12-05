@@ -24,6 +24,18 @@ router.post('/postcourse', function (req, res, next) {
   });
 });
 
+// Student get registered students
+router.post('/getregisteredstudents', function (req, res, next) {
+  const crn = req.body.crn;
+  courseQueries.getRegisteredStudents(crn, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: 'Some error occurred while getting registered students.',
+      });
+    else res.json(data);
+  });
+});
+
 /* Delete courses listing. */
 router.delete('/deletecourse', function (req, res, next) {
   courseQueries.deleteCourse((err, data) => {

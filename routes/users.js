@@ -93,7 +93,7 @@ router.post('/getregisteredcourses', function (req, res, next) {
   userQueries.getRegisteredCourses(studentId, (err, data) => {
     if (err)
       res.status(500).send({
-        message: 'Some error occurred while registering course.',
+        message: 'Some error occurred while getting registered course.',
       });
     else res.json(data);
   });

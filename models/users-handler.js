@@ -117,10 +117,7 @@ Users.getRegisteredCourses = (studentId, resCallback) => {
   // resCallback is a function pointer passed from routes
   let sqlQuery = `SELECT * FROM StudentRegisteredCourses WHERE student_id = ${studentId};`;
   sql.query(sqlQuery, (err, sqlResData) => {
-    resCallback(
-      err,
-      sqlResData.length !== 0 ? registeredCourseFormatter(sqlResData[0]) : null,
-    );
+    resCallback(err, sqlResData.map(registeredCourseFormatter));
   });
 };
 

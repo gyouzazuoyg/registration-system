@@ -31,6 +31,13 @@ const courseInfoFormatter = (sqlCourseRawData) => {
   };
 };
 
+const registeredStudentFormatter = (sqlStudentRawData) => {
+  return {
+    userid: sqlStudentRawData['student_id'],
+    registeredDate: sqlStudentRawData['datetime'],
+  };
+};
+
 // Get all courses
 Courses.getAll = (resCallback) => {
   // resCallback is a function pointer passed from routes
@@ -70,6 +77,17 @@ Courses.postCourse = (newCourse, resCallback) => {
   sql.query(sqlQuery, (err) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
     resCallback(err, null);
+  });
+};
+
+Courses.getRegisteredStudents = (crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `SELECT * FROM StudentRegisteredCourses WHERE CRN = ${crn};`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    resCallback(
+      err,
+      sqlResData.map(registeredStudentFormatter)
+    );
   });
 };
 
