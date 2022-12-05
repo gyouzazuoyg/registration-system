@@ -84,10 +84,7 @@ Courses.getRegisteredStudents = (crn, resCallback) => {
   // resCallback is a function pointer passed from routes
   let sqlQuery = `SELECT * FROM StudentRegisteredCourses WHERE CRN = ${crn};`;
   sql.query(sqlQuery, (err, sqlResData) => {
-    resCallback(
-      err,
-      sqlResData.map(registeredStudentFormatter)
-    );
+    resCallback(err, sqlResData.map(registeredStudentFormatter));
   });
 };
 
