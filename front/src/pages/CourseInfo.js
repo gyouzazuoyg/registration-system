@@ -29,13 +29,14 @@ function CourseInfo({ match }) {
   const dispatch = useDispatch();
 
   const course = JSON.parse(localStorage.getItem('courses')).find(
-    (course) => course.crn === match.params.id,
+    (course) => course.crn == match.params.id,
   );
   const postAuthor = JSON.parse(localStorage.getItem('users')).find(
-    (user) => user._id === course.postedBy,
+    (user) => user._id == course.postedBy,
   );
   const user = JSON.parse(localStorage.getItem('user'));
   const userid = user._id;
+
 
   const registeredStudents = course.registeredStudents;
   const waitlistedStudents = course.waitlistedStudents;
@@ -85,62 +86,62 @@ function CourseInfo({ match }) {
     dispatch(deleteComment(course, id));
   }
 
-  const CommentList = ({ comments }) => (
-    <List
-      dataSource={comments}
-      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-      itemLayout="horizontal"
-      renderItem={(props) => (
-        <Comment
-          author={<Link to={`/users/${props.userid}`}>{props.author}</Link>}
-          avatar={
-            <Link to={`/users/${props.userid}`}>
-              <Avatar src={props.avatar} />
-            </Link>
-          }
-          content={props.content}
-          datetime={props.datetime}
-        />
-      )}
-    />
-  );
+  // const CommentList = ({ comments }) => (
+  //   <List
+  //     dataSource={comments}
+  //     header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+  //     itemLayout="horizontal"
+  //     renderItem={(props) => (
+  //       <Comment
+  //         author={<Link to={`/users/${props.userid}`}>{props.author}</Link>}
+  //         avatar={
+  //           <Link to={`/users/${props.userid}`}>
+  //             <Avatar src={props.avatar} />
+  //           </Link>
+  //         }
+  //         content={props.content}
+  //         datetime={props.datetime}
+  //       />
+  //     )}
+  //   />
+  // );
 
-  const CommentListAdmin = ({ comments }) => (
-    <List
-      dataSource={comments}
-      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-      itemLayout="horizontal"
-      renderItem={(props) => (
-        <Comment
-          actions={[
-            <Popconfirm
-              title="Are you sure to delete this comment?"
-              onConfirm={() => confirmDeleteComment(props._id)}
-              onCancel={cancel}
-              okText="Yes"
-              cancelText="No"
-            >
-              <a>
-                <DeleteOutlined />
-              </a>
-            </Popconfirm>,
-          ]}
-          author={<Link to={`/users/${props.userid}`}>{props.author}</Link>}
-          avatar={
-            <Link to={`/users/${props.userid}`}>
-              <Avatar src={props.avatar} />
-            </Link>
-          }
-          content={props.content}
-          datetime={props.datetime}
-        />
-      )}
-    />
-  );
+  // const CommentListAdmin = ({ comments }) => (
+  //   <List
+  //     dataSource={comments}
+  //     header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+  //     itemLayout="horizontal"
+  //     renderItem={(props) => (
+  //       <Comment
+  //         actions={[
+  //           <Popconfirm
+  //             title="Are you sure to delete this comment?"
+  //             onConfirm={() => confirmDeleteComment(props._id)}
+  //             onCancel={cancel}
+  //             okText="Yes"
+  //             cancelText="No"
+  //           >
+  //             <a>
+  //               <DeleteOutlined />
+  //             </a>
+  //           </Popconfirm>,
+  //         ]}
+  //         author={<Link to={`/users/${props.userid}`}>{props.author}</Link>}
+  //         avatar={
+  //           <Link to={`/users/${props.userid}`}>
+  //             <Avatar src={props.avatar} />
+  //           </Link>
+  //         }
+  //         content={props.content}
+  //         datetime={props.datetime}
+  //       />
+  //     )}
+  //   />
+  // );
 
-  const content = (data) => {
-    dispatch(commentCourses(course, data.props.children));
-  };
+  // const content = (data) => {
+  //   dispatch(commentCourses(course, data.props.children));
+  // };
 
   return (
     <div>
@@ -153,7 +154,7 @@ function CourseInfo({ match }) {
               title={course.courseId + ' - ' + course.courseName}
             />
             <p>
-              <b>CRN</b> : {course.crn}
+              <b>CRN</b> : {course._id}
             </p>
             <p>
               <b>Term</b> : {course.term}
@@ -199,7 +200,7 @@ function CourseInfo({ match }) {
             <div className="flex justify-content-between">
               {course.postedBy === userid ? (
                 <Button>
-                  <Link to={`/editcourse/${course.CRN}`}>Edit Now</Link>
+                  <Link to={`/editcourse/${course._id}`}>Edit Now</Link>
                 </Button>
               ) : user.role === 'student' ? (
                 alreadyRegistered ? (
@@ -239,13 +240,13 @@ function CourseInfo({ match }) {
             </div>
           </div>
         )}
-        {comments.length > 0 &&
+        {/* {comments.length > 0 &&
           (user.role === 'admin' ? (
             <CommentListAdmin comments={comments} />
           ) : (
             <CommentList comments={comments} />
           ))}
-        {<Comments content={content} />}
+        {<Comments content={content} />} */}
       </DefaultLayout>
     </div>
   );

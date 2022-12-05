@@ -66,7 +66,7 @@ function PostedList() {
     const obj = {
       title: course.courseId,
       courseId: (
-        <Link to={`/courses/${course.CRN}`}>
+        <Link to={`/courses/${course._id}`}>
           <Button>Details</Button>
         </Link>
       ),

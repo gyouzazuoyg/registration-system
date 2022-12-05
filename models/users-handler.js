@@ -52,7 +52,7 @@ Users.getAll = (resCallback) => {
   let sqlQuery = 'SELECT * FROM users;';
   sql.query(sqlQuery, (err, sqlResData) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
-    resCallback(err, sqlResData);
+    resCallback(err, sqlResData.map(userInfoFormatter));
   });
 };
 

@@ -27,7 +27,7 @@ function EditCourse({ match }) {
 
   const { courses } = useSelector((state) => state.coursesReducer);
 
-  const course = courses.find((course) => course.CRN === match.params.id);
+  const course = courses.find((course) => course._id === match.params.id);
   console.log(course);
 
   return (

@@ -60,7 +60,7 @@ export const handlers = [
   rest.post('/api/courses/registercourse', (req, res, ctx) => {
     const { user, course } = req.body;
     const userId = user._id;
-    const courseId = course.CRN;
+    const courseId = course._id;
     let courseDetails = {};
     for (const key in DB.courses) {
       if (DB.courses[key]._id === courseId) {
@@ -81,7 +81,7 @@ export const handlers = [
     courseDetails.registeredStudents.push(registeredCandidate);
 
     const registeredCourse = {
-      courseid: course.CRN,
+      courseid: course._id,
       registeredDate: moment().format('MMM DD yyyy'),
     };
     userDetails.registeredCourses.push(registeredCourse);
