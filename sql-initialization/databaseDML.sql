@@ -11,16 +11,22 @@ INSERT INTO Campuses(campus_name, city, state, country) VALUES ('Vancouver', 'Va
 INSERT INTO Campuses(campus_name, city, state, country) VALUES ('Portland', 'Portland', 'Oregon', 'United States');
 
 -- Advisor
-INSERT INTO Users(user_id, user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour) VALUES (275662221, 'Jennifer#Pope', 'Jennifer', 'Pope', 'jennifer_pope@northeastern.edu', '111111111', 'Advisor', 'Computer Science', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Mon 9-10 PT AM');
-INSERT INTO Users(user_id, user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour) VALUES (254662362, 'Cedric#Hardy', 'Cedric', 'Hardy', 'cedric_hardy@northeastern.edu', '222222222', 'Advisor', 'School of Architecture', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Tue 10-11 PT AM');
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('Jennifer#Pope', 'test', 'Jennifer', 'Pope', 'jennifer_pope@northeastern.edu', '111111111', 'Advisor', 'Computer Science', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Mon 9-10 PT AM');
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('Cedric#Hardy', 'test', 'Cedric', 'Hardy', 'cedric_hardy@northeastern.edu', '222222222', 'Advisor', 'School of Architecture', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Tue 10-11 PT AM');
 
 -- Student
-INSERT INTO Users(user_id, user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour) VALUES (197121110, 'Monica#Hao', 'Monica', 'Hao', 'haoyx@northeastern.edu', '333333333', 'Student', 'School of Technological Entrepreneurship', 254743453, 'Boston', NULL, 36, 20, '2022-11-20 14:45:00', '2022-11-30 14:45:00', NULL);
-INSERT INTO Users(user_id, user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour) VALUES (199712119, 'Crystal#Lee', 'Crystal', 'Lee', 'crystali@northeastern.edu', '444444444', 'Student', 'Department of Electrical and Computer Engineering', 295427804, 'Boston', NULL, 40, 24, '2022-11-23 14:45:00', '2022-11-30 14:45:00', NULL);
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('Monica Hao', 'test', 'Monica', 'Hao', 'haoyx@northeastern.edu', '333333333', 'Student', 'School of Technological Entrepreneurship', 254743453, 'Boston', NULL, 36, 20, '2022-11-20 14:45:00', '2022-11-30 14:45:00', NULL);
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('Crystal Lee', 'test', 'Crystal', 'Lee', 'crystali@northeastern.edu', '444444444', 'Student', 'Department of Electrical and Computer Engineering', 295427804, 'Boston', NULL, 40, 24, '2022-11-23 14:45:00', '2022-11-30 14:45:00', NULL);
 
 -- Admin
-INSERT INTO Users(user_id, user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour) VALUES (111223344, 'Admin1', 'Admin1FirstName', 'Admin2LastName', 'abc@northeastern.edu', '555555555', 'Admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a');
-INSERT INTO Users(user_id, user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour) VALUES (111223345, 'Admin2', 'Admin1FirstName', 'Admin2LastName', 'qwe@northeastern.edu', '666666666', 'Admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'b');
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('Admin1', 'test', 'Admin1FirstName', 'Admin2LastName', 'abc@northeastern.edu', '555555555', 'Admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a');
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('Admin2', 'test', 'Admin1FirstName', 'Admin2LastName', 'qwe@northeastern.edu', '666666666', 'Admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'b');
 
 -- StudentRegisteredCourses
 INSERT INTO StudentRegisteredCourses(student_id, CRN) VALUES (197121110, 100000001);

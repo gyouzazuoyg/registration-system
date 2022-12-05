@@ -1,6 +1,6 @@
 -- SQLBook: Code
 set
-    @ @foreign_key_checks = OFF;
+    @@foreign_key_checks = OFF;
 
 CREATE TABLE Campuses (
     campus_name varchar(20) NOT NULL Primary Key,
@@ -120,4 +120,4 @@ ADD
     CONSTRAINT fk_user Foreign Key (department) References Departments(department_name);
 
 set
-    @ @foreign_key_checks = ON;
+    @@foreign_key_checks = ON;
