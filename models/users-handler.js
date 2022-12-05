@@ -60,6 +60,8 @@ Users.getAll = (resCallback) => {
 Users.findUser = (userName, resCallback) => {
   let sqlQuery = `SELECT * FROM users WHERE user_name='${userName}';`;
   sql.query(sqlQuery, (err, sqlResData) => {
+    // if no rows found, return null
+    // if found, return the first element in the found array
     resCallback(err, sqlResData.length !== 0 ? userInfoFormatter(sqlResData[0]) : null);
   });
 };
