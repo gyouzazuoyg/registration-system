@@ -21,12 +21,43 @@ router.post('/login', function (req, res, next) {
     userQueries.findUser(userName, (err, data) => {
       if (err)
         res.status(500).send({
-          message: err.message || 'Some error occurred while retrieving users.',
+          message: err.message || 'Some error occurred while login.',
         });
       else {
         // Determine whether the password is correct
         if (data?.password === reqPassword) res.json(data);
         else res.json({});
+      }
+    });
+  } else {
+    res.status(500).send({
+      message: 'No username found in request body!',
+    });
+  }
+});
+
+// Register and create a new user
+router.post('/register', function (req, res, next) {
+  const userName = req.body['username'];
+  const reqPassword = req.body['password'];
+  const roleType = req.body['role'];
+  if (userName && reqPassword) {
+    userQueries.findUser(userName, (err, data) => {
+      if (data)
+        res.status(500).send({
+          message: err.message || 'User existent!',
+        });
+      else {
+        // if username and password are given and no user conflicts, create user
+        userQueries.createUser(userName, reqPassword, roleType, (err) => {
+          if (err)
+            res.status(500).send({
+              message:
+                err.message ||
+                'Some error occurred while registering new user.',
+            });
+          else res.send('New User Register Succeeded!');
+        });
       }
     });
   } else {

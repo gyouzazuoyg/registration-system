@@ -1,5 +1,5 @@
 /**
- * Handle data from "users" table
+ * Handle data from "users" "registered courses" "waitlisted courses" table
  */
 const sql = require('./db-connection.js');
 
@@ -60,7 +60,15 @@ Users.getAll = (resCallback) => {
 Users.findUser = (userName, resCallback) => {
   let sqlQuery = `SELECT * FROM users WHERE user_name='${userName}';`;
   sql.query(sqlQuery, (err, sqlResData) => {
-    resCallback(err, userInfoFormatter(sqlResData[0]));
+    resCallback(err, sqlResData.length !== 0 ? userInfoFormatter(sqlResData[0]) : null);
+  });
+};
+
+// Create new user
+Users.createUser = (userName, password, roleType, resCallback) => {
+  let sqlQuery = `INSERT INTO Users(user_name, user_password, role_type) VALUES ('${userName}', '${password}', '${roleType}');`;
+  sql.query(sqlQuery, (err) => {
+    resCallback(err, null);
   });
 };
 
