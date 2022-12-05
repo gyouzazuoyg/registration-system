@@ -70,6 +70,7 @@ Users.findUser = (userName, resCallback) => {
 Users.createUser = (userName, password, roleType, resCallback) => {
   let sqlQuery = `INSERT INTO Users(user_name, user_password, role_type) VALUES ('${userName}', '${password}', '${roleType}');`;
   sql.query(sqlQuery, (err) => {
+    // there is no return values from SQL, return null as data along with err
     resCallback(err, null);
   });
 };
