@@ -16,6 +16,36 @@ export const registerUser = (values) => async (dispatch) => {
   }
 };
 
+export const deleteRegistered = (values) => async (dispatch) => {
+  dispatch({ type: 'LOADING', payload: true });
+  try {
+    await axios.post('/api/users/dropcourse', values);
+    message.success('Registered Course Dropped Successfully');
+    setTimeout(() => {
+      window.location.href = '/registeredcourses';
+    }, 1000);
+    dispatch({ type: 'LOADING', payload: false });
+  } catch (error) {
+    message.error('Drop Course Failed!');
+    dispatch({ type: 'LOADING', payload: false });
+  }
+};
+
+export const deleteWaitlisted = (values) => async (dispatch) => {
+  dispatch({ type: 'LOADING', payload: true });
+  try {
+    await axios.post('/api/users/dropwaitlist', values);
+    message.success('Waitlisted Course Dropped Successfully');
+    setTimeout(() => {
+      window.location.href = '/waitlistedcourses';
+    }, 1000);
+    dispatch({ type: 'LOADING', payload: false });
+  } catch (error) {
+    message.error('Drop Waitlisted Course Failed!');
+    dispatch({ type: 'LOADING', payload: false });
+  }
+};
+
 export const loginUser = (values) => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
 
@@ -60,12 +90,18 @@ export const getAllUsers = () => async (dispatch) => {
     const response = await axios.get('/api/users/getallusers');
     for (const userInfo of response.data) {
       const studentId = userInfo._id;
-      const responseCourses = await axios.post(
+      const responseRegisteredCourses = await axios.post(
         '/api/users/getregisteredcourses',
         { userId: studentId },
       );
-      const registeredCourses = responseCourses.data;
+      const responseWaitlistedCourses = await axios.post(
+        '/api/users/getwaitlistedcourses',
+        { userId: studentId },
+      );
+      const registeredCourses = responseRegisteredCourses.data;
+      const waitlistedCourses = responseWaitlistedCourses.data;
       userInfo.registeredCourses = registeredCourses;
+      userInfo.waitlistedCourses = waitlistedCourses;
     }
     dispatch({ type: 'GET_ALL_USERS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });

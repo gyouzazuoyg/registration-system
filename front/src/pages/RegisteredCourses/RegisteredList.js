@@ -1,30 +1,33 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Table, Popconfirm } from 'antd';
 import { Link } from 'react-router-dom';
+import {
+  deleteRegistered,
+  deleteWaitlisted,
+} from '../../redux/actions/userActions';
 
 function RegisteredList(props) {
   const { courses } = useSelector((state) => state.coursesReducer);
   const { users } = useSelector((state) => state.usersReducer);
+  const dispatch = useDispatch();
 
   const getCurUser = () => {
     if (props.userId) {
       return users.find((user) => user._id === props.userId);
-    }
-    else
-      return JSON.parse(localStorage.getItem('user'));
+    } else return JSON.parse(localStorage.getItem('user'));
   };
   const user = getCurUser();
   const isWaitlist = props.isWaitlist ? true : false;
 
   const userRegisteredCourses = [];
 
-  function dropCourse() {
-    //dispatch(deleteCourse(course));
+  function dropRegisteredCourse(crn) {
+    dispatch(deleteRegistered({ studentId: user._id, crn: crn }));
   }
 
-  function confirmDropCourse(e) {
-    dropCourse();
+  function dropWaitlistedCourse(crn) {
+    dispatch(deleteWaitlisted({ studentId: user._id, crn: crn }));
   }
 
   function cancel(e) {}
@@ -50,12 +53,17 @@ function RegisteredList(props) {
             </Link>
             <Popconfirm
               title="Are you sure to drop this course?"
-              onConfirm={confirmDropCourse}
+              onConfirm={(e) => {
+                if (isWaitlist) {
+                  dropWaitlistedCourse(course._id);
+                } else {
+                  dropRegisteredCourse(course._id);
+                }
+              }}
               onCancel={cancel}
               okText="Yes"
               cancelText="No"
             >
-              {/* TODO: Implement Drop button */}
               <Button>Drop</Button>
             </Popconfirm>
           </>,

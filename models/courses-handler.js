@@ -38,6 +38,13 @@ const registeredStudentFormatter = (sqlStudentRawData) => {
   };
 };
 
+const waitlistedStudentFormatter = (sqlStudentRawData) => {
+  return {
+    userid: sqlStudentRawData['student_id'],
+    waitlistedDate: sqlStudentRawData['datetime'],
+  };
+};
+
 // Get all courses
 Courses.getAll = (resCallback) => {
   // resCallback is a function pointer passed from routes
@@ -85,6 +92,14 @@ Courses.getRegisteredStudents = (crn, resCallback) => {
   let sqlQuery = `SELECT * FROM StudentRegisteredCourses WHERE CRN = ${crn};`;
   sql.query(sqlQuery, (err, sqlResData) => {
     resCallback(err, sqlResData.map(registeredStudentFormatter));
+  });
+};
+
+Courses.getWaitlistedStudents = (crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `SELECT * FROM StudentWaitlistedCourses WHERE CRN = ${crn};`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    resCallback(err, sqlResData.map(waitlistedStudentFormatter));
   });
 };
 

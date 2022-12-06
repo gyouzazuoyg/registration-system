@@ -8,12 +8,18 @@ export const getAllCourses = () => async (dispatch) => {
     const response = await axios.get('/api/courses/getallcourses');
     for (const courseInfo of response.data) {
       const crn = courseInfo._id;
-      const responseCourses = await axios.post(
+      const responseRegisteredStudents = await axios.post(
         '/api/courses/getregisteredstudents',
         { crn: crn },
       );
-      const registeredStudents = responseCourses.data;
+      const responseWaitlisttedStudents = await axios.post(
+        '/api/courses/getwaitlistedstudents',
+        { crn: crn },
+      );
+      const registeredStudents = responseRegisteredStudents.data;
+      const waitlistedStudents = responseWaitlisttedStudents.data;
       courseInfo.registeredStudents = registeredStudents;
+      courseInfo.waitlistedStudents = waitlistedStudents;
     }
     dispatch({ type: 'GET_ALL_JOBS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });

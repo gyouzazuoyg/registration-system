@@ -99,6 +99,18 @@ router.post('/getregisteredcourses', function (req, res, next) {
   });
 });
 
+// Student get waitlisted courses
+router.post('/getwaitlistedcourses', function (req, res, next) {
+  const studentId = req.body.userId;
+  userQueries.getWaitlistedCourses(studentId, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: 'Some error occurred while getting waitlisted course.',
+      });
+    else res.json(data);
+  });
+});
+
 // Student waitlist courses
 router.post('/waitlistcourse', function (req, res, next) {
   const studentId = req.body.user._id;
@@ -115,7 +127,9 @@ router.post('/waitlistcourse', function (req, res, next) {
 
 // Student drop courses
 router.post('/dropcourse', function (req, res, next) {
-  userQueries.dropCourse((err, data) => {
+  const studentId = req.body.studentId;
+  const crn = req.body.crn;
+  userQueries.dropCourse(studentId, crn, (err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || 'Some error occurred while dropping course.',
@@ -126,7 +140,9 @@ router.post('/dropcourse', function (req, res, next) {
 
 // Student drop waitlist
 router.post('/dropwaitlist', function (req, res, next) {
-  userQueries.dropWaitlist((err, data) => {
+  const studentId = req.body.studentId;
+  const crn = req.body.crn;
+  userQueries.dropWaitlist(studentId, crn, (err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || 'Some error occurred while dropping waitlist.',
