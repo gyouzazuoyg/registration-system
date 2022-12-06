@@ -173,4 +173,29 @@ router.post('/deletecourse', function (req, res, next) {
   });
 });
 
+//Update profile
+router.post('/updateprofile', function (req, res, next) {
+  const newProfile = req.body.newProfile;
+  const userId = req.body.userId;
+  userQueries.updateProfile(newProfile, userId, (err) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while updating profile.',
+      });
+    else res.send('Update Profile Succeeded!');
+  });
+});
+
+//Delete Comment
+router.delete('/deletecomment', function (req, res, next) {
+  const commentId = req.body.commentId;
+  userQueries.deleteComment(commentId, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while deleting course.',
+      });
+    else res.send(data);
+  });
+});
+
 module.exports = router;

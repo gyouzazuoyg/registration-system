@@ -156,7 +156,7 @@ Users.dropWaitlist = (studentId, crn, resCallback) => {
 
 //User comment course
 Users.commentCourse = (newComment, resCallback) => {
-  let sqlQuery = `INSERT INTO UserComment(user_id, content, date_time) VALUES (${newComment.studentId}, '${newComment.content}', '${newComment.dateTime}');`;
+  let sqlQuery = `INSERT INTO UserComment(user_id,crn, content, date_time) VALUES (${newComment.studentId}, ${newComment.crn},'${newComment.content}', '${newComment.dateTime}');`;
   sql.query(sqlQuery, (err) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
     resCallback(err, null);
@@ -164,5 +164,40 @@ Users.commentCourse = (newComment, resCallback) => {
 };
 
 // User updates profile
+Users.updateProfile = (newProfile, userId, resCallback) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    mobileNumber,
+    about,
+    requiredCredits,
+    acquiredCredits,
+    timeTicketFrom,
+    timeTicketTo,
+    advisor,
+    campus,
+    college,
+    department,
+    officeHour,
+    major,
+  } = newProfile;
+  let sqlQuery = `UPDATE Users SET first_name = '${firstName}', last_name = '${lastName}', email = '${email}', mobile = '${mobileNumber}', 
+  about = '${about}', required_credits = ${requiredCredits}, accquired_credits = ${acquiredCredits}, time_ticket_from = '${timeTicketFrom}', 
+  time_ticket_to = '${timeTicketTo}', advisor = ${advisor}, campus = '${campus}', college = '${college}', department = '${department}', 
+  office_hour = '${officeHour}', major = '${major}' WHERE user_id = ${userId};`;
+  sql.query(sqlQuery, (err) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, null);
+  });
+};
+
+Users.deleteComment = (commentId, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `DELETE FROM UserComment WHERE comment_id = '${commentId}';`;
+  sql.query(sqlQuery, (err) => {
+    resCallback(err, null);
+  });
+};
 
 module.exports = Users;

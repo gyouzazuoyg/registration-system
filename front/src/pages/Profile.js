@@ -125,15 +125,6 @@ function Profile() {
                     <Input placeholder="Please enter a valid U.S. number" />
                   </Form.Item>
                 </Col>
-                <Col lg={8} sm={24}>
-                  <Form.Item
-                    label="Portfolio"
-                    rules={[{ required: false }]}
-                    name="portfolio"
-                  >
-                    <Input placeholder="Put your portfolio link here" />
-                  </Form.Item>
-                </Col>
                 <Col lg={24} sm={24}>
                   <Form.Item
                     label="About"
@@ -144,15 +135,6 @@ function Profile() {
                       rows={4}
                       placeholder="Introduce yourself to others!"
                     />
-                  </Form.Item>
-                </Col>
-                <Col lg={24} sm={24}>
-                  <Form.Item
-                    label="Address"
-                    rules={[{ required: false }]}
-                    name="address"
-                  >
-                    <TextArea rows={4} placeholder="Enter your address here" />
                   </Form.Item>
                 </Col>
               </Row>

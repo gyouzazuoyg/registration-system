@@ -87,6 +87,35 @@ Courses.postCourse = (newCourse, resCallback) => {
   });
 };
 
+// Update course information
+Courses.updateCourse = (newCourse, crn, resCallback) => {
+  const {
+    courseId,
+    courseName,
+    term,
+    schedule,
+    credits,
+    professor,
+    prerequisites,
+    capacity,
+    waitlistCapacity,
+    courseDescription,
+    department,
+    college,
+    classroom,
+    building,
+    campus,
+  } = newCourse;
+  let sqlQuery = `UPDATE Courses SET course_id = '${courseId}', course_name = '${courseName}', credits = ${credits}, 
+  professor = '${professor}', course_description = '${courseDescription}', prerequisites = '${prerequisites}', classroom = '${classroom}', 
+  building = '${building}', campus = '${campus}', department = '${department}', college = '${college}', term = '${term}', 
+  schedule = '${schedule}', course_capacity = ${capacity}, waitlist_capacity = ${waitlistCapacity} WHERE CRN = ${crn};`;
+  sql.query(sqlQuery, (err) => {
+    // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
+    resCallback(err, null);
+  });
+};
+
 Courses.getRegisteredStudents = (crn, resCallback) => {
   // resCallback is a function pointer passed from routes
   let sqlQuery = `SELECT * FROM StudentRegisteredCourses WHERE CRN = ${crn};`;
