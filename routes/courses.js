@@ -24,6 +24,19 @@ router.post('/postcourse', function (req, res, next) {
   });
 });
 
+//Update course
+router.post('/updatecourse', function (req, res, next) {
+  const newCourse = req.body.newCourse;
+  const crn = req.body.crn;
+  courseQueries.updateCourse(newCourse, crn, (err) => {
+    if (err)
+      res.status(500).send({
+        message: err.message || 'Some error occurred while updating course.',
+      });
+    else res.send('Update Course Succeeded!');
+  });
+});
+
 // Course get registered students
 router.post('/getregisteredstudents', function (req, res, next) {
   const crn = req.body.crn;
