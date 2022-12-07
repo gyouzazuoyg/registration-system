@@ -135,10 +135,14 @@ function CourseInfo({ match }) {
               </a>
             </Popconfirm>,
           ]}
-          author={<Link to={`/users/${props.userid}`}>Author</Link>}
+          author={
+            <Link to={`/users/${props.userid}`}>
+              {getCommentAuthorName(props.userid)}
+            </Link>
+          }
           avatar={<Link to={`/users/${props.userid}`}></Link>}
           content={props.content}
-          datetime={props.dateTime}
+          datetime={new Date(props.dateTime).toLocaleString()}
         />
       )}
     />

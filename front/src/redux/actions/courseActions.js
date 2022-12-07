@@ -218,6 +218,10 @@ export const deleteComment = (id) => async (dispatch) => {
     const response = await axios.get('/api/courses/getallcourses');
     const courses = response.data;
     dispatch({ type: 'GET_ALL_JOBS', payload: courses });
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   } catch (error) {
     console.log(error);
     dispatch({ type: 'LOADING', payload: false });
