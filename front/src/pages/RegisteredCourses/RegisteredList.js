@@ -45,7 +45,9 @@ function RegisteredList(props) {
       const obj = {
         title: course.courseId,
         department: course.department,
-        registeredDate: isWaitlist ? temp.waitlistedDate : temp.registeredDate,
+        registeredDate: new Date(
+          isWaitlist ? temp.waitlistedDate : temp.registeredDate,
+        ).toLocaleString(),
         courseId: [
           <>
             <Link to={`/courses/${course._id}`}>

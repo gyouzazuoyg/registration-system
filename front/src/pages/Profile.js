@@ -17,7 +17,7 @@ function Profile() {
   const curUser = JSON.parse(localStorage.getItem('user'));
   const allUsers = JSON.parse(localStorage.getItem('users'));
 
-  const [userInfo, setUserInfo] = useState(curUser)
+  const [userInfo, setUserInfo] = useState(curUser);
   const [personalInfo, setPersonalInfo] = useState();
   const [activeTab, setActiveTab] = useState('1');
   const dispatch = useDispatch();
@@ -140,6 +140,9 @@ function Profile() {
             <TabPane tab="Academic Info" key="2">
               <h1>Academic Information</h1>
               <p>
+                <b>Major</b> : {curUser.major}
+              </p>
+              <p>
                 <b>Department</b> : {curUser.department}
               </p>
               <p>
@@ -149,7 +152,8 @@ function Profile() {
                 <b>Campus</b> : {curUser.campus}
               </p>
               <p>
-                <b>Advisor</b> : <Link to={`/users/${curUser.advisor}`}>{advisorName}</Link>
+                <b>Advisor</b> :{' '}
+                <Link to={`/users/${curUser.advisor}`}>{advisorName}</Link>
               </p>
               <p>
                 <b>Required Credits</b> : {curUser.requiredCredits}
@@ -160,7 +164,9 @@ function Profile() {
 
               <p>
                 <b>Time Ticket</b> :{' '}
-                {curUser.timeTicketFrom + ' - ' + curUser.timeTicketTo}
+                {new Date(curUser.timeTicketFrom).toLocaleString() +
+                  ' - ' +
+                  new Date(curUser.timeTicketTo).toLocaleString()}
               </p>
               <hr />
 
@@ -180,29 +186,22 @@ function Profile() {
               </Button>
             </TabPane>
           ) : (
-            ''
-          )}
-          {curUser.role === 'student' ? (
-            <TabPane tab="Registered Courses" key="3">
-              <RegisteredList isWaitlist={false}/>
-              <Button
-                onClick={() => {
-                  setActiveTab('2');
-                }}
-              >
-                Previous
-              </Button>
-              <Button
-                onClick={() => {
-                  setActiveTab('4');
-                }}
-              >
-                Next
-              </Button>
-            </TabPane>
-          ) : (
-            <TabPane tab="Posted Courses" key="2">
-              <PostedList />
+            <TabPane tab="Academic Info" key="2">
+              <h1>Academic Information</h1>
+              <p>
+                <b>Department</b> : {curUser.department}
+              </p>
+              <p>
+                <b>College</b> : {curUser.college}
+              </p>
+              <p>
+                <b>Campus</b> : {curUser.campus}
+              </p>
+              <p>
+                <b>Office Hours</b> : {curUser.officeHour}
+              </p>
+              <hr />
+
               <Button
                 onClick={() => {
                   setActiveTab('1');
@@ -220,8 +219,45 @@ function Profile() {
             </TabPane>
           )}
           {curUser.role === 'student' ? (
+            <TabPane tab="Registered Courses" key="3">
+              <RegisteredList isWaitlist={false} />
+              <Button
+                onClick={() => {
+                  setActiveTab('2');
+                }}
+              >
+                Previous
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('4');
+                }}
+              >
+                Next
+              </Button>
+            </TabPane>
+          ) : (
+            <TabPane tab="Posted Courses" key="3">
+              <PostedList />
+              <Button
+                onClick={() => {
+                  setActiveTab('2');
+                }}
+              >
+                Previous
+              </Button>
+              <Button
+                onClick={() => {
+                  setActiveTab('4');
+                }}
+              >
+                Next
+              </Button>
+            </TabPane>
+          )}
+          {curUser.role === 'student' ? (
             <TabPane tab="Waitlisted Courses" key="4">
-              <RegisteredList isWaitlist={true}/>
+              <RegisteredList isWaitlist={true} />
               <Button
                 onClick={() => {
                   setActiveTab('3');
@@ -252,11 +288,11 @@ function Profile() {
               </Button>
             </TabPane>
           ) : (
-            <TabPane tab="My Comments" key="3">
+            <TabPane tab="My Comments" key="4">
               <CommentsList />
               <Button
                 onClick={() => {
-                  setActiveTab('2');
+                  setActiveTab('3');
                 }}
               >
                 Previous

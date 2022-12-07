@@ -33,9 +33,7 @@ function EditCourse({ match }) {
   return (
     <div>
       <DefaultLayout>
-        <Tabs
-          defaultActiveKey="0"
-          activeKey={activeTab}>
+        <Tabs defaultActiveKey="0" activeKey={activeTab}>
           <TabPane tab="Course Info" key="0">
             <Form
               layout="vertical"
@@ -219,7 +217,13 @@ function EditCourse({ match }) {
                     label="Campus"
                     rules={[{ required: false }]}
                   >
-                    <Input placeholder="Enter campus here" />
+                    <Select>
+                      <Option value={'Boston'}>Boston</Option>
+                      <Option value={'Seattle'}>Seattle</Option>
+                      <Option value={'Silicon Valley'}>Silicon Valley</Option>
+                      <Option value={'San Francisco'}>San Francisco</Option>
+                      <Option value={'Portland'}>Portland</Option>
+                    </Select>
                   </Form.Item>
                 </Col>
               </Row>

@@ -10,7 +10,9 @@ function PostedList() {
   const allcourses = useSelector((state) => state.coursesReducer).courses;
   const allusers = useSelector((state) => state.usersReducer).users;
   const userid = JSON.parse(localStorage.getItem('user'))._id;
-  const userPostedCourses = allcourses.filter((course) => course.postedBy === userid);
+  const userPostedCourses = allcourses.filter(
+    (course) => course.postedBy === userid,
+  );
   const history = useHistory();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState();
@@ -34,7 +36,7 @@ function PostedList() {
     },
     {
       title: 'Waitlisted Students',
-      dataIndex: 'waitlistedStudents'
+      dataIndex: 'waitlistedStudents',
     },
     {
       title: 'Actions',
@@ -123,8 +125,6 @@ function PostedList() {
       candidatesDatasource.push(obj);
     }
 
-    
-
     return (
       <Table columns={candidatesColumns} dataSource={candidatesDatasource} />
     );
@@ -162,13 +162,10 @@ function PostedList() {
       candidatesDatasource.push(obj);
     }
 
-    
-
     return (
       <Table columns={candidatesColumns} dataSource={candidatesDatasource} />
     );
   }
-
 
   return (
     <div>
@@ -186,7 +183,6 @@ function PostedList() {
       >
         <CandidatesList />
         <WaitlistedList />
-
       </Modal>
     </div>
   );

@@ -28,7 +28,7 @@ function Filter() {
   }
 
   function clearSort(values) {
-    values.campus = undefined
+    values.campus = undefined;
     dispatch(sortCourses(values));
     handleCancel();
   }

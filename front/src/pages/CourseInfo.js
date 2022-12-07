@@ -9,7 +9,7 @@ import {
   Popconfirm,
 } from 'antd';
 import moment from 'moment';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DefaultLayout from '../components/DefaultLayout';
@@ -29,10 +29,10 @@ function CourseInfo({ match }) {
   const dispatch = useDispatch();
 
   const course = JSON.parse(localStorage.getItem('courses')).find(
-    (course) => (course.crn = match.params.id),
+    (course) => course.crn == match.params.id,
   );
   const postAuthor = JSON.parse(localStorage.getItem('users')).find(
-    (user) => (user._id = course.postedBy),
+    (user) => user._id == course.postedBy,
   );
   const user = JSON.parse(localStorage.getItem('user'));
   const userid = user._id;
@@ -83,7 +83,7 @@ function CourseInfo({ match }) {
   }
 
   function confirmDeleteComment(id) {
-    dispatch(deleteComment(course, id));
+    dispatch(deleteComment(id));
   }
 
   const getCommentAuthorName = (userId) => {
@@ -109,7 +109,7 @@ function CourseInfo({ match }) {
           }
           avatar={<Link to={`/users/${props.userid}`}></Link>}
           content={props.content}
-          datetime={props.dateTime}
+          datetime={new Date(props.dateTime).toLocaleString()}
         />
       )}
     />

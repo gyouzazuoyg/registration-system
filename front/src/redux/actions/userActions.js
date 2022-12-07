@@ -97,10 +97,16 @@ export const getAllUsers = () => async (dispatch) => {
         '/api/users/getwaitlistedcourses',
         { userId: studentId },
       );
+      const responseCourseComments = await axios.post(
+        '/api/users/getusercomments',
+        { userId: studentId },
+      );
       const registeredCourses = responseRegisteredCourses.data;
       const waitlistedCourses = responseWaitlistedCourses.data;
+      const comments = responseCourseComments.data;
       userInfo.registeredCourses = registeredCourses;
       userInfo.waitlistedCourses = waitlistedCourses;
+      userInfo.comments = comments;
 
       if (userInfo._id === curUserInfo._id) {
         localStorage.setItem('user', JSON.stringify(userInfo));

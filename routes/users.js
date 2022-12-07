@@ -202,8 +202,8 @@ router.post('/updateprofile', function (req, res, next) {
 });
 
 //Delete Comment
-router.delete('/deletecomment', function (req, res, next) {
-  const commentId = req.body.commentId;
+router.post('/deletecomment', function (req, res, next) {
+  const commentId = req.body.id;
   userQueries.deleteComment(commentId, (err, data) => {
     if (err)
       res.status(500).send({

@@ -30,99 +30,99 @@ function UserInfo({ match }) {
             />
             {user.role === 'student' ? (
               <Tabs
-              defaultActiveKey="1"
-              activeKey={activeTab}
-              onTabClick={callbackTabClicked}
-            >
-              <TabPane tab="Personal Info" key="1">
-                <p>
-                  <b>First name : </b>
-                  {user.firstName}
-                </p>
-                <p>
-                  <b>Last name : </b>
-                  {user.lastName}
-                </p>
-                <p>
-                  <b>Email : </b>
-                  {user.email}
-                </p>
-              </TabPane>
-              <TabPane tab="Academic Info" key="2">
-              <p>
-                  <b>Major : </b>
-                  {user.major}
-                </p>
-                <p>
-                  <b>Department : </b>
-                  {user.department}
-                </p>
-                <p>
-                  <b>College : </b>
-                  {user.college}
-                </p>
-                <p>
-                  <b>Campus : </b>
-                  {user.campus}
-                </p>
-                <p>
-                  <b>Required credits : </b>
-                  {user.requiredCredits}
-                </p>
-                <p>
-                  <b>Acquired credits : </b>
-                  {user.accquiredCredits}
-                </p>
-                <p>
-                  <b>Time ticket : </b>
-                  {user.timeTicketFrom} - {user.timeTicketTo}
-                </p>
-              </TabPane>
-              <TabPane tab="Registrated Courses" key="3">
-                <RegisteredList isWaitlist={false} userId={user._id} />
-              </TabPane>
-              <TabPane tab="Waitlisted Courses" key="4">
-                <RegisteredList isWaitlist={true} userId={user._id} />
-              </TabPane>
+                defaultActiveKey="1"
+                activeKey={activeTab}
+                onTabClick={callbackTabClicked}
+              >
+                <TabPane tab="Personal Info" key="1">
+                  <p>
+                    <b>First name : </b>
+                    {user.firstName}
+                  </p>
+                  <p>
+                    <b>Last name : </b>
+                    {user.lastName}
+                  </p>
+                  <p>
+                    <b>Email : </b>
+                    {user.email}
+                  </p>
+                </TabPane>
+                <TabPane tab="Academic Info" key="2">
+                  <p>
+                    <b>Major : </b>
+                    {user.major}
+                  </p>
+                  <p>
+                    <b>Department : </b>
+                    {user.department}
+                  </p>
+                  <p>
+                    <b>College : </b>
+                    {user.college}
+                  </p>
+                  <p>
+                    <b>Campus : </b>
+                    {user.campus}
+                  </p>
+                  <p>
+                    <b>Required credits : </b>
+                    {user.requiredCredits}
+                  </p>
+                  <p>
+                    <b>Acquired credits : </b>
+                    {user.accquiredCredits}
+                  </p>
+                  <p>
+                    <b>Time ticket : </b>
+                    {user.timeTicketFrom} - {user.timeTicketTo}
+                  </p>
+                </TabPane>
+                <TabPane tab="Registrated Courses" key="3">
+                  <RegisteredList isWaitlist={false} userId={user._id} />
+                </TabPane>
+                <TabPane tab="Waitlisted Courses" key="4">
+                  <RegisteredList isWaitlist={true} userId={user._id} />
+                </TabPane>
               </Tabs>
             ) : (
               <Tabs
-              defaultActiveKey="1"
-              activeKey={activeTab}
-              onTabClick={callbackTabClicked}
-            >
-              <TabPane tab="Personal Info" key="1">
-                <p>
-                  <b>First name : </b>
-                  {user.firstName}
-                </p>
-                <p>
-                  <b>Last name : </b>
-                  {user.lastName}
-                </p>
-                <p>
-                  <b>Email : </b>
-                  {user.email}
-                </p>
-              </TabPane>
-              <TabPane tab="Academic Info" key="2">
-                <p>
-                  <b>Department : </b>
-                  {user.department}
-                </p>
-                <p>
-                  <b>College : </b>
-                  {user.college}
-                </p>
-                <p>
-                  <b>Campus : </b>
-                  {user.campus}
-                </p>
-                <p>
-                  <b>Office Hour : </b>
-                  {user.officeHour}
-                </p>
-              </TabPane>
+                defaultActiveKey="1"
+                activeKey={activeTab}
+                onTabClick={callbackTabClicked}
+              >
+                <TabPane tab="Personal Info" key="1">
+                  <p>
+                    <b>First name : </b>
+                    {user.firstName}
+                  </p>
+                  <p>
+                    <b>Last name : </b>
+                    {user.lastName}
+                  </p>
+                  <p>
+                    <b>Email : </b>
+                    {user.email}
+                  </p>
+                </TabPane>
+                <TabPane tab="Academic Info" key="2">
+                  <p>
+                    <b>Department : </b>
+                    {user.department}
+                  </p>
+                  <p>
+                    <b>College : </b>
+                    {user.college}
+                  </p>
+                  <p>
+                    <b>Campus : </b>
+                    {user.campus}
+                  </p>
+                  <p>
+                    <b>Office Hour : </b>
+                    {user.officeHour}
+                  </p>
+                </TabPane>
               </Tabs>
             )}
           </div>

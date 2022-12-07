@@ -32,8 +32,10 @@ const userInfoFormatter = (sqlUserRawData) => {
 
     requiredCredits: sqlUserRawData['required_credits'],
     acquiredCredits: sqlUserRawData['acquired_credits'],
-    timeTicketFrom: '20221102',
-    timeTicketTo: '20221107',
+    timeTicketFrom: sqlUserRawData['time_ticket_from'],
+    timeTicketTo: sqlUserRawData['time_ticket_to'],
+    major: sqlUserRawData['major'],
+    officeHour: sqlUserRawData['office_hour'],
     advisor: sqlUserRawData['advisor'],
     campus: sqlUserRawData['campus'],
     college: sqlUserRawData['college'],
@@ -46,14 +48,14 @@ const userInfoFormatter = (sqlUserRawData) => {
 const registeredCourseFormatter = (sqlCourseRawData) => {
   return {
     courseid: sqlCourseRawData['CRN'],
-    registeredDate: sqlCourseRawData['datetime'],
+    registeredDate: sqlCourseRawData['date'],
   };
 };
 
 const waitlistedCourseFormatter = (sqlCourseRawData) => {
   return {
     courseid: sqlCourseRawData['CRN'],
-    waitlistedDate: sqlCourseRawData['datetime'],
+    waitlistedDate: sqlCourseRawData['date'],
   };
 };
 
@@ -227,7 +229,7 @@ Users.updateProfile = (newProfile, userId, resCallback) => {
 
 Users.deleteComment = (commentId, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `DELETE FROM UserComment WHERE comment_id = '${commentId}';`;
+  let sqlQuery = `DELETE FROM UserComment WHERE comment_id = ${commentId};`;
   sql.query(sqlQuery, (err) => {
     resCallback(err, null);
   });

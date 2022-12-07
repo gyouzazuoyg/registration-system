@@ -124,7 +124,13 @@ function Profile() {
                     rules={[{ required: false }]}
                     name="campus"
                   >
-                    <Input placeholder="Enter the campus" />
+                    <Select>
+                      <Option value={'Boston'}>Boston</Option>
+                      <Option value={'Seattle'}>Seattle</Option>
+                      <Option value={'Silicon Valley'}>Silicon Valley</Option>
+                      <Option value={'San Francisco'}>San Francisco</Option>
+                      <Option value={'Portland'}>Portland</Option>
+                    </Select>
                   </Form.Item>
                 </Col>
                 <Col lg={8} sm={24}>

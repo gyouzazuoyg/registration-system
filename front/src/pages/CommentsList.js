@@ -7,7 +7,6 @@ function CommentsList() {
   const allusers = useSelector((state) => state.usersReducer).users;
   const userid = JSON.parse(localStorage.getItem('user'))._id;
   const user = allusers.find((user) => user._id === userid);
-  console.log(JSON.parse(localStorage.getItem('users')))
   const userComments = user.comments;
 
   let commentsList = [];
@@ -18,7 +17,7 @@ function CommentsList() {
     if (temp) {
       const obj = {
         content: temp.content,
-        postDate: temp.dateTime,
+        postDate: new Date(temp.dateTime).toLocaleString(),
         courseId: (
           <Link to={`/courses/${temp.crn}`}>
             <Button>Details</Button>
@@ -36,7 +35,7 @@ function CommentsList() {
       dataIndex: 'content',
     },
     {
-      title: 'Date',
+      title: 'Date Time',
       dataIndex: 'postDate',
     },
     {

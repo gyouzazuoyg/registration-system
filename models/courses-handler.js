@@ -36,14 +36,14 @@ const courseInfoFormatter = (sqlCourseRawData) => {
 const registeredStudentFormatter = (sqlStudentRawData) => {
   return {
     userid: sqlStudentRawData['student_id'],
-    registeredDate: sqlStudentRawData['datetime'],
+    registeredDate: sqlStudentRawData['date'],
   };
 };
 
 const waitlistedStudentFormatter = (sqlStudentRawData) => {
   return {
     userid: sqlStudentRawData['student_id'],
-    waitlistedDate: sqlStudentRawData['datetime'],
+    waitlistedDate: sqlStudentRawData['date'],
   };
 };
 
