@@ -40,8 +40,16 @@ function App() {
         <Route path="/privacypolicy" exact component={PrivacyPolicy} />
 
         <ProtectedRoute path="/" exact component={Home} />
-        <ProtectedRoute path="/registeredcourses" exact component={RegisteredCourses} />
-        <ProtectedRoute path="/waitlistedcourses" exact component={WaitlistedCourses} />
+        <ProtectedRoute
+          path="/registeredcourses"
+          exact
+          component={RegisteredCourses}
+        />
+        <ProtectedRoute
+          path="/waitlistedcourses"
+          exact
+          component={WaitlistedCourses}
+        />
         <ProtectedRoute path="/postcourse" exact component={PostCourse} />
 
         <ProtectedRoute path="/profile" exact component={Profile} />
