@@ -69,7 +69,7 @@ const commentFormatter = (commentRawData) => {
 // Get all users
 Users.getAll = (resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = 'SELECT * FROM users;';
+  let sqlQuery = 'SELECT * FROM Users;';
   sql.query(sqlQuery, (err, sqlResData) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
     resCallback(err, sqlResData.map(userInfoFormatter));
@@ -78,7 +78,7 @@ Users.getAll = (resCallback) => {
 
 // Find the user by userName
 Users.findUser = (userName, resCallback) => {
-  let sqlQuery = `SELECT * FROM users WHERE user_name='${userName}';`;
+  let sqlQuery = `SELECT * FROM Users WHERE user_name='${userName}';`;
   sql.query(sqlQuery, (err, sqlResData) => {
     // if no rows found, return null
     // if found, return the first element in the found array
@@ -101,7 +101,7 @@ Users.createUser = (userName, password, roleType, resCallback) => {
 // Student registers course
 Users.registerCourse = (studentId, crn, dateTime, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `INSERT INTO StudentRegisteredCourses(student_id, CRN, datetime) VALUES (${studentId}, ${crn}, '${dateTime}')`;
+  let sqlQuery = `INSERT INTO StudentRegisteredCourses(student_id, CRN, date) VALUES (${studentId}, ${crn}, '${dateTime}')`;
   sql.query(sqlQuery, (err) => {
     resCallback(err, null);
   });
@@ -110,7 +110,7 @@ Users.registerCourse = (studentId, crn, dateTime, resCallback) => {
 // Student waitlists course
 Users.waitlistCourse = (studentId, crn, dateTime, resCallback) => {
   // resCallback is a function pointer passed from routes
-  let sqlQuery = `INSERT INTO StudentWaitlistedCourses(student_id, CRN, datetime) VALUES (${studentId}, ${crn}, '${dateTime}')`;
+  let sqlQuery = `INSERT INTO StudentWaitlistedCourses(student_id, CRN, date) VALUES (${studentId}, ${crn}, '${dateTime}')`;
   sql.query(sqlQuery, (err) => {
     resCallback(err, null);
   });

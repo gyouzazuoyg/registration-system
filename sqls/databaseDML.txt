@@ -12,29 +12,31 @@ INSERT INTO Campuses(campus_name, city, state, country) VALUES ('Portland', 'Por
 
 -- Advisor
 INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
-VALUES ('Jennifer Pope', 'test', 'Jennifer', 'Pope', 'jennifer_pope@northeastern.edu', '111111111', 'Advisor', 'Computer Science', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Mon 9-10 PT AM');
+VALUES ('Jennifer Pope', 'test', 'Jennifer', 'Pope', 'jennifer_pope@northeastern.edu', '111111111', 'advisor', 'Computer Science', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Mon 9-10 PT AM');
 INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
-VALUES ('Cedric Hardy', 'test', 'Cedric', 'Hardy', 'cedric_hardy@northeastern.edu', '222222222', 'Advisor', 'School of Architecture', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Tue 10-11 PT AM');
+VALUES ('Cedric Hardy', 'test', 'Cedric', 'Hardy', 'cedric_hardy@northeastern.edu', '222222222', 'advisor', 'School of Architecture', NULL, 'Silicon Valley', NULL, NULL, NULL, NULL, NULL, 'Tue 10-11 PT AM');
 
 -- Student
 INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
-VALUES ('Monica Hao', 'test', 'Monica', 'Hao', 'haoyx@northeastern.edu', '333333333', 'Student', 'School of Technological Entrepreneurship', 254743453, 'Boston', NULL, 36, 20, '2022-11-20 14:45:00', '2022-11-30 14:45:00', NULL);
+VALUES ('Monica Hao', 'test', 'Monica', 'Hao', 'haoyx@northeastern.edu', '333333333', 'student', 'School of Technological Entrepreneurship', 254743453, 'Boston', NULL, 36, 20, '2022-11-20 14:45:00', '2022-11-30 14:45:00', NULL);
 INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
-VALUES ('Crystal Lee', 'test', 'Crystal', 'Lee', 'crystali@northeastern.edu', '444444444', 'Student', 'Department of Electrical and Computer Engineering', 295427804, 'Boston', NULL, 40, 24, '2022-11-23 14:45:00', '2022-11-30 14:45:00', NULL);
+VALUES ('Crystal Lee', 'test', 'Crystal', 'Lee', 'crystali@northeastern.edu', '444444444', 'student', 'Department of Electrical and Computer Engineering', 295427804, 'Boston', NULL, 40, 24, '2022-11-23 14:45:00', '2022-11-30 14:45:00', NULL);
+INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
+VALUES ('student', '1', 'Crystal', 'Lee', 'student@northeastern.edu', '444444444', 'student', 'Department of Electrical and Computer Engineering', 295427804, 'Boston', NULL, 40, 24, '2022-11-23 14:45:00', '2022-11-30 14:45:00', NULL);
 
 -- Admin
 INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
-VALUES ('Admin1', 'test', 'Admin1FirstName', 'Admin2LastName', 'abc@northeastern.edu', '555555555', 'Admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a');
+VALUES ('Admin1', 'test', 'Admin1FirstName', 'Admin2LastName', 'abc@northeastern.edu', '555555555', 'admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'a');
 INSERT INTO Users(user_name, user_password, first_name, last_name, email, mobile, role_type, department, advisor, campus, college, required_credits, accquired_credits, time_ticket_from, time_ticket_to, office_hour)
-VALUES ('Admin2', 'test', 'Admin1FirstName', 'Admin2LastName', 'qwe@northeastern.edu', '666666666', 'Admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'b');
+VALUES ('Admin2', 'test', 'Admin1FirstName', 'Admin2LastName', 'qwe@northeastern.edu', '666666666', 'admin', 'Administration', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'b');
 
 -- StudentRegisteredCourses
-INSERT INTO StudentRegisteredCourses(student_id, CRN) VALUES (197121110, 100000001);
-INSERT INTO StudentRegisteredCourses(student_id, CRN) VALUES (199712119, 100000002);
+INSERT INTO StudentRegisteredCourses(student_id, CRN, date) VALUES (5, 100000001, '2022-12-06 12:00:00');
+INSERT INTO StudentRegisteredCourses(student_id, CRN, date) VALUES (5, 100000002, '2022-12-06 12:00:00');
 
 -- StudentWaitlistedCourses
-INSERT INTO StudentWaitlistedCourses(student_id, CRN) VALUES (197121110, 234567899);
-INSERT INTO StudentWaitlistedCourses(student_id, CRN) VALUES (199712119, 414546185);
+INSERT INTO StudentWaitlistedCourses(student_id, CRN, date) VALUES (5, 234567899, '2022-12-06 12:00:00');
+INSERT INTO StudentWaitlistedCourses(student_id, CRN, date) VALUES (5, 414546185, '2022-12-06 12:00:00');
 
 -- INSERT INTO Users(user_id, user_name, email, department) VALUES (222222222,'Gregory D. Abowd','gregory@northeastern.edu',NULL);
 -- INSERT INTO Users(user_id, user_name, email, department) VALUES (333333333,'Emery Trahan','emery@northeastern.edu',NULL);
@@ -100,10 +102,10 @@ INSERT INTO Departments(department_name, department_chair, college) VALUES('Admi
 -- INSERT INTO Admins (user_name, user_id, email, department, description) VALUES ('Admin7', 111223350, 'edc@northeastern.edu', 'Administration', 'a');
 
 -- Courses
-INSERT INTO Courses (CRN, course_id, course_name, credits, professor, course_description, prerequisites, classroom, building, campus, department, college, term, course_capacity, waitlist_capacity, posted_by, created_by)
-VALUES (112, 'CS 5200', 'Database Management', 4, 'Professor Marvelous', 'This is a very good course.', 'CS 1000', '102', 'B', 'Silicon Valley', 'Computer Science', 'Khoury College', 'Fall 2023', 60, 20, '2', '20221105');
-INSERT INTO Courses (CRN, course_id, course_name, credits, professor, course_description, prerequisites, classroom, building, campus, department, college, term, course_capacity, waitlist_capacity, posted_by, created_by)
-VALUES (113, 'CS 5610', 'Web Development', 4, 'Professor Evil', 'This is a very good course.', 'CS 1000', '103', 'B', 'Silicon Valley', 'Computer Science', 'Khoury College', 'Fall 2023', 60, 20, '2', '20221108');
+INSERT INTO Courses (CRN, course_id, course_name, credits, professor, course_description, prerequisites, classroom, building, campus, department, college, term, schedule, course_capacity, waitlist_capacity, posted_by, created_by)
+VALUES (112, 'CS 5200', 'Database Management', 4, 'Professor Marvelous', 'This is a very good course.', 'CS 1000', '102', 'B', 'Silicon Valley', 'Computer Science', 'Khoury College', 'Fall 2023', 'Tuesday', 60, 20, '2', '20221105');
+INSERT INTO Courses (CRN, course_id, course_name, credits, professor, course_description, prerequisites, classroom, building, campus, department, college, term, schedule, course_capacity, waitlist_capacity, posted_by, created_by)
+VALUES (113, 'CS 5610', 'Web Development', 4, 'Professor Evil', 'This is a very good course.', 'CS 1000', '103', 'B', 'Silicon Valley', 'Computer Science', 'Khoury College', 'Fall 2023', 'Monday', 60, 20, '2', '20221108');
 
 -- INSERT INTO Courses (CRN, course_id, course_name, credits, course_description, college, department, semester, course_capacity, waitlist_capacity) VALUES(100000003, 'LAW 101', 'Intro to American Law', 4, 'This course will give you a glimpse into six different areas of American law: Tort Law, Contract Law, Property, Constitutional Law, Criminal Law, and Civil Procedure. You will gain insight into the complexities and dilemmas that arise from the application of law in different settings, and what is distinctive about American approaches.', 'School of Law', 'Law', 'Spring 2023', 40, 40, 0, 0);
 -- INSERT INTO Courses (CRN, course_id, course_name, credits, course_description, college, department, semester, course_capacity, waitlist_capacity) VALUES(100000004, 'LAW 201', 'Introduction to International Criminal Law', 4, 'From the Nuremberg trial to the case against Saddam Hussein, from the prosecution of Al-Qaeda terrorists to the trial of Somali pirates – no area of law is as important to world peace and security as international criminal law.  Taught by one of the world’s leading experts in the field, this course will educate students about the fundamentals of international criminal law and policy.  We will explore the contours of international crimes such as genocide, war crimes, terrorism, and piracy.  We will examine unique modes of international criminal liability and specialized defenses.  And we will delve into the challenges of obtaining custody of the accused and maintaining control of the courtroom.', 'School of Law', 'Law', 'Spring 2023', 30, 30, 0, 0);
