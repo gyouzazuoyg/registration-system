@@ -25,24 +25,22 @@ function EditCourse({ match }) {
     setActiveTab(key);
   }
 
-  const { courses } = useSelector((state) => state.coursesReducer);
+  const courses = JSON.parse(localStorage.getItem('courses'));
 
-  const course = courses.find((course) => course._id === match.params.id);
-  console.log(course);
+  const curCourse = courses.find((course) => course._id == match.params.id);
+  console.log(curCourse);
 
   return (
     <div>
       <DefaultLayout>
         <Tabs
           defaultActiveKey="0"
-          activeKey={activeTab}
-          onTabClick={callbackTabClicked}
-        >
+          activeKey={activeTab}>
           <TabPane tab="Course Info" key="0">
             <Form
               layout="vertical"
               onFinish={onFirstFormFinish}
-              initialValues={course}
+              initialValues={curCourse}
             >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>
@@ -139,9 +137,22 @@ function EditCourse({ match }) {
 
                 <Col lg={24} sm={24}>
                   <Form.Item
+                    name="schedule"
+                    rules={[{ required: false }]}
+                    label="Course Schedule"
+                  >
+                    <TextArea
+                      rows={1}
+                      placeholder="Enter the course schedule here"
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col lg={24} sm={24}>
+                  <Form.Item
                     name="courseDescription"
                     rules={[{ required: false }]}
-                    label="Course description"
+                    label="Course Description"
                   >
                     <TextArea
                       rows={3}
@@ -158,7 +169,7 @@ function EditCourse({ match }) {
             <Form
               layout="vertical"
               onFinish={onFinalFormFinish}
-              initialValues={course}
+              initialValues={curCourse}
             >
               <Row gutter={16}>
                 <Col lg={8} sm={24}>

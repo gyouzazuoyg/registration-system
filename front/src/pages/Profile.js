@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import DefaultLayout from '../components/DefaultLayout';
 import { Row, Col, Form, Tabs, Input, Button, Alert, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { searchSkills, updateUser } from '../redux/actions/userActions';
 import RegisteredList from './RegisteredCourses/RegisteredList';
 import PostedList from './PostedCourses/PostedList';
@@ -13,17 +14,22 @@ const { TabPane } = Tabs;
 const { Option } = Select;
 
 function Profile() {
+  const curUser = JSON.parse(localStorage.getItem('user'));
+  const allUsers = JSON.parse(localStorage.getItem('users'));
+
+  const [userInfo, setUserInfo] = useState(curUser)
   const [personalInfo, setPersonalInfo] = useState();
   const [activeTab, setActiveTab] = useState('1');
   const dispatch = useDispatch();
 
   function onPersonInfoSubmit(values) {
-    setPersonalInfo(values);
-    console.log(values);
+    setPersonalInfo(...personalInfo, ...values);
+    console.log('values', values);
     setActiveTab('2');
   }
 
   function onFinalFinish(values) {
+    setPersonalInfo(values);
     const finalObj = { ...personalInfo, ...values };
 
     console.log(finalObj);
@@ -39,9 +45,6 @@ function Profile() {
     setActiveTab('2');
   }
 
-  const curUser = JSON.parse(localStorage.getItem('user'));
-
-  const allUsers = JSON.parse(localStorage.getItem('users'));
   const getAdvisor = () => {
     for (const user in allUsers) {
       if (allUsers[user]._id === curUser.advisor) {
@@ -62,13 +65,6 @@ function Profile() {
     setActiveTab(key);
   }
 
-  // Comment out Skill tab page
-  // const queryResults = JSON.parse(localStorage.getItem('skills'));
-  const children = [];
-  // for (const result of queryResults) {
-  //   children.push(<Option key={result.name}>{result.name}</Option>);
-  // }
-
   return (
     <div>
       <DefaultLayout>
@@ -80,9 +76,7 @@ function Profile() {
           <TabPane tab="Personal Info" key="1">
             <Form
               layout="vertical"
-              onFinish={
-                curUser.role === 'student' ? onPersonInfoSubmit : onEmployFinish
-              }
+              onFinish={onFinalFinish}
               initialValues={curUser}
             >
               <Row gutter={16}>
@@ -139,11 +133,7 @@ function Profile() {
                 </Col>
               </Row>
               <Button htmlType="submit">Next</Button>
-              {curUser.role === 'student' ? (
-                ''
-              ) : (
-                <Button htmlType="submit">Update</Button>
-              )}
+              <Button htmlType="submit">Update</Button>
             </Form>
           </TabPane>
           {curUser.role === 'student' ? (
@@ -159,7 +149,7 @@ function Profile() {
                 <b>Campus</b> : {curUser.campus}
               </p>
               <p>
-                <b>Advisor</b> : {advisorName}
+                <b>Advisor</b> : <Link to={`/users/${curUser.advisor}`}>{advisorName}</Link>
               </p>
               <p>
                 <b>Required Credits</b> : {curUser.requiredCredits}

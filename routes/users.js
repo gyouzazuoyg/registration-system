@@ -111,6 +111,17 @@ router.post('/getwaitlistedcourses', function (req, res, next) {
   });
 });
 
+router.post('/getusercomments', function (req, res, next) {
+  const studentId = req.body.userId;
+  userQueries.getUserComments(studentId, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: 'Some error occurred while getting user comments.',
+      });
+    else res.json(data);
+  });
+});
+
 // Student waitlist courses
 router.post('/waitlistcourse', function (req, res, next) {
   const studentId = req.body.user._id;
@@ -153,7 +164,11 @@ router.post('/dropwaitlist', function (req, res, next) {
 
 // User posts comment
 router.post('/postcomment', function (req, res, next) {
-  userQueries.commentCourse(req.body, (err) => {
+  const studentId = req.body.user._id;
+  const crn = req.body.course.crn;
+  const content = req.body.content;
+  const dateTime = req.body.dateTime;
+  userQueries.commentCourse(studentId, crn, content, dateTime, (err) => {
     if (err)
       res.status(500).send({
         message: 'Some error occurred while posting comment.',
@@ -175,8 +190,8 @@ router.post('/deletecourse', function (req, res, next) {
 
 //Update profile
 router.post('/updateprofile', function (req, res, next) {
-  const newProfile = req.body.newProfile;
-  const userId = req.body.userId;
+  const newProfile = req.body;
+  const userId = req.body._id;
   userQueries.updateProfile(newProfile, userId, (err) => {
     if (err)
       res.status(500).send({

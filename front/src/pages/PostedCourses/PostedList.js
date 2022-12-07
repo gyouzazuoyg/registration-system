@@ -72,6 +72,7 @@ function PostedList() {
       ),
       postedOn: moment(course.createdAt).format('MMM DD yyyy'),
       registeredStudents: course.registeredStudents.length,
+      waitlistedStudents: course.waitlistedStudents.length,
       completeCourseData: course,
     };
     dataSource.push(obj);
@@ -122,6 +123,47 @@ function PostedList() {
       candidatesDatasource.push(obj);
     }
 
+    
+
+    return (
+      <Table columns={candidatesColumns} dataSource={candidatesDatasource} />
+    );
+  }
+
+  function WaitlistedList() {
+    const candidatesColumns = [
+      {
+        title: 'Student Id',
+        dataIndex: 'candidateId',
+        render: (text, data) => {
+          return (
+            <Link to={`/users/${data.candidateId}`}>{data.candidateId}</Link>
+          );
+        },
+      },
+      {
+        title: 'Full Name',
+        dataIndex: 'fullName',
+      },
+      { title: 'Waitlisted Date', dataIndex: 'registeredDate' },
+    ];
+
+    let candidatesDatasource = [];
+
+    for (let candidate of selectedCourse.waitlistedStudents) {
+      let user = allusers.find((user) => user._id === candidate.userid);
+
+      let obj = {
+        candidateId: user._id,
+        fullName: user.firstName + ' ' + user.lastName,
+        registeredDate: candidate.registeredDate,
+      };
+
+      candidatesDatasource.push(obj);
+    }
+
+    
+
     return (
       <Table columns={candidatesColumns} dataSource={candidatesDatasource} />
     );
@@ -135,7 +177,7 @@ function PostedList() {
       <Table columns={columns} dataSource={dataSource} />
 
       <Modal
-        title="Registered Students List"
+        title="Registered and Waitlisted Students List"
         visible={isModalVisible}
         closable={false}
         onOk={handleOk}
@@ -143,6 +185,8 @@ function PostedList() {
         width={800}
       >
         <CandidatesList />
+        <WaitlistedList />
+
       </Modal>
     </div>
   );

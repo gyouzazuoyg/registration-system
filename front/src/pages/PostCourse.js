@@ -26,9 +26,7 @@ function PostCourse() {
       <DefaultLayout>
         <Tabs
           defaultActiveKey="0"
-          activeKey={activeTab}
-          onTabClick={callbackTabClicked}
-        >
+          activeKey={activeTab}>
           <TabPane tab="Course Info" key="0">
             <Form layout="vertical" onFinish={onFirstFormFinish}>
               <Row gutter={16}>
@@ -126,9 +124,22 @@ function PostCourse() {
 
                 <Col lg={24} sm={24}>
                   <Form.Item
+                    name="schedule"
+                    rules={[{ required: false }]}
+                    label="Course Schedule"
+                  >
+                    <TextArea
+                      rows={1}
+                      placeholder="Enter the course schedule here"
+                    />
+                  </Form.Item>
+                </Col>
+
+                <Col lg={24} sm={24}>
+                  <Form.Item
                     name="courseDescription"
                     rules={[{ required: false }]}
-                    label="Course description"
+                    label="Course Description"
                   >
                     <TextArea
                       rows={3}

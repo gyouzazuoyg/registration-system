@@ -16,10 +16,16 @@ export const getAllCourses = () => async (dispatch) => {
         '/api/courses/getwaitlistedstudents',
         { crn: crn },
       );
+      const responseCourseComments = await axios.post(
+        '/api/courses/getcoursecomments',
+        {crn: crn},
+      );
       const registeredStudents = responseRegisteredStudents.data;
       const waitlistedStudents = responseWaitlisttedStudents.data;
+      const comments = responseCourseComments.data;
       courseInfo.registeredStudents = registeredStudents;
       courseInfo.waitlistedStudents = waitlistedStudents;
+      courseInfo.comments = comments;
     }
     dispatch({ type: 'GET_ALL_JOBS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });
@@ -173,9 +179,11 @@ export const sortCourses = (values) => async (dispatch) => {
 
 export const commentCourses = (course, content) => async (dispatch) => {
   const user = JSON.parse(localStorage.getItem('user'));
+  const dateTime = moment().format('YYYY-MM-DD hh:mm:ss');
+
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/courses/commentcourse', { user, course, content });
+    await axios.post('/api/users/postcomment', { user, course, content, dateTime });
 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Comment Posted Successfully');

@@ -10,6 +10,7 @@ import {
   PlusOutlined,
   CheckOutlined,
   LogoutOutlined,
+  DollarOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import Filter from './Filter';
@@ -96,6 +97,20 @@ class DefaultLayout extends React.Component {
                   <Link to="/posted">Posted</Link>
                 </Menu.Item>
               </>
+            ) : (
+              <></>
+            )}
+            {user.role === 'admin' ? (
+              <Menu.Item key="/admineditprofile" icon={<UserOutlined />}>
+                <Link to="/admineditprofile">Edit Profiles</Link>
+              </Menu.Item>
+            ) : (
+              <></>
+            )}
+            {user.role === 'student' ? (
+              <Menu.Item key="/billing" icon={<DollarOutlined />}>
+                <Link to="/billing">Billing</Link>
+              </Menu.Item>
             ) : (
               <></>
             )}

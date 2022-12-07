@@ -64,19 +64,17 @@ export const loginUser = (values) => async (dispatch) => {
 };
 
 export const updateUser = (values) => async (dispatch) => {
-  const userid = JSON.parse(localStorage.getItem('user'))._id;
-
-  values._id = userid;
+  const curUserInfo = JSON.parse(localStorage.getItem('user'));
+  if (curUserInfo.role !== 'admin') {
+    const userid = curUserInfo._id;
+    values._id = userid;
+  }
 
   dispatch({ type: 'LOADING', payload: true });
-
   try {
-    const user = await axios.post('/api/users/update', values);
+    await axios.post('/api/users/updateprofile', values);
     message.success('User updated successfully');
-    localStorage.setItem('user', JSON.stringify(user.data));
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
+    dispatch(getAllUsers());
     dispatch({ type: 'LOADING', payload: false });
   } catch (error) {
     message.error('something went wrong , please try later');
@@ -88,6 +86,7 @@ export const getAllUsers = () => async (dispatch) => {
   dispatch({ type: 'LOADING', payload: true });
   try {
     const response = await axios.get('/api/users/getallusers');
+    const curUserInfo = JSON.parse(localStorage.getItem('user'));
     for (const userInfo of response.data) {
       const studentId = userInfo._id;
       const responseRegisteredCourses = await axios.post(
@@ -102,6 +101,10 @@ export const getAllUsers = () => async (dispatch) => {
       const waitlistedCourses = responseWaitlistedCourses.data;
       userInfo.registeredCourses = registeredCourses;
       userInfo.waitlistedCourses = waitlistedCourses;
+
+      if (userInfo._id === curUserInfo._id) {
+        localStorage.setItem('user', JSON.stringify(userInfo));
+      }
     }
     dispatch({ type: 'GET_ALL_USERS', payload: response.data });
     dispatch({ type: 'LOADING', payload: false });

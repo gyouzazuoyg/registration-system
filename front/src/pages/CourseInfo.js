@@ -29,14 +29,15 @@ function CourseInfo({ match }) {
   const dispatch = useDispatch();
 
   const course = JSON.parse(localStorage.getItem('courses')).find(
-    (course) => course.crn == match.params.id,
+    (course) => (course.crn = match.params.id),
   );
   const postAuthor = JSON.parse(localStorage.getItem('users')).find(
-    (user) => user._id == course.postedBy,
+    (user) => (user._id = course.postedBy),
   );
   const user = JSON.parse(localStorage.getItem('user'));
   const userid = user._id;
 
+  const users = JSON.parse(localStorage.getItem('users'));
 
   const registeredStudents = course.registeredStudents;
   const waitlistedStudents = course.waitlistedStudents;
@@ -74,7 +75,6 @@ function CourseInfo({ match }) {
   }
 
   function confirmDeletePost(e) {
-    console.log(e);
     deletePost();
   }
 
@@ -86,62 +86,67 @@ function CourseInfo({ match }) {
     dispatch(deleteComment(course, id));
   }
 
-  // const CommentList = ({ comments }) => (
-  //   <List
-  //     dataSource={comments}
-  //     header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-  //     itemLayout="horizontal"
-  //     renderItem={(props) => (
-  //       <Comment
-  //         author={<Link to={`/users/${props.userid}`}>{props.author}</Link>}
-  //         avatar={
-  //           <Link to={`/users/${props.userid}`}>
-  //             <Avatar src={props.avatar} />
-  //           </Link>
-  //         }
-  //         content={props.content}
-  //         datetime={props.datetime}
-  //       />
-  //     )}
-  //   />
-  // );
+  const getCommentAuthorName = (userId) => {
+    const userInfo = users.find((user) => user._id === userId);
+    if (userInfo) {
+      return userInfo.firstName + ' ' + userInfo.lastName;
+    } else {
+      return 'Unknown';
+    }
+  };
 
-  // const CommentListAdmin = ({ comments }) => (
-  //   <List
-  //     dataSource={comments}
-  //     header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
-  //     itemLayout="horizontal"
-  //     renderItem={(props) => (
-  //       <Comment
-  //         actions={[
-  //           <Popconfirm
-  //             title="Are you sure to delete this comment?"
-  //             onConfirm={() => confirmDeleteComment(props._id)}
-  //             onCancel={cancel}
-  //             okText="Yes"
-  //             cancelText="No"
-  //           >
-  //             <a>
-  //               <DeleteOutlined />
-  //             </a>
-  //           </Popconfirm>,
-  //         ]}
-  //         author={<Link to={`/users/${props.userid}`}>{props.author}</Link>}
-  //         avatar={
-  //           <Link to={`/users/${props.userid}`}>
-  //             <Avatar src={props.avatar} />
-  //           </Link>
-  //         }
-  //         content={props.content}
-  //         datetime={props.datetime}
-  //       />
-  //     )}
-  //   />
-  // );
+  const CommentList = ({ comments }) => (
+    <List
+      dataSource={comments}
+      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+      itemLayout="horizontal"
+      renderItem={(props) => (
+        <Comment
+          author={
+            <Link to={`/users/${props.userid}`}>
+              {getCommentAuthorName(props.userid)}
+            </Link>
+          }
+          avatar={<Link to={`/users/${props.userid}`}></Link>}
+          content={props.content}
+          datetime={props.dateTime}
+        />
+      )}
+    />
+  );
 
-  // const content = (data) => {
-  //   dispatch(commentCourses(course, data.props.children));
-  // };
+  const CommentListAdmin = ({ comments }) => (
+    <List
+      dataSource={comments}
+      header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+      itemLayout="horizontal"
+      renderItem={(props) => (
+        <Comment
+          actions={[
+            <Popconfirm
+              title="Are you sure to delete this comment?"
+              onConfirm={() => confirmDeleteComment(props._id)}
+              onCancel={cancel}
+              okText="Yes"
+              cancelText="No"
+            >
+              <a>
+                <DeleteOutlined />
+              </a>
+            </Popconfirm>,
+          ]}
+          author={<Link to={`/users/${props.userid}`}>Author</Link>}
+          avatar={<Link to={`/users/${props.userid}`}></Link>}
+          content={props.content}
+          datetime={props.dateTime}
+        />
+      )}
+    />
+  );
+
+  const content = (data) => {
+    dispatch(commentCourses(course, data.props.children));
+  };
 
   return (
     <div>
@@ -224,7 +229,7 @@ function CourseInfo({ match }) {
                   okText="Yes"
                   cancelText="No"
                 >
-                  <Button>Delete post</Button>
+                  <Button>Delete Course</Button>
                 </Popconfirm>
               ) : (
                 <></>
@@ -240,13 +245,13 @@ function CourseInfo({ match }) {
             </div>
           </div>
         )}
-        {/* {comments.length > 0 &&
+        {comments.length > 0 &&
           (user.role === 'admin' ? (
             <CommentListAdmin comments={comments} />
           ) : (
             <CommentList comments={comments} />
           ))}
-        {<Comments content={content} />} */}
+        {<Comments content={content} />}
       </DefaultLayout>
     </div>
   );

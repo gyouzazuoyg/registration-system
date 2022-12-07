@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 function CommentsList() {
   const allusers = useSelector((state) => state.usersReducer).users;
   const userid = JSON.parse(localStorage.getItem('user'))._id;
-
   const user = allusers.find((user) => user._id === userid);
+  console.log(JSON.parse(localStorage.getItem('users')))
   const userComments = user.comments;
 
   let commentsList = [];
@@ -18,9 +18,9 @@ function CommentsList() {
     if (temp) {
       const obj = {
         content: temp.content,
-        postDate: temp.datetime,
+        postDate: temp.dateTime,
         courseId: (
-          <Link to={`/courses/${temp.courseid}`}>
+          <Link to={`/courses/${temp.crn}`}>
             <Button>Details</Button>
           </Link>
         ),

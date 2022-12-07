@@ -12,7 +12,7 @@ function PrivacyPolicy() {
       <br />
       <br />
       <h1>Privacy Policy</h1>
-      <p>Effective date: Dec 7th, 2021</p>
+      <p>Effective date: Dec 7th, 2022</p>
       <p>
         This page informs you of our policies regarding the collection, use, and
         disclosure of personal data when you use our Service and the choices you

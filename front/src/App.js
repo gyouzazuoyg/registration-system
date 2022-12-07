@@ -18,6 +18,8 @@ import EditCourse from './pages/EditCourse';
 import { getAllUsers } from './redux/actions/userActions';
 import UserInfo from './pages/UserInfo';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import AdminEditProfile from './pages/AdminEditProfile';
+import Billing from './pages/Billing';
 
 function App() {
   const { loader } = useSelector((state) => state.loaderReducer);
@@ -53,6 +55,12 @@ function App() {
         <ProtectedRoute path="/postcourse" exact component={PostCourse} />
 
         <ProtectedRoute path="/profile" exact component={Profile} />
+        <ProtectedRoute path="/billing" exact component={Billing} />
+        <ProtectedRoute
+          path="/admineditprofile"
+          exact
+          component={AdminEditProfile}
+        />
         <ProtectedRoute path="/courses/:id" exact component={CourseInfo} />
 
         <ProtectedRoute path="/posted" exact component={PostedCourses} />

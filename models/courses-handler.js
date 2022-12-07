@@ -22,8 +22,10 @@ const courseInfoFormatter = (sqlCourseRawData) => {
     department: sqlCourseRawData['department'],
     college: sqlCourseRawData['college'],
     term: sqlCourseRawData['term'],
+    schedule: sqlCourseRawData['schedule'],
     registeredStudents: [],
     waitlistedStudents: [],
+    comments: [],
     capacity: sqlCourseRawData['course_capacity'],
     waitlistCapacity: sqlCourseRawData['waitlist_capacity'],
     postedBy: sqlCourseRawData['posted_by'],
@@ -45,6 +47,16 @@ const waitlistedStudentFormatter = (sqlStudentRawData) => {
   };
 };
 
+const commentFormatter = (commentRawData) => {
+  return {
+    _id: commentRawData['comment_id'],
+    userid: commentRawData['user_id'],
+    crn: commentRawData['crn'],
+    content: commentRawData['content'],
+    dateTime: commentRawData['date_time'],
+  };
+};
+
 // Get all courses
 Courses.getAll = (resCallback) => {
   // resCallback is a function pointer passed from routes
@@ -62,6 +74,7 @@ Courses.postCourse = (newCourse, resCallback) => {
     courseId,
     courseName,
     term,
+    schedule,
     credits,
     professor,
     prerequisites,
@@ -78,9 +91,9 @@ Courses.postCourse = (newCourse, resCallback) => {
   } = newCourse;
   // resCallback is a function pointer passed from routes
   let sqlQuery = `INSERT INTO Courses (CRN, course_id, course_name, credits, professor, course_description, prerequisites, classroom, 
-    building, campus, department, college, term, course_capacity, waitlist_capacity, posted_by, created_by) 
+    building, campus, department, college, term, schedule, course_capacity, waitlist_capacity, posted_by, created_by) 
     VALUES (${crn}, '${courseId}', '${courseName}', ${credits}, '${professor}', '${courseDescription}', '${prerequisites}', '${classroom}',
-    '${building}', '${campus}', '${department}', '${college}', '${term}', ${capacity}, ${waitlistCapacity}, ${postedBy}, '${createdAt}');`;
+    '${building}', '${campus}', '${department}', '${college}', '${term}', '${schedule}', ${capacity}, ${waitlistCapacity}, ${postedBy}, '${createdAt}');`;
   sql.query(sqlQuery, (err) => {
     // Returning sqlResData, which is the achieved array of data rows, to the corresponding route
     resCallback(err, null);
@@ -129,6 +142,14 @@ Courses.getWaitlistedStudents = (crn, resCallback) => {
   let sqlQuery = `SELECT * FROM StudentWaitlistedCourses WHERE CRN = ${crn};`;
   sql.query(sqlQuery, (err, sqlResData) => {
     resCallback(err, sqlResData.map(waitlistedStudentFormatter));
+  });
+};
+
+Courses.getCourseComments = (crn, resCallback) => {
+  // resCallback is a function pointer passed from routes
+  let sqlQuery = `SELECT * FROM UserComment WHERE crn = ${crn};`;
+  sql.query(sqlQuery, (err, sqlResData) => {
+    resCallback(err, sqlResData.map(commentFormatter));
   });
 };
 

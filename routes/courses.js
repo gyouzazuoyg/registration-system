@@ -25,8 +25,24 @@ router.post('/postcourse', function (req, res, next) {
 });
 
 //Update course
-router.post('/updatecourse', function (req, res, next) {
-  const newCourse = req.body.newCourse;
+router.post('/editcourse', function (req, res, next) {
+  const newCourse = {
+    courseId: req.body.courseId,
+    courseName: req.body.courseName,
+    term: req.body.term,
+    schedule: req.body.schedule,
+    credits: req.body.credits,
+    professor: req.body.professor,
+    prerequisites: req.body.prerequisites,
+    capacity: req.body.capacity,
+    waitlistCapacity: req.body.waitlistCapacity,
+    courseDescription: req.body.courseDescription,
+    department: req.body.department,
+    college: req.body.college,
+    classroom: req.body.classroom,
+    building: req.body.building,
+    campus: req.body.campus,
+  };
   const crn = req.body.crn;
   courseQueries.updateCourse(newCourse, crn, (err) => {
     if (err)
@@ -61,9 +77,21 @@ router.post('/getwaitlistedstudents', function (req, res, next) {
   });
 });
 
+router.post('/getcoursecomments', function (req, res, next) {
+  const crn = req.body.crn;
+  courseQueries.getCourseComments(crn, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message: 'Some error occurred while getting course comments.',
+      });
+    else res.json(data);
+  });
+});
+
 /* Delete courses listing. */
-router.delete('/deletecourse', function (req, res, next) {
-  courseQueries.deleteCourse((err, data) => {
+router.post('/deletecourse', function (req, res, next) {
+  const crn = req.body.crn;
+  courseQueries.deleteCourse(crn, (err, data) => {
     if (err)
       res.status(500).send({
         message: err.message || 'Some error occurred while deleting course.',
