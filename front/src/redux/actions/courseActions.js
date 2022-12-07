@@ -110,7 +110,7 @@ export const waitlistCourse = (course) => async (dispatch) => {
 
   dispatch({ type: 'LOADING', payload: true });
   try {
-    await axios.post('/api/courses/addwaitlist', { course, user, dateTime });
+    await axios.post('/api/users/waitlistcourse', { course, user, dateTime });
 
     dispatch({ type: 'LOADING', payload: false });
     message.success('Course Waitlisted Successfully');
